@@ -1,5 +1,9 @@
 import { ReactNode } from "react";
 
+export interface SuccessFileUploadResponse {
+  url: string;
+}
+
 interface Timestamp {
   createdAt: string;
   updatedAt: string;

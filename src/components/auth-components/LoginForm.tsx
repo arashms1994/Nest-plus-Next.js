@@ -1,6 +1,5 @@
 "use client";
-
-import { LoginAction } from "@/actions/Login";
+import { loginAction } from "@/actions/auth/Login";
 import { Label } from "@mui/icons-material";
 import {
   Box,
@@ -15,7 +14,7 @@ import Link from "next/link";
 import React, { useActionState } from "react";
 
 const LoginForm = () => {
-  const [state, action, pending] = useActionState(LoginAction, undefined);
+  const [state, action, pending] = useActionState(loginAction, undefined);
 
   return (
     <form action={action}>

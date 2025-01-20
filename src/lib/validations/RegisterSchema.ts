@@ -13,15 +13,3 @@ export const RegisterFormSchema = z.object({
       message: "حداقل یک کارکتر عجیب بزارید.",
     }),
 });
-
-export type RegisterFormState =
-  | {
-      errors?: {
-        firstName?: string[];
-        lastName?: string[];
-        email?: string[];
-        password?: string[];
-      };
-      message?: string;
-    }
-  | undefined;

@@ -1,6 +1,5 @@
 "use client";
-
-import { RegisterAction } from "@/actions/Register";
+import { registerAction } from "@/actions/auth/Register";
 import { Label } from "@mui/icons-material";
 import {
   Link as MuiLink,
@@ -15,7 +14,7 @@ import Link from "next/link";
 import React, { useActionState } from "react";
 
 const RegisterForm = () => {
-  const [state, action, pending] = useActionState(RegisterAction, undefined);
+  const [state, action, pending] = useActionState(registerAction, undefined);
 
   return (
     <form action={action}>
