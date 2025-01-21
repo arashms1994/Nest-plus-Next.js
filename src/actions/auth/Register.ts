@@ -3,7 +3,7 @@ import "server-only";
 import { createSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 import { AUTH_BASE_URL } from "@/config.server";
-import { RegisterFormState } from "@/type/validationTypes";
+import { RegisterFormState } from "@/type/authTypes";
 import { RegisterFormSchema } from "@/lib/validations/RegisterSchema";
 
 export async function registerAction(state: RegisterFormState, formData: FormData) {

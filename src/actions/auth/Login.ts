@@ -4,7 +4,7 @@ import { createSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 import { AUTH_BASE_URL } from "@/config.server";
 import { LoginFormSchema } from "@/lib/validations/LoginSchema";
-import { LoginFormState } from "@/type/validationTypes";
+import { LoginFormState } from "@/type/authTypes";
 
 export async function loginAction(state: LoginFormState, formData: FormData) {
   const validatedFields = LoginFormSchema.safeParse(
