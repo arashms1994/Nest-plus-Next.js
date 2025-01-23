@@ -41,7 +41,7 @@ export interface PaginatedResultApi<T> {
 }
 
 export type ServerPageProps = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ [key: string]: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 

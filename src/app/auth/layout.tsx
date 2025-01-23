@@ -11,7 +11,6 @@ function layout({ children }: Readonly<{ children: React.ReactNode }>) {
         width: "100vw",
         alignItems: "center",
         justifyContent: "center",
-        position: "relative",
       }}
     >
       <Stack direction="column" justifyContent="center" alignItems="center" sx={{ width: "100%", height: "100%" }}>{children}</Stack>
@@ -22,8 +21,6 @@ function layout({ children }: Readonly<{ children: React.ReactNode }>) {
 
 export default layout;
 
-{
-  /* <Stack sx={{ position: "absolute" }}>
-  <MaterialUISwitch />
-</Stack> */
-}
+// <Stack sx={{ position: "absolute" }}>
+//   <MaterialUISwitch />
+// </Stack>
