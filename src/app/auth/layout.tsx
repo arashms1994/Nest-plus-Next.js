@@ -1,5 +1,4 @@
 import AuthPic from "@/components/auth-components/AuthPic";
-// import { MaterialUISwitch } from "@/components/theme-toggle/MaterialUISwitch";
 import { Box, Stack } from "@mui/material";
 
 function layout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -15,12 +14,10 @@ function layout({ children }: Readonly<{ children: React.ReactNode }>) {
     >
       <Stack direction="column" justifyContent="center" alignItems="center" sx={{ width: "100%", height: "100%" }}>{children}</Stack>
       <AuthPic />
+      {/* <MaterialUISwitch/> */}
     </Box>
   );
 }
 
 export default layout;
 
-// <Stack sx={{ position: "absolute" }}>
-//   <MaterialUISwitch />
-// </Stack>

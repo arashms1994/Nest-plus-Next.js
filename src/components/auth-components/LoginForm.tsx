@@ -1,20 +1,42 @@
 "use client";
 import { loginAction } from "@/actions/auth/Login";
-import { Label } from "@mui/icons-material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
-  Box,
   Stack,
   TextField,
   Typography,
   Link as MuiLink,
   Button,
   Checkbox,
+  FormControl,
+  Input,
+  InputLabel,
+  InputAdornment,
+  IconButton,
+  FormControlLabel,
 } from "@mui/material";
 import Link from "next/link";
 import React, { useActionState } from "react";
 
 const LoginForm = () => {
+  // =========== States =============
   const [state, action, pending] = useActionState(loginAction, undefined);
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  // =========== Handle Fns =============
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
+
+  const handleMouseUpPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
 
   return (
     <form action={action}>
@@ -32,22 +54,29 @@ const LoginForm = () => {
           multiline
           type="email"
         />
-        <TextField
-          error={!!state?.errors?.password}
-          helperText={state?.errors?.password?.map((e: string) => (
-            <Box component="span" display="block" key={e}>
-              {e}
-            </Box>
-          ))}
-          size="small"
-          fullWidth
-          name="password"
-          type="password"
-          label="کلمه عبور"
-          variant="standard"
-          maxRows={4}
-          multiline
-        />
+        <FormControl variant="standard">
+          <InputLabel htmlFor="standard-adornment-password">
+            Password
+          </InputLabel>
+          <Input
+            id="standard-adornment-password"
+            type={showPassword ? "text" : "password"}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label={
+                    showPassword ? "hide the password" : "display the password"
+                  }
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  onMouseUp={handleMouseUpPassword}
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
         <Stack
           direction="row"
           justifyContent="space-between"
@@ -62,10 +91,11 @@ const LoginForm = () => {
             رمز عبور خود را فراموش کرده ام.
           </MuiLink>
 
-          {/* <Typography variant="caption">
-            <Checkbox {...Label} />
-            مرا به خاطر بسپار.
-          </Typography> */}
+          <FormControlLabel
+            control={<Checkbox />}
+            label="مرا به خاطر بسپار."
+            sx={{ margin: "0", fontSize: "12px" }}
+          />
         </Stack>
         <Button
           type="submit"

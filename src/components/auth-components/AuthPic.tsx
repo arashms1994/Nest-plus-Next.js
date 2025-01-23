@@ -23,7 +23,7 @@ const AuthPic = () => {
           left:"0"
         }}
         >
-        <AuthLogo src="/nest-logo/nest-logo.webp" alt="nest-logo" />
+        <AuthLogo src="/nest-logo/nest-logo.webp" alt="nest-logo"/>
         </Box>
     </Box>
   );

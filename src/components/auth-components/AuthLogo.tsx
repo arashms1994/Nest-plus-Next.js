@@ -18,7 +18,7 @@ const AuthLogo: React.FC<Props> = ({ src, alt }) => {
         overflow: "hidden",
       }}
     >
-      <Image src={src} alt={alt} layout="fill" objectFit="fill" priority style={{borderRadius:"100%"}} />
+      <Image src={src} alt={alt} layout="fill" objectFit="fill" priority style={{borderRadius:"100%"}}/>
     </Box>
   );
 };

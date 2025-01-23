@@ -1,6 +1,6 @@
 "use client";
 import { registerAction } from "@/actions/auth/Register";
-import { Label } from "@mui/icons-material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Link as MuiLink,
   Button,
@@ -8,13 +8,35 @@ import {
   Stack,
   Typography,
   TextField,
-  Box,
+  InputAdornment,
+  IconButton,
+  FormControl,
+  InputLabel,
+  Input,
+  FormControlLabel,
 } from "@mui/material";
 import Link from "next/link";
 import React, { useActionState } from "react";
 
 const RegisterForm = () => {
+  // =========== States =============
   const [state, action, pending] = useActionState(registerAction, undefined);
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  // =========== Handle Fns =============
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
+
+  const handleMouseUpPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
 
   return (
     <form action={action}>
@@ -54,26 +76,36 @@ const RegisterForm = () => {
           multiline
           type="email"
         />
-        <TextField
-          error={!!state?.errors?.password}
-          helperText={state?.errors?.password?.map((e: string) => (
-            <Box component="span" display="block" key={e}>
-              {e}
-            </Box>
-          ))}
-          size="small"
-          fullWidth
-          name="password"
-          type="password"
-          label="کلمه عبور"
-          variant="standard"
-          maxRows={4}
-          multiline
+        <FormControl variant="standard">
+          <InputLabel htmlFor="standard-adornment-password">
+            Password
+          </InputLabel>
+          <Input
+            id="standard-adornment-password"
+            type={showPassword ? "text" : "password"}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label={
+                    showPassword ? "hide the password" : "display the password"
+                  }
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  onMouseUp={handleMouseUpPassword}
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
+
+        <FormControlLabel
+          control={<Checkbox />}
+          label="قوانین و مقررات را میپذیرم."
+          sx={{ margin: "0", fontSize: "12px" }}
         />
-        {/* <Typography variant="caption">
-          <Checkbox {...Label} />
-          قوانین و مقررات را میپذیرم.
-        </Typography> */}
+
         <Button
           type="submit"
           disabled={pending}
