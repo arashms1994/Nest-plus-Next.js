@@ -1,20 +1,14 @@
 import { ReactNode } from "react";
 
-export interface SuccessFileUploadResponse {
-  url: string;
-}
-
 interface Timestamp {
   createdAt: string;
   updatedAt: string;
 }
-
 export interface IPropertyOption {
   id: string;
   value: string;
   label: string;
 }
-
 export interface IProperty extends Timestamp {
   id: string;
   name: string;
@@ -39,7 +33,6 @@ export interface PaginatedResultApi<T> {
   page: number;
   pageSize: number;
 }
-
 export type ServerPageProps = {
   params: Promise<{ [key: string]: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -49,18 +42,16 @@ export interface Column<T extends { id: string }> {
   title: string;
   render: (row: T) => ReactNode;
 }
-
 export interface ICategory extends Timestamp {
   titleEn: string;
   titleFa: string;
   slug: string;
   returnReasonAlert: string;
   properties: IProperty[];
-
-  parent: ICategory;
+  parent?: ICategory;
   id: string;
+  icon?: string;
 }
-
 export interface IBrand extends Timestamp {
   titleFa: string;
   titleEn: string;
@@ -68,7 +59,6 @@ export interface IBrand extends Timestamp {
   logo: string;
   id: string;
 }
-
 export interface IBadge extends Timestamp {
   icon: string;
   title: string;
@@ -87,12 +77,12 @@ interface IPropertyValue {
   value: string;
   id: string;
 }
-
 export interface IProduct extends Timestamp {
   images: {
     main: string;
     list: string[];
   };
+  colors: IColor[];
   code: number;
   titleFa: string;
   titleEn: string;

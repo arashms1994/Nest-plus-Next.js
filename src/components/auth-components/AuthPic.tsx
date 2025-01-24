@@ -15,16 +15,16 @@ const AuthPic = () => {
       />
       <Box
         sx={{
-          margin:"10px",
+          margin: "10px",
           position: "absolute",
           borderRadius: "100%",
-          overflow:"hidden",
-          top:"0",
-          left:"0"
+          overflow: "hidden",
+          top: "0",
+          left: "0",
         }}
-        >
-        <AuthLogo src="/nest-logo/nest-logo.webp" alt="nest-logo"/>
-        </Box>
+      >
+        <AuthLogo src="/nest-logo/nest-logo.webp" alt="nest-logo" />
+      </Box>
     </Box>
   );
 };
