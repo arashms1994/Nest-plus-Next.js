@@ -2,39 +2,48 @@
 import "server-only";
 
 import { BASE_URL } from "@/config.server";
-import { auth } from "@/lib/session";
 import { IBadge, PaginatedResultApi } from "@/type/serverTypes";
 import { apiFetch } from "./base";
+import { revalidateTag } from "next/cache";
 
 export const createBadge = async (body: Partial<IBadge>) => {
   const data = await apiFetch(`${BASE_URL}/badges`, {
     method: "post",
-    body: JSON.stringify(body)
-  })
-  return data
-};
-
-export const getBadges = async (
-  params?: any
-): Promise<PaginatedResultApi<IBadge>> => {
-  const { accessToken } = await auth();
-  const search = new URLSearchParams(params);
-  const data = await fetch(`${BASE_URL}/badges?${search.toString()}`, {
-    headers: {
-      authorization: `Bearer ${accessToken}`,
-    },
-    cache: "no-store",
-  }).then((res) => res.json());
+    body: JSON.stringify(body),
+  });
   return data;
 };
 
-export const deleteBadge = async (id: string): Promise<Response> => {
-  const { accessToken } = await auth();
-  const res = await fetch(`${BASE_URL}/badges/${id}`, {
+export const updateBadge = async (id: string, body: any) => {
+  const data = await apiFetch(`${BASE_URL}/badges/${id}`, {
+    method: "post",
+    body: JSON.stringify(body),
+  });
+  revalidateTag(`badges-${id.toString()}`);
+  return data;
+};
+
+export const getBadges = async (params?: any) => {
+  const search = new URLSearchParams(params);
+  const data = await apiFetch<PaginatedResultApi<IBadge>>(
+    `${BASE_URL}/badges?${search.toString()}`
+  );
+  return data;
+};
+
+export const deleteBadge = async (id: string): Promise<unknown> => {
+  const res = await apiFetch(`${BASE_URL}/badges/${id}`, {
     method: "delete",
-    headers: {
-      authorization: `Bearer ${accessToken}`,
-    },
   });
   return res;
+};
+
+export const getBadgeById = async (id: string) => {
+  const data = await apiFetch<IBadge>(`${BASE_URL}/badges/${id}`, {
+    cache: "force-cache",
+    next: {
+      tags: ["allSingleBadge", `badges-${id}`],
+    },
+  });
+  return data;
 };
