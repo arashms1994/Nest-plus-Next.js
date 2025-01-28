@@ -1,5 +1,6 @@
 import "server-only";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export async function createSession(token: {
   accessToken: string;
@@ -34,11 +35,18 @@ export async function deleteSession() {
 
 export async function auth() {
   const cookieStore = await cookies();
-  const accessToken = await cookieStore.get("accessToken")?.value;
-  const refreshToken = await cookieStore.get("refreshToken")?.value;
+  const accessToken = cookieStore.get("accessToken")?.value;
+  const refreshToken = cookieStore.get("refreshToken")?.value;
 
   return {
     accessToken,
     refreshToken,
   };
+}
+
+export async function ensureAuthenticated() {
+  const { accessToken } = await auth();
+  if (!accessToken) {
+    redirect("/auth/login");
+  }
 }

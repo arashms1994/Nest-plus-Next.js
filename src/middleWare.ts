@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
+import { refreshTokenAction } from "./actions/auth/refresh-token";
 
 const protectedRoutes = "/dashboard";
 const publicRoutes = "/";
@@ -18,6 +19,8 @@ export async function middleWare(req: NextRequest) {
   const needToRefresh = !accessToken && refreshToken;
 
   if (needToRefresh) {
+    await refreshTokenAction();
+    return NextResponse.redirect(new URL(req.nextUrl, req.nextUrl));
   }
 
   if (isProtectedRoute && isLogout) {
