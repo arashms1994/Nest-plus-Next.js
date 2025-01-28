@@ -1,23 +1,17 @@
 "use server";
 import "server-only";
+
 import { BASE_URL } from "@/config.server";
 import { auth } from "@/lib/session";
 import { IBadge, PaginatedResultApi } from "@/type/serverTypes";
+import { apiFetch } from "./base";
 
-export const createBadge = async (body: any, accessToken: string) => {
-  const res = await fetch(`${BASE_URL}/badges`, {
+export const createBadge = async (body: Partial<IBadge>) => {
+  const data = await apiFetch(`${BASE_URL}/badges`, {
     method: "post",
-    body: JSON.stringify(body),
-    headers: {
-      "Content-type": "application/json",
-      Authorization: "Bearer" + accessToken,
-    },
-  });
-  const data = await res.json();
-  return {
-    res,
-    data,
-  };
+    body: JSON.stringify(body)
+  })
+  return data
 };
 
 export const getBadges = async (
