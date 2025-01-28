@@ -1,21 +1,25 @@
 "use server";
 
-import { createBadge, deleteBadge, updateBadge } from "@/api/server-api/badges";
+
 import { ApiError } from "@/api/server-api/base";
+import { createBrand, deleteBrand, updateBrand } from "@/api/server-api/brands";
 import { ensureAuthenticated } from "@/lib/session";
 import { formDataToObject } from "@/lib/utils";
-import { BadgeFormSchema } from "@/lib/validations/serverActionsSchema";
-import { BadgeFormState } from "@/type/serverActionsTypes";
+import {
+  BrandFormState,
+  BrandSchemaZod,
+} from "@/lib/validations/serverActionsSchema";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export async function createOrUpdateBadgeAction(
-  state: BadgeFormState,
+export async function createOrUpdateBrandAction(
+  state: BrandFormState,
   formData: FormData
 ) {
   await ensureAuthenticated();
   const id = formData.get("id");
-  const validatedFields = BadgeFormSchema.safeParse(formDataToObject(formData));
+  const validatedFields = BrandSchemaZod.safeParse(formDataToObject(formData));
+
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
@@ -23,9 +27,9 @@ export async function createOrUpdateBadgeAction(
   }
   try {
     if (id) {
-      await updateBadge(id.toString(), validatedFields.data);
+      await updateBrand(id.toString(), validatedFields.data);
     } else {
-      await createBadge(validatedFields.data);
+      await createBrand(validatedFields.data);
     }
   } catch (e) {
     console.log(e);
@@ -41,13 +45,13 @@ export async function createOrUpdateBadgeAction(
       };
     }
   }
-  redirect("/dashboard/badges");
+  redirect("/dashboard/brands");
 }
 
-export async function deleteBadgeAction(id: string) {
+export async function deleteBrandAction(id: string) {
   await ensureAuthenticated();
   try {
-    const res = await deleteBadge(id);
+    const res = await deleteBrand(id);
   } catch (e) {
     if (e instanceof ApiError) {
       return {
@@ -56,5 +60,5 @@ export async function deleteBadgeAction(id: string) {
       };
     }
   }
-  revalidatePath("/dashboard/badges");
+  revalidatePath("/dashboard/brands");
 }

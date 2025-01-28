@@ -4,10 +4,11 @@ import "server-only";
 import { BASE_URL } from "@/config.server";
 import { revalidateTag } from "next/cache";
 import { apiFetch } from "./base";
+import { PropertyType } from "@/lib/validations/serverActionsSchema";
 import { IProperty, PaginatedResultApi } from "@/type/serverTypes";
 
 export const createProperties = async (
-  body: Partial<IProperty>
+  body: Partial<PropertyType>
 ): Promise<IProperty> => {
   return apiFetch<IProperty>(`${BASE_URL}/properties`, {
     method: "POST",
@@ -17,7 +18,7 @@ export const createProperties = async (
 
 export const updateProperties = async (
   id: string,
-  body: Partial<IProperty>
+  body: Partial<PropertyType>
 ): Promise<IProperty> => {
   const data = await apiFetch<IProperty>(`${BASE_URL}/properties/${id}`, {
     method: "PUT",

@@ -1,21 +1,22 @@
 "use server";
 
-import { createBadge, deleteBadge, updateBadge } from "@/api/server-api/badges";
 import { ApiError } from "@/api/server-api/base";
+import { createCity, deleteCity, updateCity } from "@/api/server-api/cities";
 import { ensureAuthenticated } from "@/lib/session";
 import { formDataToObject } from "@/lib/utils";
-import { BadgeFormSchema } from "@/lib/validations/serverActionsSchema";
-import { BadgeFormState } from "@/type/serverActionsTypes";
+import { CityFormState, CitySchemaZod } from "@/lib/validations/serverActionsSchema";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export async function createOrUpdateBadgeAction(
-  state: BadgeFormState,
+
+
+export async function createOrUpdateCityAction(
+  state: CityFormState,
   formData: FormData
 ) {
   await ensureAuthenticated();
   const id = formData.get("id");
-  const validatedFields = BadgeFormSchema.safeParse(formDataToObject(formData));
+  const validatedFields = CitySchemaZod.safeParse(formDataToObject(formData));
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
@@ -23,9 +24,9 @@ export async function createOrUpdateBadgeAction(
   }
   try {
     if (id) {
-      await updateBadge(id.toString(), validatedFields.data);
+      await updateCity(id.toString(), validatedFields.data);
     } else {
-      await createBadge(validatedFields.data);
+      await createCity(validatedFields.data);
     }
   } catch (e) {
     console.log(e);
@@ -41,13 +42,13 @@ export async function createOrUpdateBadgeAction(
       };
     }
   }
-  redirect("/dashboard/badges");
+  redirect("/dashboard/cities");
 }
 
-export async function deleteBadgeAction(id: string) {
+export async function deleteCityAction(id: string) {
   await ensureAuthenticated();
   try {
-    const res = await deleteBadge(id);
+    const res = await deleteCity(id);
   } catch (e) {
     if (e instanceof ApiError) {
       return {
@@ -56,5 +57,5 @@ export async function deleteBadgeAction(id: string) {
       };
     }
   }
-  revalidatePath("/dashboard/badges");
+  revalidatePath("/dashboard/cities");
 }

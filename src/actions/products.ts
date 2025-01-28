@@ -1,31 +1,40 @@
 "use server";
 
-import { createBadge, deleteBadge, updateBadge } from "@/api/server-api/badges";
+import {
+  createProduct,
+  updateProduct,
+  deleteProduct,
+} from "@/api/server-api/products";
 import { ApiError } from "@/api/server-api/base";
 import { ensureAuthenticated } from "@/lib/session";
-import { formDataToObject } from "@/lib/utils";
-import { BadgeFormSchema } from "@/lib/validations/serverActionsSchema";
-import { BadgeFormState } from "@/type/serverActionsTypes";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { formDataToObject } from "@/lib/utils";
+import {
+  ProductFormState,
+  ProductSchemaZod,
+} from "@/lib/validations/serverActionsSchema";
 
-export async function createOrUpdateBadgeAction(
-  state: BadgeFormState,
+export async function createOrUpdateProductAction(
+  state: ProductFormState,
   formData: FormData
 ) {
   await ensureAuthenticated();
-  const id = formData.get("id");
-  const validatedFields = BadgeFormSchema.safeParse(formDataToObject(formData));
+  const code = formData.get("code");
+  const validatedFields = ProductSchemaZod.safeParse(
+    formDataToObject(formData)
+  );
+
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
     };
   }
   try {
-    if (id) {
-      await updateBadge(id.toString(), validatedFields.data);
+    if (code) {
+      await updateProduct(code.toString(), validatedFields.data);
     } else {
-      await createBadge(validatedFields.data);
+      await createProduct(validatedFields.data);
     }
   } catch (e) {
     console.log(e);
@@ -41,13 +50,13 @@ export async function createOrUpdateBadgeAction(
       };
     }
   }
-  redirect("/dashboard/badges");
+  redirect("/dashboard/products");
 }
 
-export async function deleteBadgeAction(id: string) {
+export async function deleteProductAction(id: string) {
   await ensureAuthenticated();
   try {
-    const res = await deleteBadge(id);
+    const res = await deleteProduct(id);
   } catch (e) {
     if (e instanceof ApiError) {
       return {
@@ -56,5 +65,5 @@ export async function deleteBadgeAction(id: string) {
       };
     }
   }
-  revalidatePath("/dashboard/badges");
+  revalidatePath("/dashboard/products");
 }

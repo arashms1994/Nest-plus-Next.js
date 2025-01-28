@@ -25,6 +25,14 @@ export const LoginFormSchema = z.object({
 export type LoginType = z.infer<typeof LoginFormSchema>;
 export type LoginFormState = FormState<LoginType>;
 
+export const BadgeFormSchema = z.object({
+  icon: z.string().url().trim(),
+  title: z.string().min(1, "Title is required").trim(),
+});
+
+export type BadgeType = z.infer<typeof BadgeFormSchema>;
+export type BadgeFormState = FormState<BadgeType>;
+
 export const BrandSchemaZod = z.object({
   titleFa: z.string().min(1, "Title (FA) is required"),
   titleEn: z.string().min(1, "Title (EN) is required"),

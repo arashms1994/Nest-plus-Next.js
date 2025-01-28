@@ -1,21 +1,27 @@
 "use server";
 
-import { createBadge, deleteBadge, updateBadge } from "@/api/server-api/badges";
 import { ApiError } from "@/api/server-api/base";
 import { ensureAuthenticated } from "@/lib/session";
-import { formDataToObject } from "@/lib/utils";
-import { BadgeFormSchema } from "@/lib/validations/serverActionsSchema";
-import { BadgeFormState } from "@/type/serverActionsTypes";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { formDataToObject } from "@/lib/utils";
+import { PropertyFormState } from "@/type/serverActionsTypes";
+import {
+  createProperties,
+  deleteProperties,
+  updateProperties,
+} from "@/api/server-api/properties";
+import { PropertySchemaZod } from "@/lib/validations/serverActionsSchema";
 
-export async function createOrUpdateBadgeAction(
-  state: BadgeFormState,
+export async function createOrUpdatePropertyAction(
+  state: PropertyFormState,
   formData: FormData
 ) {
   await ensureAuthenticated();
   const id = formData.get("id");
-  const validatedFields = BadgeFormSchema.safeParse(formDataToObject(formData));
+  const validatedFields = PropertySchemaZod.safeParse(
+    formDataToObject(formData)
+  );
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
@@ -23,9 +29,9 @@ export async function createOrUpdateBadgeAction(
   }
   try {
     if (id) {
-      await updateBadge(id.toString(), validatedFields.data);
+      await updateProperties(id.toString(), validatedFields.data);
     } else {
-      await createBadge(validatedFields.data);
+      await createProperties(validatedFields.data);
     }
   } catch (e) {
     console.log(e);
@@ -41,13 +47,13 @@ export async function createOrUpdateBadgeAction(
       };
     }
   }
-  redirect("/dashboard/badges");
+  redirect("/dashboard/properties");
 }
 
-export async function deleteBadgeAction(id: string) {
+export async function deletePropertyAction(id: string) {
   await ensureAuthenticated();
   try {
-    const res = await deleteBadge(id);
+    const res = await deleteProperties(id);
   } catch (e) {
     if (e instanceof ApiError) {
       return {
@@ -56,5 +62,5 @@ export async function deleteBadgeAction(id: string) {
       };
     }
   }
-  revalidatePath("/dashboard/badges");
+  revalidatePath("/dashboard/properties");
 }

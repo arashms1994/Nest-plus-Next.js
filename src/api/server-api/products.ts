@@ -4,10 +4,11 @@ import "server-only";
 import { BASE_URL } from "@/config.server";
 import { revalidateTag } from "next/cache";
 import { apiFetch } from "./base";
+import { ProductType } from "@/lib/validations/serverActionsSchema";
 import { IProduct, PaginatedResultApi } from "@/type/serverTypes";
 
 export const createProduct = async (
-  body: Partial<IProduct>
+  body: Partial<ProductType>
 ): Promise<IProduct> => {
   return apiFetch<IProduct>(`${BASE_URL}/products`, {
     method: "POST",
@@ -17,7 +18,7 @@ export const createProduct = async (
 
 export const updateProduct = async (
   id: string,
-  body: Partial<IProduct>
+  body: Partial<ProductType>
 ): Promise<IProduct> => {
   try {
     const data = await apiFetch<IProduct>(`${BASE_URL}/products/${id}`, {

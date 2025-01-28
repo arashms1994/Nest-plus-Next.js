@@ -1,21 +1,23 @@
 "use server";
 
-import { createBadge, deleteBadge, updateBadge } from "@/api/server-api/badges";
+import { createColor, updateColor, deleteColor } from "@/api/server-api/colors";
 import { ApiError } from "@/api/server-api/base";
 import { ensureAuthenticated } from "@/lib/session";
-import { formDataToObject } from "@/lib/utils";
-import { BadgeFormSchema } from "@/lib/validations/serverActionsSchema";
-import { BadgeFormState } from "@/type/serverActionsTypes";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { formDataToObject } from "@/lib/utils";
+import {
+  ColorFormState,
+  ColorSchemaZod,
+} from "@/lib/validations/serverActionsSchema";
 
-export async function createOrUpdateBadgeAction(
-  state: BadgeFormState,
+export async function createOrUpdateColorAction(
+  state: ColorFormState,
   formData: FormData
 ) {
   await ensureAuthenticated();
   const id = formData.get("id");
-  const validatedFields = BadgeFormSchema.safeParse(formDataToObject(formData));
+  const validatedFields = ColorSchemaZod.safeParse(formDataToObject(formData));
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
@@ -23,9 +25,9 @@ export async function createOrUpdateBadgeAction(
   }
   try {
     if (id) {
-      await updateBadge(id.toString(), validatedFields.data);
+      await updateColor(id.toString(), validatedFields.data);
     } else {
-      await createBadge(validatedFields.data);
+      await createColor(validatedFields.data);
     }
   } catch (e) {
     console.log(e);
@@ -41,13 +43,13 @@ export async function createOrUpdateBadgeAction(
       };
     }
   }
-  redirect("/dashboard/badges");
+  redirect("/dashboard/colors");
 }
 
-export async function deleteBadgeAction(id: string) {
+export async function deleteColorAction(id: string) {
   await ensureAuthenticated();
   try {
-    const res = await deleteBadge(id);
+    const res = await deleteColor(id);
   } catch (e) {
     if (e instanceof ApiError) {
       return {
@@ -56,5 +58,5 @@ export async function deleteBadgeAction(id: string) {
       };
     }
   }
-  revalidatePath("/dashboard/badges");
+  revalidatePath("/dashboard/colors");
 }
