@@ -1,6 +1,6 @@
-import DashboardHeader from "@/components/dashboard-layout/dashboard-header";
-import DrawerHeader from "@/components/dashboard-layout/drawer-header";
-import MiniDrawer from "@/components/dashboard-layout/mini-drawer";
+import DashboardHeader from "@/components/dashboard-components/dashboard-layout/dashboard-header";
+import DrawerHeader from "@/components/dashboard-components/dashboard-layout/drawer-header";
+import MiniDrawer from "@/components/dashboard-components/dashboard-layout/mini-drawer";
 import { auth } from "@/lib/session";
 import AuthProvider from "@/providers/AuthProvider";
 import DrawerProvider from "@/providers/DrawerProvider";
