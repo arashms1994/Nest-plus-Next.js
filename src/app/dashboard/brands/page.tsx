@@ -1,7 +1,7 @@
 import { ServerPageProps } from "@/type/serverTypes";
 import { BrandsTable } from "./brands-table";
 import { getBrands } from "@/api/server-api/brands";
-import { TableContainer } from "@/components/dashboard-components/tables/table.container";
+import { TableContainer } from "@/components/dashboard-components/tables/table-container";
 
 export default async function BrandsPage({ searchParams }: ServerPageProps) {
   const params = await searchParams;

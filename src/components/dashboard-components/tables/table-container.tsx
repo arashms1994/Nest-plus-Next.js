@@ -1,11 +1,11 @@
 import { Box, Button, Paper, Toolbar, Typography } from "@mui/material";
 import Link from "next/link";
 import { ReactNode, Suspense } from "react";
-import TableLoading from "./table.loading";
+import TableLoading from "./table-loading";
 
 export type TableContainerProps = {
   title: string;
-  createLink: string;
+  createLink?: string;
   children: ReactNode;
 };
 export async function TableContainer({
@@ -24,16 +24,18 @@ export async function TableContainer({
         >
           {title}
         </Typography>
-        <Button
-          component={Link}
-          href={createLink}
-          sx={{
-            flexShrink: 0,
-          }}
-          variant="contained"
-        >
-          {title} جدید
-        </Button>
+        {createLink && (
+          <Button
+            component={Link}
+            href={createLink}
+            sx={{
+              flexShrink: 0,
+            }}
+            variant="contained"
+          >
+            {title} جدید
+          </Button>
+        )}
       </Toolbar>
       <Suspense fallback={<TableLoading columnCount={6} />}>
         {children}

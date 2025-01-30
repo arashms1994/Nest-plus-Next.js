@@ -1,5 +1,5 @@
 import { getCategories } from "@/api/server-api/categories";
-import { TableContainer } from "@/components/dashboard-components/tables/table.container";
+import { TableContainer } from "@/components/dashboard-components/tables/table-container";
 import { ServerPageProps } from "@/type/serverTypes";
 import { CategoriesTable } from "./categories-table";
 

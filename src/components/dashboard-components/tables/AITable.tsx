@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import React, { ReactNode } from "react";
 import AITableRow from "./AITable-row";
-import TablePagination from "./table.pagination";
+import TablePagination from "./table-pagination";
 
 interface AITableProps<T extends { id: string }, G extends { id: string }> {
   schema: Column<T>[];

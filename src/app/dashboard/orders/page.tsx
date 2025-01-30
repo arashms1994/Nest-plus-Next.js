@@ -1,14 +1,14 @@
+import { getOrders } from "@/api/server-api/orders";
 import { TableContainer } from "@/components/dashboard-components/tables/table-container";
-import { UsersTable } from "./user-table";
-import { getAllUsers } from "@/api/server-api/users";
 import { ServerPageProps } from "@/type/serverTypes";
+import { OrdersTable } from "./orders-table";
 
 export default async function UsersPage({ searchParams }: ServerPageProps) {
   const params = await searchParams;
-  const users = getAllUsers(params);
+  const orders = getOrders(params);
   return (
-    <TableContainer title="کاربران" createLink="/dashboard/users/create">
-      <UsersTable users={users} />
+    <TableContainer title="سفارش ها">
+      <OrdersTable orders={orders} />
     </TableContainer>
   );
 }
