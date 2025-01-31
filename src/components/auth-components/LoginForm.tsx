@@ -51,15 +51,14 @@ const LoginForm = () => {
           name="email"
           label="ایمیل یا نام کاربری"
           variant="standard"
-          maxRows={4}
-          multiline
           type="email"
         />
         <FormControl variant="standard">
           <InputLabel htmlFor="standard-adornment-password">
-            Password
+            رمز عبور
           </InputLabel>
           <Input
+            name="password"
             id="standard-adornment-password"
             type={showPassword ? "text" : "password"}
             endAdornment={
