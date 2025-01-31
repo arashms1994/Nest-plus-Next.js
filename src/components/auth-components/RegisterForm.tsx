@@ -1,4 +1,5 @@
 "use client";
+
 import { registerAction } from "@/actions/auth/Register";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {

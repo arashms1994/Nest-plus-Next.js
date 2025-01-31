@@ -77,6 +77,7 @@ interface IPropertyValue {
   value: string;
   id: string;
 }
+
 export interface IProduct extends Timestamp {
   images: {
     main: string;
@@ -95,6 +96,7 @@ export interface IProduct extends Timestamp {
   expert_reviews: string;
   id: string;
 }
+
 export interface IUser {
   firstName: string;
   lastName: string;
