@@ -7,15 +7,21 @@ import { apiFetch } from "./base";
 import { CategoryType } from "@/lib/validations/serverActionsSchema";
 import { ICategory, PaginatedResultApi } from "@/type/serverTypes";
 
+// Create a new category
 export const createCategory = async (
   body: Partial<CategoryType>
 ): Promise<ICategory> => {
-  return apiFetch<ICategory>(`${BASE_URL}/categories`, {
-    method: "POST",
-    body: JSON.stringify(body),
-  });
+  try {
+    return apiFetch<ICategory>(`${BASE_URL}/categories`, {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+  } catch (e) {
+    throw e;
+  }
 };
 
+// Update an existing category
 export const updateCategory = async (
   id: string,
   body: Partial<CategoryType>
@@ -28,8 +34,9 @@ export const updateCategory = async (
   return data;
 };
 
+// Get a paginated list of categories
 export const getCategories = async (
-  params?: any
+  params?: unknown
 ): Promise<PaginatedResultApi<ICategory>> => {
   const search = new URLSearchParams(params as Record<string, string>);
   return apiFetch<PaginatedResultApi<ICategory>>(
@@ -40,6 +47,7 @@ export const getCategories = async (
   );
 };
 
+// Delete a category
 export const deleteCategory = async (
   id: string
 ): Promise<{ message: string }> => {
@@ -48,6 +56,7 @@ export const deleteCategory = async (
   });
 };
 
+// Get a category by its ID
 export const getCategoryById = async (id: string): Promise<ICategory> => {
   return apiFetch<ICategory>(`${BASE_URL}/categories/${id}`, {
     cache: "force-cache",

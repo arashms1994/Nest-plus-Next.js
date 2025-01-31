@@ -1,5 +1,5 @@
-import React from "react";
-import { Card, CardContent, Typography, Rating, Box } from "@mui/material";
+import React from 'react';
+import { Card, CardContent, Typography, Rating, Box } from '@mui/material';
 
 interface ProductProps {
   name: string;
@@ -8,12 +8,7 @@ interface ProductProps {
   rating: number;
 }
 
-const ProductCard: React.FC<ProductProps> = ({
-  name,
-  originalPrice,
-  discountedPrice,
-  rating,
-}) => {
+const ProductCard: React.FC<ProductProps> = ({ name, originalPrice, discountedPrice, rating }) => {
   return (
     <Card sx={{ maxWidth: 345, m: 2 }}>
       <CardContent>
@@ -23,21 +18,17 @@ const ProductCard: React.FC<ProductProps> = ({
         <Typography variant="body1" color="error" gutterBottom>
           -50%
         </Typography>
-        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
           <Rating name="read-only" value={rating} readOnly />
         </Box>
         <Typography variant="h5" component="div" gutterBottom>
           {name}
         </Typography>
-        <Typography
-          variant="body1"
-          color="text.secondary"
-          sx={{ textDecoration: "line-through" }}
-        >
-          ${originalPrice.toFixed(2)}
+        <Typography variant="body1" color="text.secondary" sx={{ textDecoration: 'line-through' }}>
+          ${originalPrice}
         </Typography>
         <Typography variant="h6" color="success.main">
-          ${discountedPrice.toFixed(2)}
+          ${discountedPrice}
         </Typography>
       </CardContent>
     </Card>

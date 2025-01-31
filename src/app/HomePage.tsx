@@ -1,6 +1,8 @@
 import Footer from "@/components/home-components/footer/footer";
 import { HeroSection } from "@/components/home-components/hero/heroSection";
 import Navbar from "@/components/home-components/navbar/navbar";
+import ProductCard from "@/components/product-components/product-card/productCard";
+import ProductPage from "@/components/product-components/product-page/productPage";
 import { Box } from "@mui/material";
 import React from "react";
 
@@ -20,6 +22,8 @@ const HomePage = () => {
         }}
       >
         <HeroSection />
+        <ProductCard/>
+        <ProductPage/>
       </Box>
       <Footer />
     </>

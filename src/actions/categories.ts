@@ -19,6 +19,7 @@ export async function createOrUpdateCategoryAction(
   state: CategoryFormState,
   formData: FormData
 ) {
+  /// validate input
   await ensureAuthenticated();
   const id = formData.get("id");
   const validatedFields = CategorySchemaZod.safeParse(
@@ -55,7 +56,7 @@ export async function createOrUpdateCategoryAction(
 export async function deleteCategoryAction(id: string) {
   await ensureAuthenticated();
   try {
-    const res = await deleteCategory(id);
+    await deleteCategory(id);
   } catch (e) {
     if (e instanceof ApiError) {
       return {

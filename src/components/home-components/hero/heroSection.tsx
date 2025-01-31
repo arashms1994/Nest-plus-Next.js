@@ -10,7 +10,7 @@ export const HeroSection = () => {
         maxWidth: 1120,
         width: "100%",
         margin: "0 auto",
-        marginTop:"70px"
+        marginTop:"80px"
       }}
       direction="column"
       gap={4}

@@ -24,7 +24,12 @@ export default function CategoryForm({ defaultValue }: CategoryFormProps) {
         {defaultValue?.id && (
           <input hidden name="id" defaultValue={defaultValue.id} />
         )}
-        <CategoryField name="parent" defaultValue={defaultValue?.parent} />
+        <CategoryField
+          error={!!state?.errors?.parent}
+          helperText={state?.errors?.parent}
+          name="parent"
+          defaultValue={defaultValue?.parent}
+        />
         <PropertiesField
           name="properties"
           defaultValue={defaultValue?.properties}
