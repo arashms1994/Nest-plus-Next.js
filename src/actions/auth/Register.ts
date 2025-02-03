@@ -1,22 +1,22 @@
 "use server";
 import "server-only";
+
 import { createSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 import { AUTH_BASE_URL } from "@/config.server";
+import { formDataToObject } from "@/lib/utils";
 import { RegisterFormState } from "@/type/authTypes";
-import { RegisterFormSchema } from "@/lib/validations/RegisterSchema";
+import { RegisterFormSchema } from "@/lib/validations/serverActionsSchema";
 
-export async function registerAction(state: RegisterFormState, formData: FormData) {
+export async function register(state: RegisterFormState, formData: FormData) {
   const validatedFields = RegisterFormSchema.safeParse(
-    Object.fromEntries(formData.entries())
+    formDataToObject(formData)
   );
-
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
     };
   }
-
   try {
     const res = await fetch(`${AUTH_BASE_URL}/auth/register`, {
       method: "post",
@@ -39,6 +39,7 @@ export async function registerAction(state: RegisterFormState, formData: FormDat
       redirect("/dashboard");
     }
   } catch (err) {
+    console.log(err);
     return {
       message: "register failed",
     };

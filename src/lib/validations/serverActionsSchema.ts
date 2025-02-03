@@ -1,5 +1,5 @@
+import { password, slug } from "@/lib/validations/customValidations";
 import { z } from "zod";
-import { slug } from "./customValidations";
 
 export interface FormState<G> {
   message?: string;
@@ -7,10 +7,31 @@ export interface FormState<G> {
   errors?: Partial<Record<keyof G, string[]>>;
 }
 
+export const RegisterFormSchema = z.object({
+  firstName: z.string().min(2, { message: "حداقل ۲ کارکتر وارد کنید." }).trim(),
+  lastName: z.string().min(2, { message: "حداقل ۲ کارکتر وارد کنید." }).trim(),
+  email: z.string().email({ message: "لطفا یک ایمیل معتبر وارد کنید." }).trim(),
+  password: password(),
+});
+
+export type RegisterType = z.infer<typeof RegisterFormSchema>;
+export type RegisterFormState = FormState<RegisterType>;
+
+export const LoginFormSchema = z.object({
+  email: z.string().email({ message: "لطفا یک ایمیل معتبر وارد کنید." }).trim(),
+  password: z.string(),
+});
+
+export type LoginType = z.infer<typeof LoginFormSchema>;
+export type LoginFormState = FormState<LoginType>;
+
 export const BadgeFormSchema = z.object({
   icon: z.string().url().trim(),
   title: z.string().min(1, "Title is required").trim(),
 });
+
+export type BadgeType = z.infer<typeof BadgeFormSchema>;
+export type BadgeFormState = FormState<BadgeType>;
 
 export const BrandSchemaZod = z.object({
   titleFa: z.string().min(1, "Title (FA) is required"),
@@ -18,6 +39,7 @@ export const BrandSchemaZod = z.object({
   slug: slug(),
   logo: z.string().url().optional(),
 });
+
 export type BrandType = z.infer<typeof BrandSchemaZod>;
 export type BrandFormState = FormState<BrandType>;
 

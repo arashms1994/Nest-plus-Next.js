@@ -1,16 +1,15 @@
 "use server";
 import "server-only";
+
 import { createSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 import { AUTH_BASE_URL } from "@/config.server";
-import { LoginFormSchema } from "@/lib/validations/LoginSchema";
+import { formDataToObject } from "@/lib/utils";
 import { LoginFormState } from "@/type/authTypes";
+import { LoginFormSchema } from "@/lib/validations/serverActionsSchema";
 
 export async function loginAction(state: LoginFormState, formData: FormData) {
-  const validatedFields = LoginFormSchema.safeParse(
-    Object.fromEntries(formData.entries())
-  );
-
+  const validatedFields = LoginFormSchema.safeParse(formDataToObject(formData));
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,

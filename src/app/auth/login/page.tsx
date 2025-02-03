@@ -3,7 +3,7 @@ import { Card, CardContent } from "@mui/material";
 
 // type Props = {};
 
-function Register() {
+function Login() {
   return (
     <Card sx={{ width: 450 }} elevation={8}>
       <CardContent
@@ -17,4 +17,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Login;

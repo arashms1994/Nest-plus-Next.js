@@ -1,5 +1,6 @@
 "use client";
-import { registerAction } from "@/actions/auth/Register";
+
+import { register } from "@/actions/auth/Register";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Link as MuiLink,
@@ -20,7 +21,7 @@ import React, { useActionState } from "react";
 
 const RegisterForm = () => {
   // =========== States =============
-  const [state, action, pending] = useActionState(registerAction, undefined);
+  const [state, action, pending] = useActionState(register, undefined);
   const [showPassword, setShowPassword] = React.useState(false);
 
   // =========== Handle Fns =============
