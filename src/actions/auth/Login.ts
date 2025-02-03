@@ -5,8 +5,8 @@ import { createSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 import { AUTH_BASE_URL } from "@/config.server";
 import { formDataToObject } from "@/lib/utils";
-import { LoginFormState } from "@/type/authTypes";
-import { LoginFormSchema } from "@/lib/validations/serverActionsSchema";
+import { LoginFormSchema } from "@/lib/validations/LoginSchema";
+import { LoginFormState } from "@/lib/validations/serverActionsSchema";
 
 export async function loginAction(state: LoginFormState, formData: FormData) {
   const validatedFields = LoginFormSchema.safeParse(formDataToObject(formData));
@@ -15,6 +15,7 @@ export async function loginAction(state: LoginFormState, formData: FormData) {
       errors: validatedFields.error.flatten().fieldErrors,
     };
   }
+
   const res = await fetch(`${AUTH_BASE_URL}/auth/login`, {
     method: "post",
     body: JSON.stringify(validatedFields.data),
@@ -22,6 +23,7 @@ export async function loginAction(state: LoginFormState, formData: FormData) {
       "Content-type": "application/json",
     },
   });
+
   const data = await res.json();
   if (!res.ok) {
     return {
