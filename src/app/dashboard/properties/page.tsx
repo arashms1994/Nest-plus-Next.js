@@ -1,4 +1,4 @@
-import { getProperties } from "@/api/server-api/properties";
+import { getProperties } from "@/api/server-api/admin/properties";
 import { TableContainer } from "@/components/dashboard-components/tables/table-container";
 import { ServerPageProps } from "@/type/serverTypes";
 import { PropertiesTable } from "./properties-table";

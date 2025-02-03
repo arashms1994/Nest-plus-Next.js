@@ -112,6 +112,7 @@ const RegisterForm = () => {
           disabled={pending}
           disableElevation
           variant="contained"
+          sx={{ color: "white", backgroundColor: "black" }}
         >
           ثبت نام
         </Button>

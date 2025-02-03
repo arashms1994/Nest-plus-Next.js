@@ -1,4 +1,4 @@
-import { getProducts } from "@/api/server-api/products";
+import { getProducts } from "@/api/server-api/admin/products";
 import { TableContainer } from "@/components/dashboard-components/tables/table-container";
 import { ServerPageProps } from "@/type/serverTypes";
 import { ProductTable } from "./products-table";

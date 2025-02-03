@@ -4,7 +4,7 @@ import {
   createSeller,
   deleteSeller,
   updateSeller,
-} from "@/api/server-api/sellers";
+} from "@/api/server-api/admin/sellers";
 import { ApiError } from "@/api/server-api/base";
 import { ensureAuthenticated } from "@/lib/session";
 import { revalidatePath } from "next/cache";

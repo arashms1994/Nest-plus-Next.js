@@ -1,4 +1,4 @@
-import { getPropertiesById } from "@/api/server-api/properties";
+import { getPropertiesById } from "@/api/server-api/admin/properties";
 import PropertyForm from "@/components/dashboard-components/forms/property-form";
 import { ServerPageProps } from "@/type/serverTypes";
 import { Box, Card, CardContent, Typography } from "@mui/material";

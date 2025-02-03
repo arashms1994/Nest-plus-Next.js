@@ -1,7 +1,7 @@
 import { ServerPageProps } from "@/type/serverTypes";
 import { BadgesTable } from "./badges-table";
-import { getBadges } from "@/api/server-api/badges";
 import { TableContainer } from "@/components/dashboard-components/tables/table-container";
+import { getBadges } from "@/api/server-api/admin/badges";
 
 export default async function BadgesPage({ searchParams }: ServerPageProps) {
   const params = await searchParams;

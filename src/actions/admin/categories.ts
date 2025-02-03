@@ -4,7 +4,7 @@ import {
   createCategory,
   updateCategory,
   deleteCategory,
-} from "@/api/server-api/categories";
+} from "@/api/server-api/admin/categories";
 import { ApiError } from "@/api/server-api/base";
 import { ensureAuthenticated } from "@/lib/session";
 import { revalidatePath } from "next/cache";

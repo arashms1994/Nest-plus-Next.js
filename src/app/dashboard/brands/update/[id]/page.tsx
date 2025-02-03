@@ -1,4 +1,4 @@
-import { getBrandById } from "@/api/server-api/brands";
+import { getBrandById } from "@/api/server-api/admin/brands";
 import { BrandForm } from "@/components/dashboard-components/forms/brand-form";
 import { ServerPageProps } from "@/type/serverTypes";
 import { Box, Card, CardContent, Typography } from "@mui/material";

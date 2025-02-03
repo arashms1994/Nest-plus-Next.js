@@ -1,7 +1,7 @@
 "use server";
 
 import { ApiError } from "@/api/server-api/base";
-import { createCity, deleteCity, updateCity } from "@/api/server-api/cities";
+import { createCity, deleteCity, updateCity } from "@/api/server-api/admin/cities";
 import { ensureAuthenticated } from "@/lib/session";
 import { formDataToObject } from "@/lib/utils";
 import { CityFormState, CitySchemaZod } from "@/lib/validations/serverActionsSchema";

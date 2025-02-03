@@ -1,4 +1,4 @@
-import { getProductById } from "@/api/server-api/products";
+import { getProductById } from "@/api/server-api/admin/products";
 import ProductForm from "@/components/dashboard-components/forms/product-form";
 import { ServerPageProps } from "@/type/serverTypes";
 import { Box, Card, CardContent, Typography } from "@mui/material";

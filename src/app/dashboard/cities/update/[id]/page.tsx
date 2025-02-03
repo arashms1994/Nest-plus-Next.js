@@ -1,4 +1,4 @@
-import { getCityById } from "@/api/server-api/cities";
+import { getCityById } from "@/api/server-api/admin/cities";
 import CityForm from "@/components/dashboard-components/forms/city-form";
 import { ServerPageProps } from "@/type/serverTypes";
 import { Box, Card, CardContent, Typography } from "@mui/material";

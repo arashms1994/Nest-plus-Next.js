@@ -102,6 +102,7 @@ const LoginForm = () => {
           disabled={pending}
           disableElevation
           variant="contained"
+          sx={{ color: "white", backgroundColor: "black" }}
         >
           ورود
         </Button>

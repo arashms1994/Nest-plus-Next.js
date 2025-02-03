@@ -1,4 +1,4 @@
-import { getOrders } from "@/api/server-api/orders";
+import { getOrders } from "@/api/server-api/admin/orders";
 import { TableContainer } from "@/components/dashboard-components/tables/table-container";
 import { ServerPageProps } from "@/type/serverTypes";
 import { OrdersTable } from "./orders-table";

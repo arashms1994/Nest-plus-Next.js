@@ -1,4 +1,4 @@
-import { getSellerById } from "@/api/server-api/sellers";
+import { getSellerById } from "@/api/server-api/admin/sellers";
 import SellerForm from "@/components/dashboard-components/forms/sellers-form";
 import { ServerPageProps } from "@/type/serverTypes";
 import { Box, Card, CardContent, Typography } from "@mui/material";

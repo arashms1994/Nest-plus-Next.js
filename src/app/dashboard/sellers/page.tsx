@@ -1,4 +1,4 @@
-import { getAllSellers } from "@/api/server-api/sellers";
+import { getAllSellers } from "@/api/server-api/admin/sellers";
 import { TableContainer } from "@/components/dashboard-components/tables/table-container";
 import { SellerTable } from "./sellers-table";
 import { ServerPageProps } from "@/type/serverTypes";

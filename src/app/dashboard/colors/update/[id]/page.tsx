@@ -1,4 +1,4 @@
-import { getColorById } from "@/api/server-api/colors";
+import { getColorById } from "@/api/server-api/admin/colors";
 import ColorForm from "@/components/dashboard-components/forms/color-form";
 import { ServerPageProps } from "@/type/serverTypes";
 import { Box, Card, CardContent, Typography } from "@mui/material";

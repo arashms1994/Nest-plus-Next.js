@@ -1,6 +1,6 @@
 "use server";
 
-import { createBadge, deleteBadge, updateBadge } from "@/api/server-api/badges";
+import { createBadge, deleteBadge, updateBadge } from "@/api/server-api/admin/badges";
 import { ApiError } from "@/api/server-api/base";
 import { ensureAuthenticated } from "@/lib/session";
 import { formDataToObject } from "@/lib/utils";

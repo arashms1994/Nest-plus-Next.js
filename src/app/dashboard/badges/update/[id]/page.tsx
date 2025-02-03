@@ -1,4 +1,4 @@
-import { getBadgeById } from "@/api/server-api/badges";
+import { getBadgeById } from "@/api/server-api/admin/badges";
 import { CreateBadgeForm } from "@/components/dashboard-components/forms/create-badge";
 import { ServerPageProps } from "@/type/serverTypes";
 import { Box, Card, CardContent, Typography } from "@mui/material";

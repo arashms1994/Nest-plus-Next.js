@@ -1,6 +1,6 @@
 "use server";
 
-import { createColor, updateColor, deleteColor } from "@/api/server-api/colors";
+import { createColor, updateColor, deleteColor } from "@/api/server-api/admin/colors";
 import { ApiError } from "@/api/server-api/base";
 import { ensureAuthenticated } from "@/lib/session";
 import { revalidatePath } from "next/cache";

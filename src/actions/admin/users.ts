@@ -1,6 +1,6 @@
 "use server";
 
-import { changeUserStatus } from "@/api/server-api/users";
+import { changeUserStatus } from "@/api/server-api/admin/users";
 import { ApiError } from "@/api/server-api/base";
 import { ensureAuthenticated } from "@/lib/session";
 import { revalidatePath } from "next/cache";

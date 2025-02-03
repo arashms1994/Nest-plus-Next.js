@@ -4,7 +4,7 @@ import {
   createProduct,
   updateProduct,
   deleteProduct,
-} from "@/api/server-api/products";
+} from "@/api/server-api/admin/products";
 import { ApiError } from "@/api/server-api/base";
 import { ensureAuthenticated } from "@/lib/session";
 import { revalidatePath } from "next/cache";

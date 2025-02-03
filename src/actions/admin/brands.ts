@@ -2,7 +2,7 @@
 
 
 import { ApiError } from "@/api/server-api/base";
-import { createBrand, deleteBrand, updateBrand } from "@/api/server-api/brands";
+import { createBrand, deleteBrand, updateBrand } from "@/api/server-api/admin/brands";
 import { ensureAuthenticated } from "@/lib/session";
 import { formDataToObject } from "@/lib/utils";
 import {

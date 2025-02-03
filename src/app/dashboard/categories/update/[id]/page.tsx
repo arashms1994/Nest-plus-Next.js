@@ -1,4 +1,4 @@
-import { getCategoryById } from "@/api/server-api/categories";
+import { getCategoryById } from "@/api/server-api/admin/categories";
 import CategoryForm from "@/components/dashboard-components/forms/category-form";
 import { ServerPageProps } from "@/type/serverTypes";
 import { Box, Card, CardContent, Typography } from "@mui/material";

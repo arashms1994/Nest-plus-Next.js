@@ -125,7 +125,7 @@ export default function DashboardHeader() {
 
   return (
     <>
-      <AppBar position="fixed" open={isOpen}>
+      <AppBar position="fixed" open={isOpen} sx={{ backgroundColor: "black" }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -143,7 +143,7 @@ export default function DashboardHeader() {
             component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            MUI
+            + Nest
           </Typography>
           <Search>
             <SearchIconWrapper>

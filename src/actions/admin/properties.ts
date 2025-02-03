@@ -10,7 +10,7 @@ import {
   createProperties,
   deleteProperties,
   updateProperties,
-} from "@/api/server-api/properties";
+} from "@/api/server-api/admin/properties";
 import { PropertySchemaZod } from "@/lib/validations/serverActionsSchema";
 
 export async function createOrUpdatePropertyAction(

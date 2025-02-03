@@ -1,6 +1,6 @@
 "use server";
 
-import { getCities } from "@/api/server-api/cities";
+import { getCities } from "@/api/server-api/admin/cities";
 import { TableContainer } from "@/components/dashboard-components/tables/table-container";
 import { ServerPageProps } from "@/type/serverTypes";
 import CityTable from "./cities-table";
