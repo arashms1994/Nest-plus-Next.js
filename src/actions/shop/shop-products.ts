@@ -6,35 +6,31 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { formDataToObject } from "@/lib/utils";
 import {
-  CategoryFormState,
-  CategorySchemaZod,
+  ProductFormState,
+  ProductSchemaZod,
 } from "@/lib/validations/serverActionsSchema";
-import {
-  shopCreateCategory,
-  shopDeleteCategory,
-  shopUpdateCategory,
-} from "@/api/server-api/shop/shop-categories";
+import { shopCreateProduct, shopDeleteProduct, shopUpdateProduct } from "@/api/server-api/shop/shop-products";
 
-export async function ShopCreateOrUpdateCategoryAction(
-  state: CategoryFormState,
+export async function ShopCreateOrUpdateProductAction(
+  state: ProductFormState,
   formData: FormData
 ) {
-  /// validate input
   await ensureAuthenticated();
-  const id = formData.get("id");
-  const validatedFields = CategorySchemaZod.safeParse(
+  const code = formData.get("code");
+  const validatedFields = ProductSchemaZod.safeParse(
     formDataToObject(formData)
   );
+
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
     };
   }
   try {
-    if (id) {
-      await shopUpdateCategory(id.toString(), validatedFields.data);
+    if (code) {
+      await shopUpdateProduct(code.toString(), validatedFields.data);
     } else {
-      await shopCreateCategory(validatedFields.data);
+      await shopCreateProduct(validatedFields.data);
     }
   } catch (e) {
     console.log(e);
@@ -50,13 +46,13 @@ export async function ShopCreateOrUpdateCategoryAction(
       };
     }
   }
-  redirect("/shop/categories");
+  redirect("/shop/products");
 }
 
-export async function shopDeleteCategoryAction(id: string) {
+export async function shopDeleteProductAction(id: string) {
   await ensureAuthenticated();
   try {
-    await shopDeleteCategory(id);
+    const res = await shopDeleteProduct(id);
   } catch (e) {
     if (e instanceof ApiError) {
       return {
@@ -65,5 +61,5 @@ export async function shopDeleteCategoryAction(id: string) {
       };
     }
   }
-  revalidatePath("/shop/categories");
+  revalidatePath("/shop/products");
 }

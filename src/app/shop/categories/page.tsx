@@ -9,7 +9,7 @@ export default async function ShopCategoryPage({
   const params = await searchParams;
   const categories = await shopGetCategories(params);
   return (
-    <TableContainer title="دسته بندی ها" createLink="/dashboard/categories/create">
+    <TableContainer title="دسته بندی ها" createLink="/shop/categories/create">
       <ShopCategoriesTable categories={categories} />
     </TableContainer>
   );

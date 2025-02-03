@@ -61,7 +61,7 @@ export const shopGetCategoryById = async (id: string): Promise<ICategory> => {
   return apiFetch<ICategory>(`${SHOP_BASE_URL}/categories/${id}`, {
     cache: "force-cache",
     next: {
-      tags: ["allSingleCategory", `shop-categories-${id}`],
+      tags: ["allSingleShopCategory", `shop-categories-${id}`],
     },
   });
 };

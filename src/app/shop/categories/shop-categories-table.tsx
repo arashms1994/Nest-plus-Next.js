@@ -21,7 +21,7 @@ export function ShopCategoriesTable({
             <IconButton
               color="secondary"
               component={Link}
-              href={"/dashboard/categories/update/" + p.id}
+              href={"/shop/categories/update/" + p.id}
             >
               <Edit />
             </IconButton>
