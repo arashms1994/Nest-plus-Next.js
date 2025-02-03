@@ -1,4 +1,4 @@
-import { useBadgesQuery } from "@/api/client-api/badges";
+import { useBadgesQuery } from "@/api/client-api/admin/badges";
 import { IBadge } from "@/type/serverTypes";
 import { useState } from "react";
 import MultiAsyncListField from "./multi-async-list-field";

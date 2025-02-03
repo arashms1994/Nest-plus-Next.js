@@ -4,7 +4,7 @@ import AITable from "@/components/dashboard-components/tables/AITable";
 import { IOrder, IOrderItem, PaginatedResultApi } from "@/type/serverTypes";
 import { use } from "react";
 
-export function SellerOrdersTable({
+export function ShopOrdersTable({
   orders,
 }: {
   orders: Promise<PaginatedResultApi<IOrder>>;

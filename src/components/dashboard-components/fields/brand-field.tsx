@@ -1,6 +1,6 @@
 "use client";
 
-import { useBrandsQuery } from "@/api/client-api/brands";
+import { useBrandsQuery } from "@/api/client-api/admin/brands";
 import { IBrand } from "@/type/serverTypes";
 import { useState } from "react";
 import AsyncListField from "./async-list-field";

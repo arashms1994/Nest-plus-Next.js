@@ -3,7 +3,7 @@
 import { IUser } from "@/type/serverTypes";
 import React, { useState } from "react";
 import AsyncListField from "./async-list-field";
-import { useUserQuery } from "@/api/client-api/users";
+import { useUserQuery } from "@/api/client-api/admin/users";
 
 type Props = {
   name: string;

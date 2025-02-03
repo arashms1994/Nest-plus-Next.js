@@ -1,4 +1,4 @@
-import { usePropertiesQuery } from "@/api/client-api/properties";
+import { usePropertiesQuery } from "@/api/client-api/admin/properties";
 import React, { useState } from "react";
 import MultiAsyncListField from "./multi-async-list-field";
 import { IProperty } from "@/type/serverTypes";

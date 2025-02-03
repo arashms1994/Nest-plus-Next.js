@@ -1,14 +1,16 @@
 import { TableContainer } from "@/components/dashboard-components/tables/table-container";
 import { ServerPageProps } from "@/type/serverTypes";
-import { SellerOrdersTable } from "./seller-orders-table";
-import { sellerGetOrders } from "@/api/server-api/seller/orders";
+import { ShopOrdersTable } from "./shop-orders-table";
+import { shopGetOrders } from "@/api/server-api/shop/shop-orders";
 
-export default async function UsersPage({ searchParams }: ServerPageProps) {
+export default async function ShopOrdersPage({
+  searchParams,
+}: ServerPageProps) {
   const params = await searchParams;
-  const orders = sellerGetOrders(params);
+  const orders = shopGetOrders(params);
   return (
     <TableContainer title="سفارش ها">
-      <SellerOrdersTable orders={orders} />
+      <ShopOrdersTable orders={orders} />
     </TableContainer>
   );
 }

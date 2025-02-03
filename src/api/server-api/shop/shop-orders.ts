@@ -2,7 +2,7 @@ import { SHOP_BASE_URL } from "@/config.server";
 import { apiFetch } from "../base";
 import { IOrder, PaginatedResultApi } from "@/type/serverTypes";
 
-export const sellerGetOrders = async (
+export const shopGetOrders = async (
   params?: any
 ): Promise<PaginatedResultApi<IOrder>> => {
   const search = new URLSearchParams(params as Record<string, string>);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MultiAsyncListField from "./multi-async-list-field";
-import { useColorsQuery } from "@/api/client-api/colors";
+import { useColorsQuery } from "@/api/client-api/admin/colors";
 import { IColor } from "@/type/serverTypes";
 
 type ColorFieldProps = {
