@@ -3,7 +3,7 @@
 import { Stack } from "@mui/material";
 import React, { useActionState } from "react";
 import AIForm from "./AIForm";
-import { createOrUpdateCategoryAction } from "@/actions/categories";
+import { createOrUpdateCategoryAction } from "@/actions/admin/categories";
 import CategoryField from "../fields/category-field";
 import PropertiesField from "../fields/properties-field";
 import { ICategory } from "@/type/serverTypes";

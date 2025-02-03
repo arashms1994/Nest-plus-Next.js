@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteBrandAction } from "@/actions/brands";
+import { deleteBrandAction } from "@/actions/admin/brands";
 import AITable from "@/components/dashboard-components/tables/AITable";
 import DeleteAlertDialog from "@/components/delete-dialog";
 import { IBrand, PaginatedResultApi } from "@/type/serverTypes";

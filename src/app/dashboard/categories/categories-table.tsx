@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteCategoryAction } from "@/actions/categories";
+import { deleteCategoryAction } from "@/actions/admin/categories";
 import AITable from "@/components/dashboard-components/tables/AITable";
 import DeleteAlertDialog from "@/components/delete-dialog";
 import { ICategory, IProperty, PaginatedResultApi } from "@/type/serverTypes";

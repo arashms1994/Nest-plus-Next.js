@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteBadgeAction } from "@/actions/badges";
+import { deleteBadgeAction } from "@/actions/admin/badges";
 import AITable from "@/components/dashboard-components/tables/AITable";
 import DeleteAlertDialog from "@/components/delete-dialog";
 import { IBadge, PaginatedResultApi } from "@/type/serverTypes";

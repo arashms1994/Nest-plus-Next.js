@@ -6,7 +6,7 @@ import { Remove } from "@mui/icons-material";
 import AIForm from "./AIForm";
 import SubmitButton from "@/components/submit-button";
 import { IProperty, IPropertyOption } from "@/type/serverTypes";
-import { createOrUpdatePropertyAction } from "@/actions/properties";
+import { createOrUpdatePropertyAction } from "@/actions/admin/properties";
 type Props = {
   defaultValue?: IProperty;
 };

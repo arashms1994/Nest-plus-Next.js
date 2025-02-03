@@ -4,7 +4,7 @@ import { Stack } from "@mui/material";
 import { useActionState } from "react";
 import AIForm from "./AIForm";
 import { ISeller } from "@/type/serverTypes";
-import { createOrUpdateSellerAction } from "@/actions/sellers";
+import { createOrUpdateSellerAction } from "@/actions/admin/sellers";
 import UserField from "../fields/user-field";
 import SubmitButton from "@/components/submit-button";
 

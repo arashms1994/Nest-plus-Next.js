@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteCityAction } from "@/actions/cities";
+import { deleteCityAction } from "@/actions/admin/cities";
 import AITable from "@/components/dashboard-components/tables/AITable";
 import DeleteAlertDialog from "@/components/delete-dialog";
 import { ICity, PaginatedResultApi } from "@/type/serverTypes";

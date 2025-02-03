@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteColorAction } from "@/actions/colors";
+import { deleteColorAction } from "@/actions/admin/colors";
 import AITable from "@/components/dashboard-components/tables/AITable";
 import DeleteAlertDialog from "@/components/delete-dialog";
 import { IColor, PaginatedResultApi } from "@/type/serverTypes";

@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import AIForm from "./AIForm";
-import { createOrUpdateCityAction } from "@/actions/cities";
+import { createOrUpdateCityAction } from "@/actions/admin/cities";
 import { Stack } from "@mui/material";
 import SubmitButton from "@/components/submit-button";
 import { ICity } from "@/type/serverTypes";

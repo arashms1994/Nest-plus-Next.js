@@ -1,6 +1,6 @@
 "use client";
 
-import { createOrUpdateColorAction } from "@/actions/colors";
+import { createOrUpdateColorAction } from "@/actions/admin/colors";
 import { Stack } from "@mui/material";
 import { useActionState } from "react";
 import AIForm from "./AIForm";

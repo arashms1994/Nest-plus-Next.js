@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteProductAction } from "@/actions/products";
+import { deleteProductAction } from "@/actions/admin/products";
 import AITable from "@/components/dashboard-components/tables/AITable";
 import DeleteAlertDialog from "@/components/delete-dialog";
 import { IProduct, PaginatedResultApi } from "@/type/serverTypes";

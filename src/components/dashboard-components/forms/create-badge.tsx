@@ -2,7 +2,7 @@
 
 import { Stack, TextField } from "@mui/material";
 import { useActionState } from "react";
-import { createOrUpdateBadgeAction } from "@/actions/badges";
+import { createOrUpdateBadgeAction } from "@/actions/admin/badges";
 import SingleUpload from "@/components/upload/single-upload";
 import SubmitButton from "@/components/submit-button";
 import { IBadge } from "@/type/serverTypes";

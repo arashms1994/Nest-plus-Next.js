@@ -1,6 +1,6 @@
 "use client";
 
-import { deletePropertyAction } from "@/actions/properties";
+import { deletePropertyAction } from "@/actions/admin/properties";
 import AITable from "@/components/dashboard-components/tables/AITable";
 import DeleteAlertDialog from "@/components/delete-dialog";
 import {

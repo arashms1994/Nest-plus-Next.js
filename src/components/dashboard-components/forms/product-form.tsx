@@ -1,6 +1,6 @@
 "use client";
 
-import { createOrUpdateProductAction } from "@/actions/products";
+import { createOrUpdateProductAction } from "@/actions/admin/products";
 import { Stack } from "@mui/material";
 import React, { useActionState } from "react";
 import AIForm from "./AIForm";
