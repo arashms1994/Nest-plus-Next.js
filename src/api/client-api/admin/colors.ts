@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import Axios from "./base";
+import Axios from "../base";
 import { IColor, PaginatedResultApi } from "@/type/serverTypes";
 
 async function getAllColors(params: { q?: string }) {

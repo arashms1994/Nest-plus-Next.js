@@ -3,7 +3,7 @@ import "server-only";
 
 import { BASE_URL } from "@/config.server";
 import { IBrand, PaginatedResultApi } from "@/type/serverTypes";
-import { apiFetch } from "./base";
+import { apiFetch } from "../base";
 import { revalidateTag } from "next/cache";
 
 export const createBrand = async (body: Partial<IBrand>): Promise<IBrand> => {

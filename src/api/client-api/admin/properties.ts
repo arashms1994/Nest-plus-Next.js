@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import Axios from "./base";
+import Axios from "../base";
 import { IProperty, PaginatedResultApi } from "@/type/serverTypes";
 
 async function getAllProperties(params: { q?: string }) {

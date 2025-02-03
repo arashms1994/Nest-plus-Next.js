@@ -3,8 +3,8 @@ import "server-only";
 
 import { BASE_URL } from "@/config.server";
 import { IBadge, PaginatedResultApi } from "@/type/serverTypes";
-import { apiFetch } from "./base";
 import { revalidateTag } from "next/cache";
+import { apiFetch } from "../base";
 
 export const createBadge = async (body: Partial<IBadge>) => {
   const data = await apiFetch(`${BASE_URL}/badges`, {

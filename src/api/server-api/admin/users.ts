@@ -2,7 +2,7 @@
 import "server-only";
 
 import { BASE_URL } from "@/config.server";
-import { apiFetch } from "./base";
+import { apiFetch } from "../base";
 import { IUser, PaginatedResultApi } from "@/type/serverTypes";
 
 export const getAllUsers = async (

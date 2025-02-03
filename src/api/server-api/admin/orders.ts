@@ -1,5 +1,5 @@
 import { BASE_URL } from "@/config.server";
-import { apiFetch } from "./base";
+import { apiFetch } from "../base";
 import { IOrder, PaginatedResultApi } from "@/type/serverTypes";
 
 export const getOrders = async (

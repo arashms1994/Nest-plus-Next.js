@@ -3,7 +3,7 @@ import "server-only";
 
 import { BASE_URL } from "@/config.server";
 import { revalidateTag } from "next/cache";
-import { apiFetch } from "./base";
+import { apiFetch } from "../base";
 import { ProductType } from "@/lib/validations/serverActionsSchema";
 import { IProduct, PaginatedResultApi } from "@/type/serverTypes";
 

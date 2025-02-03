@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import Axios from "./base";
+import Axios from "../base";
 import { IUser, PaginatedResultApi } from "@/type/serverTypes";
 
 async function getAllUsers(params: { q?: string }) {

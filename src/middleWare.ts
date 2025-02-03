@@ -12,13 +12,16 @@ export default async function middleware(req: NextRequest) {
 
   const accessToken = (await cookies()).get("accessToken")?.value;
   const refreshToken = (await cookies()).get("refreshToken")?.value;
+
   const isLogin = accessToken && refreshToken;
   const isLogout = !accessToken && !refreshToken;
   const needToRefresh = !accessToken && refreshToken;
+
   if (needToRefresh) {
     await refreshTokenAction();
     return NextResponse.redirect(new URL(req.nextUrl, req.nextUrl));
   }
+
   if (isProtectedRoute && isLogout) {
     return NextResponse.redirect(new URL("/auth/login", req.nextUrl));
   }
@@ -30,7 +33,6 @@ export default async function middleware(req: NextRequest) {
   return NextResponse.next();
 }
 
-// Routes Middleware should not run on
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
 };

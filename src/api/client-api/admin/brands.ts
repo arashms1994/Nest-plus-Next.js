@@ -1,5 +1,5 @@
 import { IBrand, PaginatedResultApi } from "@/type/serverTypes";
-import Axios from "./base";
+import Axios from "../base";
 import { useQuery } from "@tanstack/react-query";
 
 async function getAllBrands(params: { q?: string }) {
