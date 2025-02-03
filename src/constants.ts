@@ -13,7 +13,7 @@ import {
 } from "@mui/icons-material";
 
 export const SIDEBAR_ITEMS = [
-  { href: "/dashboard", Icon: Dashboard, text: "داشبورد" },
+  { href: "/dashboard", Icon: Dashboard, text: "داشبورد ادمین" },
   { href: "/dashboard/badges", Icon: Label, text: "برچسب‌ها" },
   { href: "/dashboard/brands", Icon: Apple, text: "برند" },
   { href: "/dashboard/categories", Icon: Category, text: "دسته‌بندی کالاها" },
@@ -24,4 +24,10 @@ export const SIDEBAR_ITEMS = [
   { href: "/dashboard/users", Icon: People, text: "کاربران" },
   { href: "/dashboard/sellers", Icon: Store, text: "فروشندگان" },
   { href: "/dashboard/orders", Icon: ShoppingBasket, text: "سفارشات" },
+];
+export const SHOP_SIDEBAR_ITEMS = [
+  { href: "/shop", Icon: Dashboard, text: "داشبورد فروشگاه" },
+  { href: "/shop/categories", Icon: Category, text: "دسته‌بندی کالاها" },
+  { href: "/shop/products", Icon: PhoneAndroid, text: "محصولات" },
+  { href: "/shop/orders", Icon: ShoppingBasket, text: "سفارشات" },
 ];
