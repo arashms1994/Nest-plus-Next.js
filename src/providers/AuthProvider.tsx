@@ -14,7 +14,7 @@ const AuthContext = createContext({
 
 export default function AuthProvider({ children, accessToken }: Props) {
   if (accessToken) {
-    Axios.defaults.headers.common["Authorization"] = "bearer" + accessToken;
+    Axios.defaults.headers.common["Authorization"] = "bearer " + accessToken;
   }
   return (
     <AuthContext.Provider value={{ accessToken }}>
