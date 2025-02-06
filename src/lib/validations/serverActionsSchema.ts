@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { password, slug } from "./customValidations";
+
 export interface FormState<G> {
   message?: string;
   success?: boolean;
@@ -26,10 +27,10 @@ export type LoginType = z.infer<typeof LoginFormSchema>;
 export type LoginFormState = FormState<LoginType>;
 
 export const BrandSchemaZod = z.object({
-  titleFa: z.string().min(1, "Title (FA) is required"), // Minimum 1 character
-  titleEn: z.string().min(1, "Title (EN) is required"), // Minimum 1 character
+  titleFa: z.string().min(1, "Title (FA) is required"),
+  titleEn: z.string().min(1, "Title (EN) is required"),
   slug: slug(),
-  logo: z.string().url().optional(), // Optional logo
+  logo: z.string().url().optional(),
 });
 export type BrandType = z.infer<typeof BrandSchemaZod>;
 export type BrandFormState = FormState<BrandType>;
@@ -40,14 +41,13 @@ export const CategorySchemaZod = z.object({
   slug: slug(),
   icon: z.string().url().trim().optional(),
   returnReasonAlert: z.string().trim().optional(),
-  properties: z.array(z.string()).optional(), // Array of strings (ObjectIds)
-  parent: z.string().optional(), // String (ObjectId)
+  properties: z.array(z.string()).optional(),
+  parent: z.string().optional(),
 });
 
 export type CategoryType = z.infer<typeof CategorySchemaZod>;
 export type CategoryFormState = FormState<CategoryType>;
 
-// Zod Schema and Type
 export const CitySchemaZod = z.object({
   name: z.string().min(1, "Name is required").trim(),
   code: z.string().min(1, "Code is required").trim(),
@@ -78,7 +78,7 @@ export const CommentSchemaZod = z.object({
     .int()
     .min(1, "Rating must be at least 1")
     .max(5, "Rating cannot exceed 5")
-    .optional(), // Rating is optional
+    .optional(),
   product: z.number(),
 });
 export type CommentType = z.infer<typeof CommentSchemaZod>;
@@ -98,7 +98,6 @@ const ImageSchemaZod = z.object({
     .optional(),
 });
 
-// Main Product Zod Schema
 export const ProductSchemaZod = z.object({
   code: z.coerce.number().int().positive("Code must be a positive integer"),
   titleFa: z.string().min(1, "Title (FA) is required").trim(),
@@ -120,7 +119,6 @@ export const ProductSchemaZod = z.object({
 export type ProductType = z.infer<typeof ProductSchemaZod>;
 export type ProductFormState = FormState<ProductType>;
 
-// Zod Schema
 export const PropertySchemaZod = z.object({
   name: z.string().min(1, "Name is required").trim(),
   label: z.string().min(1, "Label is required").trim(),
@@ -132,13 +130,12 @@ export const PropertySchemaZod = z.object({
         value: z.string().min(1, "Option value is required").trim(),
       })
     )
-    .optional(), // Options array is optional
+    .optional(),
 });
 
 export type PropertyType = z.infer<typeof PropertySchemaZod>;
 export type PropertyFormState = FormState<PropertyType>;
 
-// Zod Schema and Type (unchanged)
 export const SellerSchemaZod = z.object({
   user: z.string(),
   name: z.string().min(1, "Name is required").trim(),
