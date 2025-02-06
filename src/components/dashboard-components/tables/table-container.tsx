@@ -37,9 +37,7 @@ export async function TableContainer({
           </Button>
         )}
       </Toolbar>
-      <Suspense fallback={<TableLoading columnCount={6} />}>
-        {children}
-      </Suspense>
+      <Suspense fallback={<TableLoading colCount={6} />}>{children}</Suspense>
     </Box>
   );
 }

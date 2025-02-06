@@ -1,20 +1,18 @@
-import { Skeleton, Table, TableBody, TableCell, TableRow } from "@mui/material";
+import { Table, TableBody, TableCell, TableRow } from "@mui/material";
 import React from "react";
 
 type Props = {
-  columnCount: number;
+  colCount: number;
 };
 
-export default function TableLoading({ columnCount }: Props) {
-  const temp = new Array(columnCount);
+export default async function TableLoading({ colCount }: Props) {
+  const array = new Array(colCount).fill(0);
   return (
     <Table>
       <TableBody>
         <TableRow>
-          {temp.map((item, index) => (
-            <TableCell key={index} sx={{ minHeight: 10 }}>
-              <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
-            </TableCell>
+          {array.map((k, i) => (
+            <TableCell key={i} sx={{ minHeight: 10 }}></TableCell>
           ))}
         </TableRow>
       </TableBody>

@@ -1,25 +1,25 @@
-'use client'
+"use client";
+
+import rtlPlugin from "stylis-plugin-rtl";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { prefixer } from "stylis";
-import stylisRTLPlugin from "stylis-plugin-rtl";
-import createCache from "@emotion/cache";
-import { CacheProvider } from "@emotion/react";
 import { PropsWithChildren } from "react";
 import { CssBaseline, ThemeProvider as MuiThemeProvider } from "@mui/material";
 import Theme from "./Theme";
 
-const cacheRtl = createCache({
-  key: "muirtl",
-  stylisPlugins: [prefixer, stylisRTLPlugin],
-});
-
 const ThemeProvider = ({ children }: PropsWithChildren) => {
   return (
-    <CacheProvider value={cacheRtl}>
+    <AppRouterCacheProvider
+      key="muirtl"
+      options={{
+        stylisPlugins: [prefixer, rtlPlugin],
+      }}
+    >
       <MuiThemeProvider theme={Theme}>
         <CssBaseline />
         {children}
       </MuiThemeProvider>
-    </CacheProvider>
+    </AppRouterCacheProvider>
   );
 };
 
