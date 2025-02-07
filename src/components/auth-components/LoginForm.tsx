@@ -21,8 +21,13 @@ import React, { useActionState } from "react";
 
 const LoginForm = () => {
   // =========== States =============
-  const [state, action, pending] = useActionState(loginAction, undefined);
+  const [state, action, pending] = useActionState(loginAction, {
+    message: "",
+    success: false,
+    errors:{}
+  });
   const [showPassword, setShowPassword] = React.useState(false);
+  console.log(state);
 
   // =========== Handle Fns =============
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -43,6 +48,7 @@ const LoginForm = () => {
     <form action={action}>
       <Typography variant="h5">ورود</Typography>
       <Stack gap={3}>
+        <input hidden name="role" defaultValue={1}></input>
         <TextField
           error={!!state?.errors?.email}
           helperText={state?.errors?.email}

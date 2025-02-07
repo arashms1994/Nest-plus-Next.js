@@ -13,6 +13,8 @@ export async function loginAction(state: LoginFormState, formData: FormData) {
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
+      massage: "badRequest",
+      success: false,
     };
   }
 
@@ -29,6 +31,7 @@ export async function loginAction(state: LoginFormState, formData: FormData) {
     return {
       message: data.message,
       errors: data.errors,
+      success: false,
     };
   }
   await createSession({
