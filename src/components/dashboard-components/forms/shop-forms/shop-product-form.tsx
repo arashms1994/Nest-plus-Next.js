@@ -26,7 +26,7 @@ type ProductFormProps = {
   defaultValue?: IProduct;
 };
 
-function ProductForm({ defaultValue }: ProductFormProps) {
+function ShopProductForm({ defaultValue }: ProductFormProps) {
   const [state, action] = useActionState(ShopCreateOrUpdateProductAction, {
     message: "",
     success: false,
@@ -170,4 +170,4 @@ function ProductForm({ defaultValue }: ProductFormProps) {
   );
 }
 
-export default ProductForm;
+export default ShopProductForm;

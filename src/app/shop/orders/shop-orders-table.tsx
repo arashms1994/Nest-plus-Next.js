@@ -54,4 +54,3 @@ export function ShopOrdersTable({
     </>
   );
 }
-const RoleMap = ["مشتری", "فروشنده", "ادمین"];

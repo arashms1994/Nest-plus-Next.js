@@ -16,7 +16,12 @@ export default function SubmitButton({
 }: ButtonProps) {
   const { pending } = useFormStatus();
   return (
-    <Button type="submit" disabled={disabled || pending} {...rest}>
+    <Button
+      sx={{ backgroundColor: "black", color: "white" }}
+      type="submit"
+      disabled={disabled || pending}
+      {...rest}
+    >
       {pending ? (
         <Stack direction={"row"} gap={1} alignItems={"center"}>
           <CircularProgress size={12} />
