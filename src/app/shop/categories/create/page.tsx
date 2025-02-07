@@ -1,4 +1,4 @@
-import CategoryForm from "@/components/dashboard-components/forms/category-form";
+import ShopCategoryForm from "@/components/dashboard-components/forms/shop-forms/shop-category-form";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 
 export default async function ShopCreateCategory() {
@@ -7,7 +7,7 @@ export default async function ShopCreateCategory() {
       <Card>
         <CardContent>
           <Typography variant="h5">ایجاد دسته‌بندی جدید</Typography>
-          <CategoryForm />
+          <ShopCategoryForm />
         </CardContent>
       </Card>
     </Box>
