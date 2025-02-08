@@ -10,7 +10,7 @@ const Vazir = Vazirmatn({
 });
 
 export const metadata: Metadata = {
-  title: "Nest PLUS",
+  title: "Nestplus",
   description: "زندگی مدرن با انتخابی هوشمندانه",
 };
 
