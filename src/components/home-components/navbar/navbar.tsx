@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
             variant="h6"
             sx={{ fontWeight: "bold", color: "black", cursor: "pointer" }}
           >
-            NEST+
+            +NEST
           </Typography>
         </MuiLink>
 

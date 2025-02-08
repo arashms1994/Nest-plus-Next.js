@@ -9,7 +9,7 @@ import React from "react";
 const HomePage = () => {
   return (
     <>
-    <Navbar />
+      <Navbar />
       <Box
         sx={{
           margin: "0 auto",
@@ -18,12 +18,12 @@ const HomePage = () => {
           alignItems: "center",
           justifyContent: "center",
           maxWidth: 1120,
-          marginBottom:"50px"
+          marginBottom: "50px",
         }}
       >
         <HeroSection />
-        <ProductCard/>
-        <ProductPage/>
+        <ProductCard />
+        <ProductPage />
       </Box>
       <Footer />
     </>

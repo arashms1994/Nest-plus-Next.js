@@ -48,7 +48,7 @@ const LoginForm = () => {
     <form action={action}>
       <Typography variant="h5">ورود</Typography>
       <Stack gap={3}>
-        <input hidden name="role" defaultValue={1}></input>
+        <input hidden name="role" defaultValue={3}></input>
         <TextField
           error={!!state?.errors?.email}
           helperText={state?.errors?.email}

@@ -32,6 +32,17 @@ export const shopUpdateProduct = async (
   }
 };
 
+export const shopAddProductPrice = async (
+  code: string,
+  body: { price: number; count: number; discount: number }
+): Promise<IProduct> => {
+  return apiFetch<IProduct>(`${SHOP_BASE_URL}/sellers/product/${code}/add-price`, {
+    method: "POST",
+    body: JSON.stringify(body),
+  });
+};
+
+
 export const shopGetProducts = async (
   params?: any
 ): Promise<PaginatedResultApi<IProduct>> => {
