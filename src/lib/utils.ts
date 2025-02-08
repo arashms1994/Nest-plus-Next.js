@@ -1,14 +1,6 @@
-import "server-only";
-import { set } from "lodash";
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
 
-export function formDataToObject<T extends Record<string, any>>(
-  formData: FormData
-): T {
-  const obj: T = {} as T;
-
-  for (const [key, value] of formData.entries()) {
-    set(obj, key, value);
-  }
-
-  return obj;
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
 }

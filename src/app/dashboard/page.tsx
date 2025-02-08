@@ -1,9 +1,12 @@
-import React from 'react'
+import DashboardAnalytics from "@/components/dashboard-components/dashboard-analytics/dashboard-ui";
+import React from "react";
 
 const Dashboard = () => {
   return (
-    <div>داشبورد ادمین</div>
-  )
-}
+    <>
+      <DashboardAnalytics />
+    </>
+  );
+};
 
-export default Dashboard
+export default Dashboard;

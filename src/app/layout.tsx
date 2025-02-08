@@ -1,3 +1,4 @@
+import "./globals.css";
 import ThemeProvider from "@/components/theme/ThemeProvider";
 import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
