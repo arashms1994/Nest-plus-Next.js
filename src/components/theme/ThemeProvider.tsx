@@ -7,6 +7,7 @@ import { PropsWithChildren } from "react";
 import { CssBaseline, ThemeProvider as MuiThemeProvider } from "@mui/material";
 import Theme from "./Theme";
 
+
 const ThemeProvider = ({ children }: PropsWithChildren) => {
   return (
     <AppRouterCacheProvider

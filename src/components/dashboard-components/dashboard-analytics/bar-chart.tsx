@@ -18,22 +18,22 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "فروردین", desktop: 186, mobile: 80 },
+  { month: "اردیبهشت", desktop: 305, mobile: 200 },
+  { month: "خرداد", desktop: 237, mobile: 120 },
+  { month: "تیر", desktop: 73, mobile: 190 },
+  { month: "مرداد", desktop: 209, mobile: 130 },
+  { month: "شهریور", desktop: 214, mobile: 140 },
 ]
 
 const chartConfig = {
   desktop: {
     label: "Desktop",
-    color: "hsl(var(--chart-1))",
+    color: "#14b8a6",
   },
   mobile: {
     label: "Mobile",
-    color: "hsl(var(--chart-2))",
+    color: "#06b6d4",
   },
 } satisfies ChartConfig
 
@@ -41,8 +41,8 @@ export function BarChartAnalytics() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Bar Chart - Multiple</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle>چارت 6 ماهه</CardTitle>
+        <CardDescription>فروردین - شهریور 1403</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -66,10 +66,10 @@ export function BarChartAnalytics() {
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="flex gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+          رشد ماه جدید 5.2% <TrendingUp className="h-4 w-4" />
         </div>
         <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+          مجموع بازدیدهای 6 ماه گذشته
         </div>
       </CardFooter>
     </Card>
