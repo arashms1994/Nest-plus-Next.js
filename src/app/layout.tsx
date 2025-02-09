@@ -16,20 +16,21 @@ export const metadata: Metadata = {
   description: "زندگی مدرن با انتخابی هوشمندانه",
 };
 
-const { accessToken } = await auth();
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { accessToken } = await auth();
   return (
     <html lang="fa" dir="rtl">
-      <ThemeProvider>
-        <AuthProvider accessToken={accessToken || ""}>
-          <body className={`${Vazir.variable}`}>{children}</body>
-        </AuthProvider>
-      </ThemeProvider>
+      <body className={`${Vazir.variable}`}>
+        <ThemeProvider>
+          <AuthProvider accessToken={accessToken || ""}>
+            {children}
+          </AuthProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
