@@ -39,7 +39,7 @@ const chartConfig = {
 
 export function AreaChartAnalytics() {
   return (
-    <Card>
+    <Card className="w-full">
       <CardHeader>
         <CardTitle>چارت فروش</CardTitle>
         <CardDescription>

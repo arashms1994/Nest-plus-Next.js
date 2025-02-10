@@ -49,7 +49,7 @@ const chartConfig = {
 
 export function BarHorizontalAnalytics() {
   return (
-    <Card>
+    <Card className="w-full">
       <CardHeader>
         <CardTitle>چارت فروش ماهانه</CardTitle>
         <CardDescription>فروردین - شهریور 1403</CardDescription>

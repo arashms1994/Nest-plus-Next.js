@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { TrendingUp } from "lucide-react"
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { TrendingUp } from "lucide-react";
+import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
 import {
   Card,
@@ -10,13 +10,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
+} from "@/components/ui/chart";
 const chartData = [
   { month: "فروردین", desktop: 186, mobile: 80 },
   { month: "اردیبهشت", desktop: 305, mobile: 200 },
@@ -24,7 +24,7 @@ const chartData = [
   { month: "تیر", desktop: 73, mobile: 190 },
   { month: "مرداد", desktop: 209, mobile: 130 },
   { month: "شهریور", desktop: 214, mobile: 140 },
-]
+];
 
 const chartConfig = {
   desktop: {
@@ -35,11 +35,11 @@ const chartConfig = {
     label: "Mobile",
     color: "#06b6d4",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 export function BarChartAnalytics() {
   return (
-    <Card>
+    <Card className="w-full">
       <CardHeader>
         <CardTitle>چارت 6 ماهه</CardTitle>
         <CardDescription>فروردین - شهریور 1403</CardDescription>
@@ -73,5 +73,5 @@ export function BarChartAnalytics() {
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }
