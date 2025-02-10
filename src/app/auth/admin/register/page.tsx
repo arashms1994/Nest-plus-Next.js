@@ -1,4 +1,4 @@
-import RegisterForm from "@/components/auth-components/RegisterForm";
+import AdminRegisterForm from "@/components/auth-components/admin/AdminRegisterForm";
 import { Card, CardContent } from "@mui/material";
 
 type Props = {};
@@ -11,7 +11,7 @@ function Register({}: Props) {
           padding: 4,
         }}
       >
-        <RegisterForm />
+        <AdminRegisterForm />
       </CardContent>
     </Card>
   );

@@ -3,14 +3,14 @@ import React from "react";
 import AuthLogo from "./AuthLogo";
 import AuthImg from "./AuthImg";
 
-const AuthPic = () => {
+const AuthBG = () => {
   return (
     <Box
       component="section"
-      sx={{ position: "relative", width: "100%", height: "100%" }}
+      sx={{ position: "relative", width: "100%", height: "100%"}}
     >
       <AuthImg
-        src="/auth-img/ce147d8554c2cda7530244569e9d8515.jpg"
+        src="/auth-bg/dark-navy-blue-background_551880-10.avif"
         alt="auth-background"
       />
       <Box
@@ -29,4 +29,4 @@ const AuthPic = () => {
   );
 };
 
-export default AuthPic;
+export default AuthBG;

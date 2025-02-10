@@ -8,7 +8,7 @@ import { LoginFormSchema } from "@/lib/validations/LoginSchema";
 import { LoginFormState } from "@/lib/validations/serverActionsSchema";
 import { formDataToObject } from "@/lib/utils";
 
-export async function loginAction(state: LoginFormState, formData: FormData) {
+export async function adminLoginAction(state: LoginFormState, formData: FormData) {
   const validatedFields = LoginFormSchema.safeParse(formDataToObject(formData));
   if (!validatedFields.success) {
     return {
@@ -38,5 +38,5 @@ export async function loginAction(state: LoginFormState, formData: FormData) {
     accessToken: data.tokens.accessToken,
     refreshToken: data.tokens.refreshToken,
   });
-  redirect("/");
+  redirect("/dashboard");
 }

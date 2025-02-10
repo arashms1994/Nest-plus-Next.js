@@ -1,6 +1,6 @@
 "use client";
 
-import { register } from "@/actions/auth/Register";
+import { adminRegisterAction } from "@/actions/admin/AdminRegister";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Link as MuiLink,
@@ -19,9 +19,12 @@ import {
 import Link from "next/link";
 import React, { useActionState } from "react";
 
-const RegisterForm = () => {
+const AdminRegisterForm = () => {
   // =========== States =============
-  const [state, action, pending] = useActionState(register, undefined);
+  const [state, action, pending] = useActionState(
+    adminRegisterAction,
+    undefined
+  );
   const [showPassword, setShowPassword] = React.useState(false);
 
   // =========== Handle Fns =============
@@ -41,8 +44,9 @@ const RegisterForm = () => {
 
   return (
     <form action={action}>
-      <Typography variant="h5">ثبت نام</Typography>
+      <Typography variant="h5">ثبت نام ادمین</Typography>
       <Stack gap={3}>
+        <input hidden name="role" defaultValue={3}></input>
         <TextField
           error={!!state?.errors?.firstName}
           helperText={state?.errors?.firstName}
@@ -139,4 +143,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default AdminRegisterForm;

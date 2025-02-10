@@ -1,4 +1,4 @@
-import LoginForm from "@/components/auth-components/LoginForm";
+import LoginForm from "@/components/auth-components/user/LoginForm";
 import { Card, CardContent } from "@mui/material";
 
 // type Props = {};

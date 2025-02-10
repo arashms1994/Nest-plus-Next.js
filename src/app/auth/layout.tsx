@@ -1,5 +1,4 @@
-import AuthPic from "@/components/auth-components/AuthPic";
-import { Box, Stack } from "@mui/material";
+import { Box } from "@mui/material";
 
 function layout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -12,12 +11,9 @@ function layout({ children }: Readonly<{ children: React.ReactNode }>) {
         justifyContent: "center",
       }}
     >
-      <Stack direction="column" justifyContent="center" alignItems="center" sx={{ width: "100%", height: "100%" }}>{children}</Stack>
-      <AuthPic />
-      {/* <MaterialUISwitch/> */}
+      {children}
     </Box>
   );
 }
 
 export default layout;
-

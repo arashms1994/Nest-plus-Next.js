@@ -8,7 +8,7 @@ import { formDataToObject } from "@/lib/utils";
 import { RegisterFormState } from "@/type/authTypes";
 import { RegisterFormSchema } from "@/lib/validations/serverActionsSchema";
 
-export async function registerAction(state: RegisterFormState, formData: FormData) {
+export async function sellerRegisterAction(state: RegisterFormState, formData: FormData) {
   const validatedFields = RegisterFormSchema.safeParse(
     formDataToObject(formData)
   );
@@ -18,7 +18,7 @@ export async function registerAction(state: RegisterFormState, formData: FormDat
     };
   }
   try {
-    const res = await fetch(`${AUTH_BASE_URL}/auth/register`, {
+    const res = await fetch(`${AUTH_BASE_URL}/auth/seller/register`, {
       method: "post",
       body: JSON.stringify(validatedFields.data),
       headers: {
@@ -43,5 +43,5 @@ export async function registerAction(state: RegisterFormState, formData: FormDat
       message: "register failed",
     };
   }
-  redirect("/");
+  redirect("/shop");
 }
