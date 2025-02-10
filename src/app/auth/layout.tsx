@@ -1,3 +1,4 @@
+import AuthBG from "@/components/auth-components/AuthBG";
 import { Box } from "@mui/material";
 
 function layout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -9,8 +10,10 @@ function layout({ children }: Readonly<{ children: React.ReactNode }>) {
         width: "100vw",
         alignItems: "center",
         justifyContent: "center",
+        zIndex:"-10"
       }}
     >
+      <AuthBG/>
       {children}
     </Box>
   );

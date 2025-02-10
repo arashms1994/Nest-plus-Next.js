@@ -132,7 +132,7 @@ const AdminRegisterForm = () => {
           <MuiLink
             color="success"
             component={Link}
-            href="/auth/login"
+            href="/auth/admin/login"
             sx={{ textDecoration: "none", fontSize: 20 }}
           >
             ورود

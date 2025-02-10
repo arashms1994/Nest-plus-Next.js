@@ -5,7 +5,7 @@ import { Card, CardContent } from "@mui/material";
 
 function Login() {
   return (
-    <Card sx={{ width: 450 }} elevation={8}>
+    <Card sx={{ width: 420, position:"absolute"}} elevation={8}>
       <CardContent
         sx={{
           padding: 4,

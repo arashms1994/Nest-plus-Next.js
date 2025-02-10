@@ -124,7 +124,7 @@ const LoginForm = () => {
           <MuiLink
             color="success"
             component={Link}
-            href="/auth/register"
+            href="/auth/user/register"
             sx={{ textDecoration: "none", fontSize: 20 }}
           >
             ثبت نام

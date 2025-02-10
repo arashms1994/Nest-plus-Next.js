@@ -10,7 +10,7 @@ const AuthBG = () => {
       sx={{ position: "relative", width: "100%", height: "100%"}}
     >
       <AuthImg
-        src="/auth-bg/dark-navy-blue-background_551880-10.avif"
+        src="/auth-bg/6017056.jpg"
         alt="auth-background"
       />
       <Box

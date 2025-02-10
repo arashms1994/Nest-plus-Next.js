@@ -132,7 +132,7 @@ const SellerRegisterForm = () => {
           <MuiLink
             color="success"
             component={Link}
-            href="/auth/login"
+            href="/auth/seller/login"
             sx={{ textDecoration: "none", fontSize: 20 }}
           >
             ورود
