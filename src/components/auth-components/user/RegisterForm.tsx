@@ -52,8 +52,6 @@ const RegisterForm = () => {
           name="firstName"
           label="نام"
           variant="standard"
-          maxRows={4}
-          multiline
         />
         <TextField
           error={!!state?.errors?.lastName}
@@ -63,8 +61,6 @@ const RegisterForm = () => {
           name="lastName"
           label="نام خانوادگی"
           variant="standard"
-          maxRows={4}
-          multiline
         />
         <TextField
           error={!!state?.errors?.email}
@@ -74,8 +70,6 @@ const RegisterForm = () => {
           name="email"
           label="ایمیل"
           variant="standard"
-          maxRows={4}
-          multiline
           type="email"
         />
         <FormControl variant="standard">

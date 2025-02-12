@@ -55,8 +55,6 @@ const SellerRegisterForm = () => {
           name="firstName"
           label="نام"
           variant="standard"
-          maxRows={4}
-          multiline
         />
         <TextField
           error={!!state?.errors?.lastName}
@@ -66,8 +64,6 @@ const SellerRegisterForm = () => {
           name="lastName"
           label="نام خانوادگی"
           variant="standard"
-          maxRows={4}
-          multiline
         />
         <TextField
           error={!!state?.errors?.email}
@@ -77,8 +73,6 @@ const SellerRegisterForm = () => {
           name="email"
           label="ایمیل"
           variant="standard"
-          maxRows={4}
-          multiline
           type="email"
         />
         <FormControl variant="standard">
@@ -102,6 +96,25 @@ const SellerRegisterForm = () => {
                 </IconButton>
               </InputAdornment>
             }
+          />
+          <TextField
+            error={!!state?.errors?.lastName}
+            helperText={state?.errors?.lastName}
+            size="small"
+            fullWidth
+            name="shopName"
+            label="نام فروشگاه"
+            variant="standard"
+          />
+          ّ
+          <TextField
+            error={!!state?.errors?.lastName}
+            helperText={state?.errors?.lastName}
+            size="small"
+            fullWidth
+            name="shopSlug"
+            label="نشانک"
+            variant="standard"
           />
         </FormControl>
 
@@ -132,7 +145,7 @@ const SellerRegisterForm = () => {
           <MuiLink
             color="success"
             component={Link}
-            href="/auth/seller/login"
+            href="/auth/login"
             sx={{ textDecoration: "none", fontSize: 20 }}
           >
             ورود

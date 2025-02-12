@@ -23,7 +23,6 @@ const LoginForm = () => {
   // =========== States =============
   const [state, action, pending] = useActionState(loginAction, {
     message: "",
-    success: false,
     errors: {},
   });
   const [showPassword, setShowPassword] = React.useState(false);
