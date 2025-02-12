@@ -1,11 +1,11 @@
 "use client";
-
 import { Stack } from "@mui/material";
 import React, { useActionState } from "react";
 import AIForm from "./AIForm";
-import { createOrUpdateCategoryAction } from "@/actions/admin/categories";
 import CategoryField from "../fields/category-field";
 import PropertiesField from "../fields/properties-field";
+import SingleUpload from "@/components/upload/single-upload";
+import { createOrUpdateCategoryAction } from "@/actions/admin/categories";
 import { ICategory } from "@/type/serverTypes";
 import SubmitButton from "@/components/submit-button";
 
@@ -20,20 +20,21 @@ export default function CategoryForm({ defaultValue }: CategoryFormProps) {
   });
   return (
     <form action={action}>
-      <Stack spacing={2} mt={2}>
+      <Stack mt={2} spacing={2}>
         {defaultValue?.id && (
-          <input hidden name="id" defaultValue={defaultValue.id} />
+          <input hidden defaultValue={defaultValue.id} name="id" />
         )}
         <CategoryField
+          defaultValue={defaultValue?.parent}
           error={!!state?.errors?.parent}
           helperText={state?.errors?.parent}
           name="parent"
-          defaultValue={defaultValue?.parent}
         />
         <PropertiesField
-          name="properties"
           defaultValue={defaultValue?.properties}
+          name="properties"
         />
+        <SingleUpload defaultValue={defaultValue?.icon} name="icon" />
         <AIForm
           schema={[
             {

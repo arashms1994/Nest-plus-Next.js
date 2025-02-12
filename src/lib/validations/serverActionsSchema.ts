@@ -7,12 +7,43 @@ export interface FormState<G> {
   errors?: Partial<Record<keyof G, string[]>>;
 }
 
-export const RegisterFormSchema = z.object({
-  firstName: z.string().min(2, { message: "حداقل ۲ کارکتر وارد کنید." }).trim(),
-  lastName: z.string().min(2, { message: "حداقل ۲ کارکتر وارد کنید." }).trim(),
-  email: z.string().email({ message: "لطفا یک ایمیل معتبر وارد کنید." }).trim(),
-  password: password(),
-});
+export const RegisterFormSchema = z
+  .object({
+    firstName: z
+      .string()
+      .min(2, { message: "حداقل ۲ کارکتر وارد کنید." })
+      .trim(),
+    lastName: z
+      .string()
+      .min(2, { message: "حداقل ۲ کارکتر وارد کنید." })
+      .trim(),
+    email: z
+      .string()
+      .email({ message: "لطفا یک ایمیل معتبر وارد کنید." })
+      .trim(),
+    password: password(),
+    role: z.coerce.number(),
+    shopName: z.string().optional(),
+    shopSlug: z.string().optional(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.role === 3) {
+      if (!data.shopName) {
+        ctx.addIssue({
+          path: ["shopName"],
+          message: "نام فروشگاه الزامی است.",
+          code: "custom",
+        });
+      }
+      if (!data.shopSlug) {
+        ctx.addIssue({
+          path: ["shopSlug"],
+          message: "نامک فروشگاه الزامی است.",
+          code: "custom",
+        });
+      }
+    }
+  });
 
 export type RegisterType = z.infer<typeof RegisterFormSchema>;
 export type RegisterFormState = FormState<RegisterType>;
@@ -20,7 +51,6 @@ export type RegisterFormState = FormState<RegisterType>;
 export const LoginFormSchema = z.object({
   email: z.string().email({ message: "لطفا یک ایمیل معتبر وارد کنید." }).trim(),
   password: z.string(),
-  role: z.coerce.number(),
 });
 
 export type LoginType = z.infer<typeof LoginFormSchema>;

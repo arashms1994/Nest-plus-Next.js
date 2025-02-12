@@ -1,21 +1,23 @@
-import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import { refreshTokenAction } from "./actions/auth/refresh-token";
+import { auth } from "./lib/session";
 
-const protectedRoutes = "/dashboard";
-const publicRoutes = "/";
+const protectedRoutes = [
+  "/admin/dashboard",
+  "/seller/dashboard",
+  "/profile",
+  "/checkout",
+];
 
 export default async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
-  const isProtectedRoute = path.startsWith(protectedRoutes);
-  const isPublicRoute = path.startsWith(publicRoutes);
 
-  const accessToken = (await cookies()).get("accessToken")?.value;
-  const refreshToken = (await cookies()).get("refreshToken")?.value;
+  const isProtectedRoute = protectedRoutes.some((protectedRoute) =>
+    path.startsWith(protectedRoute)
+  );
 
-  const isLogin = accessToken && refreshToken;
-  const isLogout = !accessToken && !refreshToken;
-  const needToRefresh = !accessToken && refreshToken;
+  const { isLogin, isLogout, needToRefresh, role } = await auth();
 
   if (needToRefresh) {
     await refreshTokenAction();
@@ -25,8 +27,13 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/auth/login", req.nextUrl));
   }
 
-  if (isPublicRoute && !isProtectedRoute && isLogin) {
-    return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
+  if (path.startsWith("/auth") && isLogin) {
+    if (role === "3") {
+      return NextResponse.redirect(new URL("/admin/dashboard", req.nextUrl));
+    } else if (role === "2") {
+      return NextResponse.redirect(new URL("/seller/dashboard", req.nextUrl));
+    }
+    return NextResponse.redirect(new URL("/", req.nextUrl));
   }
 
   return NextResponse.next();

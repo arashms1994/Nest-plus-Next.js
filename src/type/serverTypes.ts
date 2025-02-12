@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 interface Timestamp {
   createdAt: string;
@@ -38,7 +38,7 @@ export type ServerPageProps = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export interface Column<T extends { id: string }> {
+export interface Column<T extends { id?: string; _id?: string }> {
   title: string;
   render: (row: T) => ReactNode;
 }
@@ -77,7 +77,14 @@ interface IPropertyValue {
   value: string;
   id: string;
 }
-
+interface SellerInfo {
+  lastPrice: number;
+  createdAt: string;
+  discount: number;
+  count: number;
+  id: string;
+  seller: ISeller;
+}
 export interface IProduct extends Timestamp {
   images: {
     main: string;
@@ -95,8 +102,8 @@ export interface IProduct extends Timestamp {
   specifications: IPropertyValue[];
   expert_review: string;
   id: string;
+  bestSeller?: SellerInfo;
 }
-
 export interface IUser {
   firstName: string;
   lastName: string;
@@ -105,12 +112,36 @@ export interface IUser {
   isActive: boolean;
   id: string;
 }
+export interface IAddress {
+  location: [number, number];
+  street: string;
+  city: string;
+  postalCode: string;
+}
+export interface IProfile {
+  user: string;
+  addressList: IAddress[];
+  createdAt: string;
+  updatedAt: string;
+  id: string;
+}
 export interface ISeller extends Timestamp {
   user: IUser;
   name: string;
   slug: string;
   id: string;
+  _id: string;
 }
+
+export type RegisterResponse = {
+  tokens: {
+    accessToken: string;
+    refreshToken: string;
+  };
+  user: IUser;
+  profile: IProfile;
+};
+export type LoginResponse = Omit<RegisterResponse, "profile">;
 
 export enum OrderStatus {
   Pending = "pending",
