@@ -3,40 +3,38 @@ import "server-only";
 
 import { createSession } from "@/lib/session";
 import { redirect } from "next/navigation";
-import { AUTH_BASE_URL } from "@/config.server";
-import { LoginFormSchema } from "@/lib/validations/LoginSchema";
-import { LoginFormState } from "@/lib/validations/serverActionsSchema";
 import { formDataToObject } from "@/lib/utils";
+import { loginRequest } from "@/api/server-api/auth";
+import { ApiError } from "@/api/server-api/base";
+import { LoginFormState } from "@/type/authTypes";
+import { FormState, LoginFormSchema, LoginType } from "@/lib/validations/serverActionsSchema";
+import { LoginResponse } from "@/type/serverTypes";
+import { chooseAuthRedirectPath } from "./helper";
+
 
 export async function loginAction(state: LoginFormState, formData: FormData) {
   const validatedFields = LoginFormSchema.safeParse(formDataToObject(formData));
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
-      massage: "badRequest",
-      success: false,
     };
   }
-
-  const res = await fetch(`${AUTH_BASE_URL}/auth/login`, {
-    method: "post",
-    body: JSON.stringify(validatedFields.data),
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
-
-  const data = await res.json();
-  if (!res.ok) {
-    return {
-      message: data.message,
-      errors: data.errors,
-      success: false,
-    };
+  let data: LoginResponse | undefined = undefined;
+  try {
+    data = await loginRequest(validatedFields.data);
+    await createSession({
+      accessToken: data.tokens.accessToken,
+      refreshToken: data.tokens.refreshToken,
+      role: data.user.role,
+    });
+  } catch (e) {
+    if (e instanceof ApiError) {
+      return {
+        message: e.message,
+        errors: e.body as FormState<LoginType>["errors"],
+      };
+    }
   }
-  await createSession({
-    accessToken: data.tokens.accessToken,
-    refreshToken: data.tokens.refreshToken,
-  });
-  redirect("/");
+  const path = chooseAuthRedirectPath(data?.user.role);
+  redirect(path);
 }
