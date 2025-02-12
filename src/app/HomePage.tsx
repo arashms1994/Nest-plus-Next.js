@@ -3,6 +3,7 @@ import { HeroSection } from "@/components/home-components/hero/heroSection";
 import Navbar from "@/components/home-components/navbar/navbar";
 import ProductCard from "@/components/product-components/product-card/productCard";
 import ProductPage from "@/components/product-components/product-page/productPage";
+import { ModeToggle } from "@/components/theme-toggle/ModeToggle";
 import QueryProvider from "@/providers/QueryProvider";
 import { Box } from "@mui/material";
 import React from "react";
@@ -26,6 +27,7 @@ const HomePage = () => {
           >
             <HeroSection />
             <ProductCard />
+            <ModeToggle/>
             <ProductPage />
           </Box>
           <Footer />

@@ -5,11 +5,17 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { prefixer } from "stylis";
 import { PropsWithChildren } from "react";
 import { CssBaseline, ThemeProvider as MuiThemeProvider } from "@mui/material";
+import * as React from "react"
+import { ThemeProvider as NextThemesProvider } from "next-themes"
 import Theme from "./Theme";
 
 
-const ThemeProvider = ({ children }: PropsWithChildren) => {
+const ThemeProvider = ({
+  children,
+  ...props
+}: React.ComponentProps<typeof NextThemesProvider>) => {
   return (
+    <NextThemesProvider  {...props}>
     <AppRouterCacheProvider
       key="muirtl"
       options={{
@@ -21,6 +27,7 @@ const ThemeProvider = ({ children }: PropsWithChildren) => {
         {children}
       </MuiThemeProvider>
     </AppRouterCacheProvider>
+    </NextThemesProvider>
   );
 };
 

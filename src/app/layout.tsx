@@ -25,7 +25,10 @@ export default async function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body className={`${Vazir.variable}`}>
-        <ThemeProvider>
+        <ThemeProvider attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange>
           <AuthProvider accessToken={accessToken || ""}>
             {children}
           </AuthProvider>
