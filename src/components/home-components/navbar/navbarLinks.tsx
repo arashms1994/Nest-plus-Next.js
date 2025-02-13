@@ -1,41 +1,42 @@
-import { Box, Link as MuiLink } from "@mui/material";
 import Link from "next/link";
 import React from "react";
+import { NavbarAvatar } from "./navbarAvatar";
 
 const NavbarLinks = () => {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        gap: 4,
-        alignItems: "center",
-        justifyContent: "space-between",
-      }}
-    >
-      <MuiLink
-        component={Link}
-        href="/categories"
-        sx={{ textDecoration: "none", cursor: "pointer", color: "black" }}
+    <div>
+      <Link
+        href="#"
+        className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
+        prefetch={false}
       >
-        گروه بندی محصولات
-      </MuiLink>
+        Home
+      </Link>
 
-      <MuiLink
-        component={Link}
-        href="/cart"
-        sx={{ textDecoration: "none", cursor: "pointer", color: "black" }}
+      <Link
+        href="#"
+        className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
+        prefetch={false}
       >
-        سبد خرید
-      </MuiLink>
+        About
+      </Link>
 
-      <MuiLink
-        component={Link}
-        href="/profile"
-        sx={{ textDecoration: "none", cursor: "pointer", color: "black" }}
+      <Link
+        href="#"
+        className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
+        prefetch={false}
       >
-        پروفایل
-      </MuiLink>
-    </Box>
+        Services
+      </Link>
+
+      <Link
+        href="#"
+        className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
+        prefetch={false}
+      >
+        Contact
+      </Link>
+    </div>
   );
 };
 
