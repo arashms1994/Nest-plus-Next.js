@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Search } from "lucide-react";
 import Link from "next/link";
+import { JSX, SVGProps } from "react";
 
 const Navbar = () => {
   return (
@@ -19,7 +20,7 @@ const Navbar = () => {
 
         <SheetContent side="right">
           <Link href="#" className="mr-6 hidden lg:flex" prefetch={false}>
-            <span className="sr-only">Acme Inc</span>
+            <span className="sr-only">NEST+</span>
           </Link>
 
           <div className="grid gap-2 py-6">
@@ -72,7 +73,7 @@ const Navbar = () => {
             <Input
               type="email"
               placeholder="جستجو"
-              className="w-96 bg-gray-100 rounded-r-none"
+              className="w-96 bg-gray-100 rounded-r-none border-none"
             />
           </div>
         </div>
@@ -115,7 +116,7 @@ const Navbar = () => {
   );
 };
 
-function MenuIcon(props) {
+function MenuIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -136,7 +137,7 @@ function MenuIcon(props) {
   );
 }
 
-function MountainIcon(props) {
+function MountainIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
