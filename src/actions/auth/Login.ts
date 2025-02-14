@@ -6,8 +6,7 @@ import { redirect } from "next/navigation";
 import { formDataToObject } from "@/lib/utils";
 import { loginRequest } from "@/api/server-api/auth";
 import { ApiError } from "@/api/server-api/base";
-import { LoginFormState } from "@/type/authTypes";
-import { FormState, LoginFormSchema, LoginType } from "@/lib/validations/serverActionsSchema";
+import { FormState, LoginFormSchema, LoginFormState, LoginType } from "@/lib/validations/serverActionsSchema";
 import { LoginResponse } from "@/type/serverTypes";
 import { chooseAuthRedirectPath } from "./helper";
 

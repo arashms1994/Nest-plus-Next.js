@@ -18,7 +18,6 @@ interface INavbarAvatarProps {
 }
 
 export async function NavbarAvatar({ user }: INavbarAvatarProps) {
-  const { isLogin } = await auth();
 
   return (
     <DropdownMenu>
@@ -34,7 +33,7 @@ export async function NavbarAvatar({ user }: INavbarAvatarProps) {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 mr-10">
-        {isLogin && (
+        {/* {isLogin && (
           <>
             <DropdownMenuItem className="font-bold text-lg">
               John Doe
@@ -66,7 +65,7 @@ export async function NavbarAvatar({ user }: INavbarAvatarProps) {
               </Link>
             </DropdownMenuItem>
           </>
-        )}
+        )} */}
       </DropdownMenuContent>
     </DropdownMenu>
   );
