@@ -50,10 +50,6 @@ export function PropertiesTable({
             render: (row: IPropertyOption) => row.id,
           },
           {
-            title: "برچسب",
-            render: (row) => row.label,
-          },
-          {
             title: "مقدار",
             render: (row) => row.value,
           },

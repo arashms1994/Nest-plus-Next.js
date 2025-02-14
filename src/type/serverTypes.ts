@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 
 interface Timestamp {
   createdAt: string;
@@ -35,7 +35,7 @@ export interface PaginatedResultApi<T> {
 }
 export type ServerPageProps = {
   params: Promise<{ [key: string]: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export interface Column<T extends { id?: string; _id?: string }> {
@@ -77,7 +77,7 @@ interface IPropertyValue {
   value: string;
   id: string;
 }
-interface SellerInfo {
+export interface SellerInfo {
   lastPrice: number;
   createdAt: string;
   discount: number;
@@ -94,7 +94,7 @@ export interface IProduct extends Timestamp {
   code: number;
   titleFa: string;
   titleEn: string;
-  status: "marketable" | "unmarketable";
+  status: 'marketable' | 'unmarketable';
   badges: [];
   category: ICategory;
   brand: IBrand;
@@ -141,14 +141,14 @@ export type RegisterResponse = {
   user: IUser;
   profile: IProfile;
 };
-export type LoginResponse = Omit<RegisterResponse, "profile">;
+export type LoginResponse = Omit<RegisterResponse, 'profile'>;
 
 export enum OrderStatus {
-  Pending = "pending",
-  Processing = "processing",
-  Shipped = "shipped",
-  Delivered = "delivered",
-  Cancelled = "cancelled",
+  Pending = 'pending',
+  Processing = 'processing',
+  Shipped = 'shipped',
+  Delivered = 'delivered',
+  Cancelled = 'cancelled',
 }
 export interface IOrder {
   shippingAddress: {
