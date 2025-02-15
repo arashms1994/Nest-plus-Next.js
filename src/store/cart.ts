@@ -1,5 +1,3 @@
-"use server"
-
 import { createStore } from "zustand/vanilla";
 import { persist } from "zustand/middleware";
 import { IProduct, SellerInfo } from "@/type/serverTypes";

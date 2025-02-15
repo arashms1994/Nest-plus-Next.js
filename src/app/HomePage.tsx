@@ -19,10 +19,9 @@ interface IHomePageProps {
 const HomePage = async ({ user }: IHomePageProps) => {
   const { accessToken } = await auth();
 
-  console.log(accessToken);
   return (
     <>
-      {/* <CartStoreProvider> */}
+      <CartStoreProvider>
       <AuthProvider accessToken={accessToken || ""}>
         <QueryProvider>
           <div className="bg-white dark:bg-black">
@@ -47,7 +46,7 @@ const HomePage = async ({ user }: IHomePageProps) => {
           </div>
         </QueryProvider>
       </AuthProvider>
-      {/* </CartStoreProvider> */}
+      </CartStoreProvider>
     </>
   );
 };

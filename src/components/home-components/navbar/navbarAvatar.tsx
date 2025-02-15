@@ -12,6 +12,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { IUser } from "@/type/serverTypes";
 import AuthProvider from "@/providers/AuthProvider";
+import { deleteSession } from "@/lib/session";
 
 interface INavbarAvatarProps {
   user: IUser;
@@ -19,6 +20,9 @@ interface INavbarAvatarProps {
 }
 
 export async function NavbarAvatar({ user, accessToken }: INavbarAvatarProps) {
+  const handleLogOut = () => {
+    deleteSession();
+  };
 
   return (
     <AuthProvider accessToken={accessToken || ""}>
@@ -52,7 +56,11 @@ export async function NavbarAvatar({ user, accessToken }: INavbarAvatarProps) {
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
-                <Button variant="outline" className="block w-full text-left">
+                <Button
+                  variant="outline"
+                  className="block w-full text-left"
+                  onClick={}
+                >
                   Logout
                 </Button>
               </DropdownMenuItem>{" "}
