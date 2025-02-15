@@ -4,18 +4,29 @@ import Navbar from "@/components/home-components/navbar/navbar";
 import ProductCard from "@/components/product-components/product-card/productCard";
 import ProductPage from "@/components/product-components/product-page/productPage";
 import { ModeToggle } from "@/components/theme-toggle/ModeToggle";
+import { auth } from "@/lib/session";
+import AuthProvider from "@/providers/AuthProvider";
 import { CartStoreProvider } from "@/providers/CartProvider";
 import QueryProvider from "@/providers/QueryProvider";
+import { IUser } from "@/type/serverTypes";
 import { Box } from "@mui/material";
 import React from "react";
 
-const HomePage = () => {
+interface IHomePageProps {
+  user: IUser;
+}
+
+const HomePage = async ({ user }: IHomePageProps) => {
+  const { accessToken } = await auth();
+
+  console.log(accessToken);
   return (
     <>
-      <CartStoreProvider>
+      {/* <CartStoreProvider> */}
+      <AuthProvider accessToken={accessToken || ""}>
         <QueryProvider>
           <div className="bg-white dark:bg-black">
-            <Navbar />
+            <Navbar user={user} accessToken={accessToken || ""} />
             <Box
               sx={{
                 margin: "0 auto",
@@ -28,14 +39,15 @@ const HomePage = () => {
               }}
             >
               <HeroSection />
-              <ProductCard />
+              <ProductCard/>
               <ModeToggle />
               <ProductPage />
             </Box>
             <Footer />
           </div>
         </QueryProvider>
-      </CartStoreProvider>
+      </AuthProvider>
+      {/* </CartStoreProvider> */}
     </>
   );
 };

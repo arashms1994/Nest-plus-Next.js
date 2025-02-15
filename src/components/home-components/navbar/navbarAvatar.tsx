@@ -11,50 +11,54 @@ import {
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { IUser } from "@/type/serverTypes";
-import { auth } from "@/lib/session";
+import AuthProvider from "@/providers/AuthProvider";
 
 interface INavbarAvatarProps {
   user: IUser;
+  accessToken: string;
 }
 
-export async function NavbarAvatar({ user }: INavbarAvatarProps) {
+export async function NavbarAvatar({ user, accessToken }: INavbarAvatarProps) {
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Avatar className="h-9 w-9">
-          <AvatarImage
-            alt={`${user?.firstName.charAt(0)}${user?.lastName.charAt(0)}`}
-          />
-          <AvatarFallback>{`${user?.firstName.charAt(0)}${user?.lastName.charAt(
-            0
-          )}`}</AvatarFallback>
-          <span className="sr-only">Toggle user menu</span>
-        </Avatar>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 mr-10">
-        {/* {isLogin && (
-          <>
-            <DropdownMenuItem className="font-bold text-lg">
-              John Doe
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem asChild>
-              <Link
-                href="/profile"
-                className="block w-full text-left"
-                prefetch={false}
-              >
-                Profile
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem asChild>
-              <Button variant="outline" className="block w-full text-left">
-                Logout
-              </Button>
-            </DropdownMenuItem>{" "}
-            :
+    <AuthProvider accessToken={accessToken || ""}>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Avatar className="h-9 w-9">
+            <AvatarImage
+              alt={`${user?.firstName.charAt(0)}${user?.lastName.charAt(0)}`}
+            />
+            <AvatarFallback>{`${user?.firstName.charAt(
+              0
+            )}${user?.lastName.charAt(0)}`}</AvatarFallback>
+            <span className="sr-only">Toggle user menu</span>
+          </Avatar>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-56 mr-10">
+          {accessToken && (
+            <>
+              <DropdownMenuItem className="font-bold text-lg">
+                John Doe
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <Link
+                  href="/profile"
+                  className="block w-full text-left"
+                  prefetch={false}
+                >
+                  Profile
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <Button variant="outline" className="block w-full text-left">
+                  Logout
+                </Button>
+              </DropdownMenuItem>{" "}
+            </>
+          )}
+          {!accessToken && (
             <DropdownMenuItem asChild>
               <Link
                 href="/auth/login"
@@ -64,9 +68,9 @@ export async function NavbarAvatar({ user }: INavbarAvatarProps) {
                 Login
               </Link>
             </DropdownMenuItem>
-          </>
-        )} */}
-      </DropdownMenuContent>
-    </DropdownMenu>
+          )}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </AuthProvider>
   );
 }

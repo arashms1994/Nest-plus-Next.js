@@ -69,3 +69,9 @@ export async function ensureAuthenticated() {
     redirect("/auth/login");
   }
 }
+
+
+  
+  // useEffect(() => {
+  // checkAuth();
+  // }, []);
