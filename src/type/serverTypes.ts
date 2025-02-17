@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 interface Timestamp {
   createdAt: string;
@@ -94,7 +94,7 @@ export interface IProduct extends Timestamp {
   code: number;
   titleFa: string;
   titleEn: string;
-  status: 'marketable' | 'unmarketable';
+  status: "marketable" | "unmarketable";
   badges: [];
   category: ICategory;
   brand: IBrand;
@@ -141,14 +141,14 @@ export type RegisterResponse = {
   user: IUser;
   profile: IProfile;
 };
-export type LoginResponse = Omit<RegisterResponse, 'profile'>;
+export type LoginResponse = Omit<RegisterResponse, "profile">;
 
 export enum OrderStatus {
-  Pending = 'pending',
-  Processing = 'processing',
-  Shipped = 'shipped',
-  Delivered = 'delivered',
-  Cancelled = 'cancelled',
+  Pending = "pending",
+  Processing = "processing",
+  Shipped = "shipped",
+  Delivered = "delivered",
+  Cancelled = "cancelled",
 }
 export interface IOrder {
   shippingAddress: {
@@ -178,4 +178,10 @@ export interface IOrderItem {
   quantity: number;
   order: string;
   seller: ISeller;
+}
+
+export interface IComment {
+  text: string;
+  rating: number;
+  product: number;
 }

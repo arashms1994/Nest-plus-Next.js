@@ -11,8 +11,8 @@ async function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <QueryProvider>
-      <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex" }}>
+      <QueryProvider>
         <DrawerProvider>
           <DashboardHeader />
           <ShopMiniDrawer />
@@ -21,8 +21,8 @@ async function DashboardLayout({
           <DrawerHeader />
           {children}
         </Box>
-      </Box>
-    </QueryProvider>
+      </QueryProvider>
+    </Box>
   );
 }
 
