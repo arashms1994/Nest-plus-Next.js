@@ -26,6 +26,7 @@ const HomePage = async ({ user }: IHomePageProps) => {
         <QueryProvider>
           <div className="bg-white dark:bg-black">
             <Navbar user={user} accessToken={accessToken || ""} />
+            <HeroSection />
             <Box
               sx={{
                 margin: "0 auto",
@@ -37,7 +38,6 @@ const HomePage = async ({ user }: IHomePageProps) => {
                 marginBottom: "50px",
               }}
             >
-              <HeroSection />
               <ProductCard/>
               <ModeToggle />
               <ProductPage />

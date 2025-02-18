@@ -20,7 +20,7 @@ export async function createOrUpdateProductAction(
   formData: FormData
 ) {
   await ensureAuthenticated();
-  const code = formData.get("code");
+  const code = formData.get("id");
   const validatedFields = ProductSchemaZod.safeParse(
     formDataToObject(formData)
   );
