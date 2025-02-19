@@ -17,23 +17,13 @@ import {
   ChevronRight,
   ShoppingCart,
 } from "@mui/icons-material";
+import { IProduct } from "@/type/serverTypes";
 
 interface Product {
-  id: number;
-  code: string;
-  titleEn: string;
-  titleFa: string;
-  price: number;
-  rating: number;
-  stock: number;
-  isMarketable: boolean;
-  expertReview: string;
-  specifications: { label: string; value: string }[];
-  colors: { name: string; code: string }[];
-  images: { main: string; thumbnails: string[] }[];
+  product:IProduct
 }
 
-const ProductPage: React.FC = () => {
+const ProductPage = ({product}:Product) => {
   const [selectedColor, setSelectedColor] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
@@ -41,60 +31,27 @@ const ProductPage: React.FC = () => {
   const [showSpecifications, setShowSpecifications] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
 
-  const product: Product = {
-    id: 1,
-    code: "PRD001",
-    titleEn: "Premium Leather Jacket",
-    titleFa: "کت چرم",
-    price: 299.99,
-    rating: 4.5,
-    stock: 10,
-    isMarketable: true,
-    expertReview:
-      "Exceptional quality and craftsmanship. Perfect fit and premium materials used.",
-    specifications: [
-      { label: "Material", value: "Genuine Leather" },
-      { label: "Fit", value: "Regular" },
-      { label: "Care", value: "Dry Clean Only" },
-    ],
-    colors: [
-      { name: "Black", code: "#000000" },
-      { name: "Brown", code: "#8B4513" },
-      { name: "Tan", code: "#D2B48C" },
-    ],
-    images: [
-      {
-        main: "https://images.unsplash.com/photo-1551028719-00167b16eac5",
-        thumbnails: [
-          "https://images.unsplash.com/photo-1551028719-00167b16eac5",
-          "https://images.unsplash.com/photo-1551028719-00167b16eac5",
-          "https://images.unsplash.com/photo-1551028719-00167b16eac5",
-        ],
-      },
-    ],
-  };
-
   const handleColorSelect = (index: number) => {
     setSelectedColor(index);
     setCurrentImageIndex(0);
   };
 
-  const handleQuantityChange = (action: "increment" | "decrement") => {
-    if (action === "increment" && quantity < product.stock) {
-      setQuantity(quantity + 1);
-    } else if (action === "decrement" && quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
+  // const handleQuantityChange = (action: "increment" | "decrement") => {
+  //   if (action === "increment" && quantity < product.stock) {
+  //     setQuantity(quantity + 1);
+  //   } else if (action === "decrement" && quantity > 1) {
+  //     setQuantity(quantity - 1);
+  //   }
+  // };
 
-  const handleImageChange = (direction: "next" | "prev") => {
-    const totalImages = product.images[0].thumbnails.length;
-    if (direction === "next") {
-      setCurrentImageIndex((prev) => (prev + 1) % totalImages);
-    } else {
-      setCurrentImageIndex((prev) => (prev - 1 + totalImages) % totalImages);
-    }
-  };
+  // const handleImageChange = (direction: "next" | "prev") => {
+  //   const totalImages = product.images[0].thumbnails.length;
+  //   if (direction === "next") {
+  //     setCurrentImageIndex((prev) => (prev + 1) % totalImages);
+  //   } else {
+  //     setCurrentImageIndex((prev) => (prev - 1 + totalImages) % totalImages);
+  //   }
+  // };
 
   return (
     <Box sx={{ maxWidth: 1200, mx: "auto", p: 4 }}>
@@ -114,8 +71,8 @@ const ProductPage: React.FC = () => {
             >
               <Box
                 component="img"
-                src={product.images[0].thumbnails[currentImageIndex]}
-                alt={product.titleEn}
+                src={product.images.main}
+                alt={product.titleFa}
                 sx={{
                   width: "100%",
                   height: "100%",
@@ -144,7 +101,7 @@ const ProductPage: React.FC = () => {
                 </IconButton>
               </Box>
               <IconButton
-                onClick={() => handleImageChange("prev")}
+                // onClick={() => handleImageChange("prev")}
                 sx={{
                   position: "absolute",
                   left: 16,
@@ -156,7 +113,7 @@ const ProductPage: React.FC = () => {
                 <ChevronLeft />
               </IconButton>
               <IconButton
-                onClick={() => handleImageChange("next")}
+                // onClick={() => handleImageChange("next")}
                 sx={{
                   position: "absolute",
                   right: 16,
@@ -171,26 +128,26 @@ const ProductPage: React.FC = () => {
             <Box
               sx={{ display: "flex", justifyContent: "center", mt: 2, gap: 1 }}
             >
-              {product.images[0].thumbnails.map((thumb, idx) => (
+              {product.images.list.map((index) => (
                 <Button
-                  key={idx}
-                  onClick={() => setCurrentImageIndex(idx)}
-                  sx={{
-                    width: 64,
-                    height: 64,
-                    borderRadius: 1,
-                    overflow: "hidden",
-                    border: currentImageIndex === idx ? "2px solid" : "none",
-                    borderColor:
-                      currentImageIndex === idx
-                        ? "primary.main"
-                        : "transparent",
-                  }}
+                  key={index}
+                  // onClick={() => setCurrentImageIndex(index)}
+                  // sx={{
+                  //   width: 64,
+                  //   height: 64,
+                  //   borderRadius: 1,
+                  //   overflow: "hidden",
+                  //   border: currentImageIndex === index ? "2px solid" : "none",
+                  //   borderColor:
+                  //     currentImageIndex === index
+                  //       ? "primary.main"
+                  //       : "transparent",
+                  // }}
                 >
                   <Box
                     component="img"
-                    src={thumb}
-                    alt={`Thumbnail ${idx + 1}`}
+                    src={index}
+                    alt={`Thumbnail ${index + 1}`}
                     sx={{ width: "100%", height: "100%", objectFit: "cover" }}
                   />
                 </Button>
@@ -211,13 +168,6 @@ const ProductPage: React.FC = () => {
                 Product Code: {product.code}
               </Typography>
 
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                <Rating value={product.rating} precision={0.5} readOnly />
-                <Typography variant="body2" color="text.secondary">
-                  ({product.rating})
-                </Typography>
-              </Box>
-
               <Box>
                 <Typography variant="h6" fontWeight="bold" mb={1}>
                   Colors
@@ -230,7 +180,7 @@ const ProductPage: React.FC = () => {
                       sx={{
                         width: 32,
                         height: 32,
-                        bgcolor: color.code,
+                        bgcolor: color.hexCode,
                         border: selectedColor === idx ? "2px solid" : "none",
                         borderColor:
                           selectedColor === idx
@@ -242,34 +192,11 @@ const ProductPage: React.FC = () => {
                 </Box>
               </Box>
 
-              <Box>
-                <Typography variant="h6" fontWeight="bold" mb={1}>
-                  Quantity
-                </Typography>
-                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                  <Button
-                    onClick={() => handleQuantityChange("decrement")}
-                    variant="outlined"
-                    disabled={quantity <= 1}
-                  >
-                    -
-                  </Button>
-                  <Typography>{quantity}</Typography>
-                  <Button
-                    onClick={() => handleQuantityChange("increment")}
-                    variant="outlined"
-                    disabled={quantity >= product.stock}
-                  >
-                    +
-                  </Button>
-                </Box>
-              </Box>
-
               <Button
                 variant="contained"
                 size="large"
                 fullWidth
-                disabled={!product.isMarketable}
+                disabled={!product}
                 startIcon={<ShoppingCart />}
               >
                 Add to Cart
@@ -300,10 +227,7 @@ const ProductPage: React.FC = () => {
                         }}
                       >
                         <Typography variant="body2" color="text.secondary">
-                          {spec.label}:
-                        </Typography>
-                        <Typography variant="body2" fontWeight="bold">
-                          {spec.value}
+                          {product.review}:
                         </Typography>
                       </Box>
                     ))}
@@ -316,7 +240,7 @@ const ProductPage: React.FC = () => {
                   Expert Review
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
-                  {product.expertReview}
+                  {product.expert_review}
                 </Typography>
               </Box>
             </Box>
