@@ -3,6 +3,7 @@ import Footer from "@/components/home-components/footer/footer";
 import { HeroSection } from "@/components/home-components/hero/heroSection";
 import HomeProducts from "@/components/home-components/HomeProducts";
 import Navbar from "@/components/home-components/navbar/navbar";
+import { PaginationUI } from "@/components/home-components/Pagination";
 import { ModeToggle } from "@/components/theme-toggle/ModeToggle";
 import { auth } from "@/lib/session";
 import AuthProvider from "@/providers/AuthProvider";
@@ -40,6 +41,7 @@ const HomePage = async ({ user }: IHomePageProps) => {
               >
                 <HomeProducts />
                 <ModeToggle />
+                <PaginationUI/>
               </Box>
               <Footer />
             </div>
