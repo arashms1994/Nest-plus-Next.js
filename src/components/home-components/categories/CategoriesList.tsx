@@ -1,5 +1,4 @@
 import { userGetCategories } from "@/api/server-api/user/user-category";
-import Link from "next/link";
 import React from "react";
 import CategoryCard from "./CategoryCard";
 
@@ -11,7 +10,7 @@ const CategoriesList = async () => {
         <div className="border-b-2 border-cyan-700">
           <h2 className="text-2xl font-semibold">دسته بندی ها</h2>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap justify-center items-center">
           {categories.results.map((c) => (
             <CategoryCard key={c.id} category={c}/>
           ))}
