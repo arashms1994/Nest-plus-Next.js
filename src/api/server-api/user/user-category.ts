@@ -11,6 +11,6 @@ export const userGetCategories = async (
   );
 };
 
-export const userGetCategory = async (id: string): Promise<ICategory> => {
-  return apiFetch<ICategory>(`${AUTH_BASE_URL}/categories/${id}`);
+export const userGetCategory = async (slug: string): Promise<ICategory> => {
+  return apiFetch<ICategory>(`${AUTH_BASE_URL}/categories/${slug}`);
 };

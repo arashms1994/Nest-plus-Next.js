@@ -24,3 +24,11 @@ export const userGetProductById = async (id: string): Promise<IProduct> => {
 export const userGetSellersByProductId = async (id: string): Promise<ISeller[]> => {
   return apiFetch<ISeller[]>(`${AUTH_BASE_URL}/products/${id}/sellers`);
 };
+
+export const userGetProductsByCategory = async (categoryId: string): Promise<IProduct[]> => {
+  const response = await fetch(`${AUTH_BASE_URL}/categories/${categoryId}/products`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch products');
+  }
+  return response.json();
+};
