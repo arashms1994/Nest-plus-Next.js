@@ -1,17 +1,15 @@
 import { AUTH_BASE_URL } from "@/config.server";
 import {
-  ICategory,
   IOrder,
-  OrderStatus,
   PaginatedResultApi,
 } from "@/type/serverTypes";
 import { apiFetch } from "../base";
 
 export const userCreateOrder = async (
-  body: Partial<OrderStatus>
-): Promise<ICategory> => {
+  body: Partial<IOrder>
+): Promise<IOrder> => {
   try {
-    return apiFetch<ICategory>(`${AUTH_BASE_URL}/orders`, {
+    return apiFetch<IOrder>(`${AUTH_BASE_URL}/orders`, {
       method: "POST",
       body: JSON.stringify(body),
     });

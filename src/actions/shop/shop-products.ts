@@ -7,9 +7,12 @@ import { redirect } from "next/navigation";
 import { formDataToObject } from "@/lib/utils";
 import {
   ProductFormState,
+  ProductPriceFormState,
+  ProductPriceSchemaZod,
   ProductSchemaZod,
 } from "@/lib/validations/serverActionsSchema";
 import {
+  shopAddProductPrice,
   shopCreateProduct,
   shopDeleteProduct,
   shopUpdateProduct,
@@ -66,4 +69,49 @@ export async function shopDeleteProductAction(id: string) {
     }
   }
   revalidatePath("/shop/products");
+}
+
+interface IFormState {
+  errors?: {
+    lastPrice?: string[];
+    count?: string[];
+    discount?: string[];
+    code?: string[];
+  };
+  message?: string;
+  success?: boolean;
+}
+
+export async function shopAddPriceProductAction(
+  prevState: IFormState,
+  formData: FormData
+): Promise<IFormState> {
+  await ensureAuthenticated();
+
+  const code = formData.get("code");
+  if (!code || typeof code !== "string") {
+    return { errors: { code: ["کد محصول الزامی است"] }, message: "کد نامعتبر" };
+  }
+
+  const validatedFields = ProductPriceSchemaZod.safeParse(
+    formDataToObject(formData)
+  );
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: "خطا در اعتبارسنجی",
+    };
+  }
+
+  try {
+    await shopAddProductPrice(code, validatedFields.data);
+    return { message: "محصول با موفقیت اضافه شد", success: true };
+  } catch (e) {
+    console.error(e);
+    return {
+      message: "خطا در ارتباط با سرور",
+      success: false,
+    };
+  }
 }

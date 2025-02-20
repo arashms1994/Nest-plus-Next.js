@@ -184,3 +184,11 @@ export const BadgeFormSchema = z.object({
 export type BadgeType = z.infer<typeof BadgeFormSchema>;
 
 export type BadgeFormState = FormState<BadgeType>;
+
+export const ProductPriceSchemaZod = z.object({
+  lastPrice: z.number().min(0, "قیمت باید مثبت باشد"),
+  count: z.number().min(1, "تعداد باید حداقل 1 باشد"),
+  discount: z.number().min(0, "تخفیف باید مثبت باشد").optional(),
+});
+export type ProductPriceType = z.infer<typeof ProductPriceSchemaZod>;
+export type ProductPriceFormState = FormState<ProductPriceType>;

@@ -1,3 +1,4 @@
+import { ProductPriceType } from "@/lib/validations/serverActionsSchema";
 import type { ReactNode } from "react";
 
 interface Timestamp {
@@ -150,6 +151,7 @@ export enum OrderStatus {
   Delivered = "delivered",
   Cancelled = "cancelled",
 }
+
 export interface IOrder {
   shippingAddress: {
     street: string;
@@ -165,6 +167,7 @@ export interface IOrder {
   updatedAt: string;
   id: string;
 }
+
 export interface IOrderItem {
   id: string;
   productSeller: {

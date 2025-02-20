@@ -1,4 +1,4 @@
-import ProductForm from "@/components/dashboard-components/forms/product-form";
+import ShopProductForm from "@/components/dashboard-components/forms/shop-forms/shop-product-form";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 
 export default async function ShopCreateProductPage() {
@@ -6,8 +6,8 @@ export default async function ShopCreateProductPage() {
     <Box>
       <Card>
         <CardContent>
-          <Typography variant="h5">ایجاد محصول جدید</Typography>
-          <ProductForm />
+          <Typography variant="h5">قیمت گذاری محصول</Typography>
+          <ShopProductForm />
         </CardContent>
       </Card>
     </Box>

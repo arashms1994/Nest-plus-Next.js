@@ -1,4 +1,7 @@
+import { userGetbrands } from "@/api/server-api/user/user-brands";
 import { userGetProducts } from "@/api/server-api/user/user-products";
+import { BrandsCarousel } from "@/components/home-components/brands/BrandsCarousel";
+import { BrandsList } from "@/components/home-components/brands/BrandsList";
 import CategoriesList from "@/components/home-components/categories/CategoriesList";
 import Footer from "@/components/home-components/footer/footer";
 import { HeroSection } from "@/components/home-components/hero/heroSection";
@@ -44,8 +47,8 @@ const HomePage = async ({ user, searchParams }: IHomePageProps) => {
                 }}
               >
                 <CategoriesList />
+                <BrandsList />
                 <HomeProducts />
-                <ModeToggle />
                 <PaginationUI count={count} />
               </Box>
               <Footer />

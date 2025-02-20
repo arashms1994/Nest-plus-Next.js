@@ -28,7 +28,7 @@ const HomeProducts = async ({ searchParams }: ServerPageProps) => {
   const products = await userGetProducts(params);
 
   return (
-    <div className="flex flex-wrap gap-4 justify-center items-center">
+    <div className="flex flex-wrap gap-4 justify-center items-center my-3">
       {products.results.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}

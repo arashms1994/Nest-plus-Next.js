@@ -12,6 +12,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { IUser } from "@/type/serverTypes";
 import AuthProvider from "@/providers/AuthProvider";
+import { PercentSquareIcon, User } from "lucide-react";
+import { Person, Person2, Person2Rounded, Person3, PersonOffOutlined } from "@mui/icons-material";
 
 interface INavbarAvatarProps {
   user: IUser;
@@ -24,15 +26,13 @@ export async function NavbarAvatar({ user, accessToken }: INavbarAvatarProps) {
     <AuthProvider accessToken={accessToken || ""}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Avatar className="h-9 w-9">
-            <AvatarImage
-              alt={`${user?.firstName.charAt(0)}${user?.lastName.charAt(0)}`}
-            />
-            <AvatarFallback>{`${user?.firstName.charAt(
+          <Button variant="outline">
+            <User/>
+            {/* <AvatarFallback>{`${user?.firstName.charAt(
               0
-            )}${user?.lastName.charAt(0)}`}</AvatarFallback>
+            )}${user?.lastName.charAt(0)}`}</AvatarFallback> */}
             <span className="sr-only">Toggle user menu</span>
-          </Avatar>
+          </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56 mr-10">
           {accessToken && (

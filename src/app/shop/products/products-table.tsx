@@ -1,10 +1,8 @@
 "use client";
 
-import { shopDeleteProductAction } from "@/actions/shop/shop-products";
 import AITable from "@/components/dashboard-components/tables/AITable";
-import DeleteAlertDialog from "@/components/delete-dialog";
 import { IProduct, PaginatedResultApi } from "@/type/serverTypes";
-import { Delete, Edit } from "@mui/icons-material";
+import { Edit } from "@mui/icons-material";
 import { IconButton, Stack, Tooltip } from "@mui/material";
 import Link from "next/link";
 
@@ -21,19 +19,10 @@ export function ShopProductTable({
             <IconButton
               color="secondary"
               component={Link}
-              href={"/shop/products/update/" + p.code}
+              href={`/shop/products/${p.id}/add-price`}
             >
               <Edit />
             </IconButton>
-          </Tooltip>
-          <Tooltip title="حذف">
-            <DeleteAlertDialog
-              onConfirm={async () => shopDeleteProductAction(p.id)}
-            >
-              <IconButton color="error">
-                <Delete />
-              </IconButton>
-            </DeleteAlertDialog>
           </Tooltip>
         </Stack>
       )}
@@ -60,7 +49,7 @@ export function ShopProductTable({
           render: (row) => row.brand.titleFa,
         },
         {
-          title: "بروزرسانی",
+          title: "قیمت گذاری",
           render: (row) => new Date(row.updatedAt).toLocaleDateString("fa"),
         },
       ]}

@@ -35,9 +35,9 @@ export default async function middleware(req: NextRequest) {
   // 5. Redirect to /dashboard if the user is authenticated
   if (path.startsWith("/auth") && isLogin) {
     if (role === "3") {
-      return NextResponse.redirect(new URL("/admin/dashboard", req.nextUrl));
+      return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
     } else if (role === "2") {
-      return NextResponse.redirect(new URL("/seller/dashboard", req.nextUrl));
+      return NextResponse.redirect(new URL("/shop", req.nextUrl));
     }
     return NextResponse.redirect(new URL("/", req.nextUrl));
   }
