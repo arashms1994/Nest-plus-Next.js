@@ -1,5 +1,5 @@
 import { userGetProducts } from "@/api/server-api/user/user-products";
-import CategoriesList from "@/components/home-components/CategoriesList";
+import CategoriesList from "@/components/home-components/categories/CategoriesList";
 import Footer from "@/components/home-components/footer/footer";
 import { HeroSection } from "@/components/home-components/hero/heroSection";
 import HomeProducts from "@/components/home-components/HomeProducts";

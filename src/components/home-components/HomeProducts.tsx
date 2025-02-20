@@ -25,10 +25,7 @@ import { ServerPageProps } from "@/type/serverTypes";
 
 const HomeProducts = async ({ searchParams }: ServerPageProps) => {
   const params = await searchParams;
-  console.log("SearchParams:", params);
-
   const products = await userGetProducts(params);
-  console.log("Products:", products);
 
   return (
     <div className="flex flex-wrap gap-4 justify-center items-center">
