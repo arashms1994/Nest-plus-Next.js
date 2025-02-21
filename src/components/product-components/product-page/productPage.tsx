@@ -1,9 +1,8 @@
-"use client"
+"use client";
 
 import React, { useState } from "react";
 import {
   Typography,
-  Rating,
   Box,
   Button,
   IconButton,
@@ -18,12 +17,13 @@ import {
   ShoppingCart,
 } from "@mui/icons-material";
 import { IProduct } from "@/type/serverTypes";
+import PropertyCard from "./PropertyCard";
 
 interface Product {
-  product:IProduct
+  product: IProduct;
 }
 
-const ProductPage = ({product}:Product) => {
+const ProductPage = ({ product }: Product) => {
   const [selectedColor, setSelectedColor] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
@@ -44,14 +44,14 @@ const ProductPage = ({product}:Product) => {
   //   }
   // };
 
-  // const handleImageChange = (direction: "next" | "prev") => {
-  //   const totalImages = product.images[0].thumbnails.length;
-  //   if (direction === "next") {
-  //     setCurrentImageIndex((prev) => (prev + 1) % totalImages);
-  //   } else {
-  //     setCurrentImageIndex((prev) => (prev - 1 + totalImages) % totalImages);
-  //   }
-  // };
+  const handleImageChange = (direction: "next" | "prev") => {
+    const totalImages = product.images.list.length;
+    if (direction === "next") {
+      setCurrentImageIndex((prev) => (prev + 1) % totalImages);
+    } else {
+      setCurrentImageIndex((prev) => (prev - 1 + totalImages) % totalImages);
+    }
+  };
 
   return (
     <Box sx={{ maxWidth: 1200, mx: "auto", p: 4 }}>
@@ -87,6 +87,7 @@ const ProductPage = ({product}:Product) => {
                   top: 16,
                   right: 16,
                   display: "flex",
+                  flexDirection: "row-reverse",
                   gap: 1,
                 }}
               >
@@ -101,7 +102,7 @@ const ProductPage = ({product}:Product) => {
                 </IconButton>
               </Box>
               <IconButton
-                // onClick={() => handleImageChange("prev")}
+                onClick={() => handleImageChange("prev")}
                 sx={{
                   position: "absolute",
                   left: 16,
@@ -113,7 +114,7 @@ const ProductPage = ({product}:Product) => {
                 <ChevronLeft />
               </IconButton>
               <IconButton
-                // onClick={() => handleImageChange("next")}
+                onClick={() => handleImageChange("next")}
                 sx={{
                   position: "absolute",
                   right: 16,
@@ -131,18 +132,18 @@ const ProductPage = ({product}:Product) => {
               {product.images.list.map((index) => (
                 <Button
                   key={index}
-                  // onClick={() => setCurrentImageIndex(index)}
-                  // sx={{
-                  //   width: 64,
-                  //   height: 64,
-                  //   borderRadius: 1,
-                  //   overflow: "hidden",
-                  //   border: currentImageIndex === index ? "2px solid" : "none",
-                  //   borderColor:
-                  //     currentImageIndex === index
-                  //       ? "primary.main"
-                  //       : "transparent",
-                  // }}
+                  onClick={() => setCurrentImageIndex(index)}
+                  sx={{
+                    width: 64,
+                    height: 64,
+                    borderRadius: 1,
+                    overflow: "hidden",
+                    border: currentImageIndex === index ? "2px solid" : "none",
+                    borderColor:
+                      currentImageIndex === index
+                        ? "primary.main"
+                        : "transparent",
+                  }}
                 >
                   <Box
                     component="img"
@@ -153,6 +154,16 @@ const ProductPage = ({product}:Product) => {
                 </Button>
               ))}
             </Box>
+              <div className="flex flex-wrap justify-start items-center gap-3 mt-4">
+                {product.category.properties.map((p) => (
+                  <PropertyCard
+                    key={p.id}
+                    name={p.name}
+                    label={p.label}
+                    id={p.id}
+                  />
+                ))}
+              </div>
           </Grid>
 
           {/* Product Info Section */}
