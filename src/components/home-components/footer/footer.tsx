@@ -10,6 +10,7 @@ const Footer = () => {
         textAlign: "center",
         bottom: "0",
         paddingY: "10px",
+        marginTop:"12px"
       }}
     >
       <Typography

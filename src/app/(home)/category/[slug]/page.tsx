@@ -31,7 +31,8 @@ import { notFound } from "next/navigation";
 import ProductCard from "@/components/product-components/product-card/productCard";
 import { ICategory, IProduct } from "@/type/serverTypes";
 import { userGetCategory } from "@/api/server-api/user/user-category";
-
+import { HeroSection } from "@/components/home-components/hero/heroSection";
+import { Box } from "@mui/material";
 
 export default async function CategoryPage({
   params,
@@ -57,14 +58,27 @@ export default async function CategoryPage({
   }
 
   return (
-    <div>
-      <h1>{category.titleFa}</h1>
+    <>
+      <HeroSection />
+      <Box
+        sx={{
+          margin: "0 auto",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          maxWidth: 1120,
+          marginBottom: "50px",
+        }}
+      >
+        <h1>{category.titleFa}</h1>
 
-      <div className="flex flex-wrap gap-4 justify-center items-center">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
-    </div>
+        <div className="flex flex-wrap gap-4 justify-center items-center">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </Box>
+    </>
   );
 }
