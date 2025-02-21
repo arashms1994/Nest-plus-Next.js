@@ -18,7 +18,7 @@ export const userCreateOrder = async (
   }
 };
 
-export const userGetsellers = async (
+export const userGetOrders = async (
   params?: unknown
 ): Promise<PaginatedResultApi<IOrder>> => {
   const search = new URLSearchParams(params as Record<string, string>);

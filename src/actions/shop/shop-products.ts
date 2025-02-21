@@ -7,7 +7,6 @@ import { redirect } from "next/navigation";
 import { formDataToObject } from "@/lib/utils";
 import {
   ProductFormState,
-  ProductPriceFormState,
   ProductPriceSchemaZod,
   ProductSchemaZod,
 } from "@/lib/validations/serverActionsSchema";
