@@ -26,13 +26,17 @@
 // }
 
 // app/(home)/category/[slug]/page.tsx
-import { userGetProductsByCategory } from "@/api/server-api/user/user-products";
+import {
+  userGetProducts,
+  userGetProductsByCategory,
+} from "@/api/server-api/user/user-products";
 import { notFound } from "next/navigation";
 import ProductCard from "@/components/product-components/product-card/productCard";
-import { ICategory, IProduct } from "@/type/serverTypes";
+import { ICategory } from "@/type/serverTypes";
 import { userGetCategory } from "@/api/server-api/user/user-category";
 import { HeroSection } from "@/components/home-components/hero/heroSection";
 import { Box } from "@mui/material";
+import PaginationUI from "@/components/home-components/Pagination";
 
 export default async function CategoryPage({
   params,
@@ -42,6 +46,9 @@ export default async function CategoryPage({
   searchParams: { page?: string; pageSize?: string };
 }) {
   const { slug } = params;
+
+  const productsCount = await userGetProducts();
+  const count = productsCount.total;
 
   let category: ICategory;
   const products = await userGetProductsByCategory(slug);
@@ -78,6 +85,7 @@ export default async function CategoryPage({
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
+        <PaginationUI count={count} />
       </Box>
     </>
   );

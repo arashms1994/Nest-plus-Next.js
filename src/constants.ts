@@ -10,7 +10,9 @@ import {
   Apple,
   EditAttributes,
   PhoneAndroid,
+  Update,
 } from "@mui/icons-material";
+import { ListOrdered, ListOrderedIcon } from "lucide-react";
 
 export const SIDEBAR_ITEMS = [
   { href: "/dashboard", Icon: Dashboard, text: "داشبورد ادمین" },
@@ -25,9 +27,24 @@ export const SIDEBAR_ITEMS = [
   { href: "/dashboard/sellers", Icon: Store, text: "فروشندگان" },
   { href: "/dashboard/orders", Icon: ShoppingBasket, text: "سفارشات" },
 ];
+
 export const SHOP_SIDEBAR_ITEMS = [
   { href: "/shop", Icon: Dashboard, text: "داشبورد فروشگاه" },
   { href: "/shop/categories", Icon: Category, text: "دسته‌بندی کالاها" },
   { href: "/shop/products", Icon: PhoneAndroid, text: "محصولات" },
   { href: "/shop/orders", Icon: ShoppingBasket, text: "سفارشات" },
+];
+
+export const USER_SIDEBAR_ITEMS = [
+  { href: "/user-dashboard/orders", Icon: ListOrdered, text: "سفارشات" },
+  {
+    href: "/user-dashboard/orders/create",
+    Icon: ListOrderedIcon,
+    text: "ثبت سفارش",
+  },
+  {
+    href: "/user-dashboard/orders/update/",
+    Icon: Update,
+    text: "تغییر سفارش",
+  },
 ];

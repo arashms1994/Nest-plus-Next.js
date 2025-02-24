@@ -1,7 +1,12 @@
-import { Box } from '@mui/material'
-import React from 'react'
+import { userGetProducts } from "@/api/server-api/user/user-products";
+import PaginationUI from "@/components/home-components/Pagination";
+import { Box } from "@mui/material";
+import React from "react";
 
-const page = () => {
+const page = async () => {
+  const products = await userGetProducts();
+  const count = products.total;
+
   return (
     <>
       <Box
@@ -15,10 +20,11 @@ const page = () => {
           marginBottom: "50px",
         }}
       >
-        <h1 className='font-semibold text-2xl my-3'>سفارشات</h1>
+        <h1 className="font-semibold text-2xl my-3">سفارشات</h1>
+        <PaginationUI count={count} />
       </Box>
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;

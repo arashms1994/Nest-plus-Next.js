@@ -20,6 +20,7 @@ import Search from "./search";
 import StyledInputBase from "./styledInput";
 import { AppBar } from "./header-appBar";
 import { DrawerContext } from "@/providers/DrawerProvider";
+import Link from "next/link";
 
 export default function DashboardHeader() {
   const { isOpen, handleOpen } = React.useContext(DrawerContext);
@@ -140,7 +141,8 @@ export default function DashboardHeader() {
           <Typography
             variant="h6"
             noWrap
-            component="div"
+            component={Link}
+            href="/"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
             + Nest

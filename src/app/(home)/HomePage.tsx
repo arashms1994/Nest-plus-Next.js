@@ -1,7 +1,9 @@
+import { userGetProducts } from "@/api/server-api/user/user-products";
 import { BrandsList } from "@/components/home-components/brands/BrandsList";
 import CategoriesList from "@/components/home-components/categories/CategoriesList";
 import { HeroSection } from "@/components/home-components/hero/heroSection";
 import HomeProducts from "@/components/home-components/HomeProducts";
+import PaginationUI from "@/components/home-components/Pagination";
 import { ServerPageProps } from "@/type/serverTypes";
 import { Box } from "@mui/material";
 import React from "react";
@@ -11,6 +13,9 @@ interface IHomePageProps {
 }
 
 const HomePage = async ({ searchParams }: IHomePageProps) => {
+const products = await userGetProducts();
+  const count = products.total;
+
   return (
     <>
       <HeroSection />
@@ -28,6 +33,8 @@ const HomePage = async ({ searchParams }: IHomePageProps) => {
         <CategoriesList />
         <BrandsList />
         <HomeProducts />
+        <PaginationUI count={count} />
+
       </Box>
     </>
   );

@@ -17,8 +17,7 @@ const layout = async ({
   user: IUser;
 }>) => {
   const { accessToken } = await auth();
-  const products = await userGetProducts();
-  const count = products.total;
+  
 
   return (
     <>
@@ -27,7 +26,6 @@ const layout = async ({
         <div className="bg-white dark:bg-black">
         <Navbar user={user} accessToken={accessToken || ""} />
           <QueryProvider>{children} </QueryProvider>
-          <PaginationUI count={count} />
           <Footer />
             </div>
         </AuthProvider>
