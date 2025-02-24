@@ -5,7 +5,6 @@ import { NavUser } from "@/components/ui/nav-user";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -30,14 +29,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         {USER_SIDEBAR_ITEMS.map((item) => (
-          <SidebarMenuItem key={item.text}>
-            <SidebarMenuButton asChild>
+            <SidebarMenuButton asChild className="my-1">
               <Link href={item.href} className="font-medium">
                 {item.Icon && <item.Icon />}
                 <span>{item.text}</span>
               </Link>
             </SidebarMenuButton>
-          </SidebarMenuItem>
         ))}
       </SidebarContent>
       <SidebarRail />
