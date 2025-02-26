@@ -131,10 +131,10 @@ const ImageSchemaZod = z.object({
 
 // Main Product Zod Schema
 export const ProductSchemaZod = z.object({
-  code: z.coerce.number().int().positive('Code must be a positive integer'),
-  titleFa: z.string().min(1, 'Title (FA) is required').trim(),
-  titleEn: z.string().min(1, 'Title (EN) is required').trim(),
-  status: z.enum(['marketable', 'unmarketable']).default('marketable'),
+  code: z.coerce.number().int().positive("Code must be a positive integer"),
+  titleFa: z.string().min(1, "Title (FA) is required").trim(),
+  titleEn: z.string().min(1, "Title (EN) is required").trim(),
+  status: z.enum(["marketable", "unmarketable"]).default("marketable"),
   images: ImageSchemaZod,
   colors: z.array(z.string()).optional(),
   badges: z.array(z.string()).optional(),
@@ -142,13 +142,13 @@ export const ProductSchemaZod = z.object({
   brand: z.string(),
   review: z.string(),
   specifications: z
-  .array(SpecificationSchemaZod)
-  .transform((specifications) => specifications.filter((i) => !!i.value))
-  .optional(),
+    .array(SpecificationSchemaZod)
+    .transform((specifications) => specifications.filter((i) => !!i.value))
+    .optional(),
   expert_review: z.string().trim().optional(),
-  });
-  export type ProductType = z.infer<typeof ProductSchemaZod>;
-  export type ProductFormState = FormState<ProductType>;
+});
+export type ProductType = z.infer<typeof ProductSchemaZod>;
+export type ProductFormState = FormState<ProductType>;
 
 // Zod Schema
 export const PropertySchemaZod = z.object({
@@ -186,9 +186,10 @@ export type BadgeType = z.infer<typeof BadgeFormSchema>;
 export type BadgeFormState = FormState<BadgeType>;
 
 export const ProductPriceSchemaZod = z.object({
-  lastPrice: z.number().min(0, "قیمت باید مثبت باشد"),
-  count: z.number().min(1, "تعداد باید حداقل 1 باشد"),
-  discount: z.number().min(0, "تخفیف باید مثبت باشد").optional(),
+  price: z.coerce.number().nonnegative(),
+  discount: z.coerce.number().min(0).max(100),
+  count: z.coerce.number().min(0).optional(),
+  code: z.coerce.number()
 });
 export type ProductPriceType = z.infer<typeof ProductPriceSchemaZod>;
 export type ProductPriceFormState = FormState<ProductPriceType>;

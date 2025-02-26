@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 import { formDataToObject } from "@/lib/utils";
 import {
   ProductFormState,
+  ProductPriceFormState,
   ProductPriceSchemaZod,
   ProductSchemaZod,
 } from "@/lib/validations/serverActionsSchema";
@@ -70,31 +71,34 @@ export async function shopDeleteProductAction(id: string) {
   revalidatePath("/shop/products");
 }
 
-interface IFormState {
-  errors?: {
-    lastPrice?: string[];
-    count?: string[];
-    discount?: string[];
-    code?: string[];
-  };
-  message?: string;
-  success?: boolean;
-}
+// interface IFormState {
+//   errors?: {
+//     price?: string[];
+//     count?: string[];
+//     discount?: string[];
+//     code?: string[];
+//   };
+//   message?: string;
+//   success?: boolean;
+// }
 
 export async function shopAddPriceProductAction(
-  prevState: IFormState,
+  prevState: ProductPriceFormState,
   formData: FormData
-): Promise<IFormState> {
+): Promise<Partial<ProductPriceFormState>> {
   await ensureAuthenticated();
 
   const code = formData.get("code");
-  if (!code || typeof code !== "string") {
-    return { errors: { code: ["کد محصول الزامی است"] }, message: "کد نامعتبر" };
-  }
 
   const validatedFields = ProductPriceSchemaZod.safeParse(
     formDataToObject(formData)
   );
+  console.log("code", code);
+  console.log("validatedFields", validatedFields.data);
+
+  if (!code || typeof code !== "string") {
+    return { message: "کد نامعتبر" };
+  }
 
   if (!validatedFields.success) {
     return {

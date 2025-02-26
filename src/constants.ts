@@ -11,11 +11,9 @@ import {
   EditAttributes,
   PhoneAndroid,
   Update,
-  UpdateSharp,
-  UpdateDisabledTwoTone,
   SecurityUpdateGoodOutlined,
 } from "@mui/icons-material";
-import { ListOrdered, ListOrderedIcon } from "lucide-react";
+import { ListOrderedIcon } from "lucide-react";
 
 export const SIDEBAR_ITEMS = [
   { href: "/dashboard", Icon: Dashboard, text: "داشبورد ادمین" },
@@ -47,7 +45,7 @@ export const USER_SIDEBAR_ITEMS = [
   },
   {
     href: "/user-dashboard/orders/update/",
-    Icon:  SecurityUpdateGoodOutlined,
+    Icon: SecurityUpdateGoodOutlined,
     text: "تغییر سفارش",
   },
 ];

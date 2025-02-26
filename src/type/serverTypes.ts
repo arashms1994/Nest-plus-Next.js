@@ -1,4 +1,3 @@
-import { ProductPriceType } from "@/lib/validations/serverActionsSchema";
 import type { ReactNode } from "react";
 
 interface Timestamp {
@@ -78,14 +77,24 @@ interface IPropertyValue {
   value: string;
   id: string;
 }
+
+export interface ISeller extends Timestamp {
+  user: IUser;
+  name: string;
+  slug: string;
+  id: string;
+  _id: string;
+}
+
 export interface SellerInfo {
-  lastPrice: number;
+  price: number;
   createdAt: string;
   discount: number;
   count: number;
   id: string;
   seller: ISeller;
 }
+
 export interface IProduct extends Timestamp {
   images: {
     main: string;
@@ -105,6 +114,7 @@ export interface IProduct extends Timestamp {
   id: string;
   bestSeller?: SellerInfo;
 }
+
 export interface IUser {
   firstName: string;
   lastName: string;
@@ -125,13 +135,6 @@ export interface IProfile {
   createdAt: string;
   updatedAt: string;
   id: string;
-}
-export interface ISeller extends Timestamp {
-  user: IUser;
-  name: string;
-  slug: string;
-  id: string;
-  _id: string;
 }
 
 export type RegisterResponse = {

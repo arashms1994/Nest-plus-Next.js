@@ -7,7 +7,6 @@ import {
   SidebarContent,
   SidebarHeader,
   SidebarMenuButton,
-  SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { USER_SIDEBAR_ITEMS } from "@/constants";

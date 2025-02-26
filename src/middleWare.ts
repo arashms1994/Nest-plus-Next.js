@@ -6,7 +6,7 @@ import { auth } from "./lib/session";
 // 1. Specify protected and public routes
 const protectedRoutes = [
   "/admin/dashboard",
-  "/seller/dashboard",
+  "/shop",
   "/profile",
   "/checkout",
 ];

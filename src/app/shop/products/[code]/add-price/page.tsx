@@ -1,5 +1,5 @@
-import ShopProductForm from "@/components/dashboard-components/forms/shop-forms/shop-product-form";
 import { Box, Card, CardContent, Typography } from "@mui/material";
+import ShopProductForm from "../../../../../components/dashboard-components/forms/shop-forms/shop-product-form";
 
 export default async function ShopCreateProductPage() {
   return (

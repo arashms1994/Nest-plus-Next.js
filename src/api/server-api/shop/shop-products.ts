@@ -34,10 +34,10 @@ export const shopUpdateProduct = async (
 
 export const shopAddProductPrice = async (
   code: string,
-  data: Partial<SellerInfo>
+  data: Partial<IProduct>
 ) => {
-  const response = await fetch(
-    `${SHOP_BASE_URL}/api/sellers/product/${code}/add-price`,
+  return await apiFetch(
+    `${SHOP_BASE_URL}/sellers/product/${code}/add-price`,
     {
       method: "POST",
       headers: {
@@ -46,12 +46,6 @@ export const shopAddProductPrice = async (
       body: JSON.stringify(data),
     }
   );
-
-  if (!response.ok) {
-    throw new Error("خطا در ارسال درخواست به سرور");
-  }
-
-  return response.json();
 };
 
 export const shopGetProducts = async (

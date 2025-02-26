@@ -2,14 +2,14 @@
 
 import { Alert, Stack } from "@mui/material";
 import React, { useActionState, useEffect } from "react";
-import { SellerInfo } from "@/type/serverTypes";
-import SubmitButton from "@/components/submit-button";
 import AIForm from "../AIForm";
-import { shopAddPriceProductAction } from "@/actions/shop/shop-products";
 import { useRouter } from "next/navigation";
+import { IProduct } from "@/type/serverTypes";
+import { shopAddPriceProductAction } from "@/actions/shop/shop-products";
+import SubmitButton from "@/components/submit-button";
 
 type ProductFormProps = {
-  defaultValue?: SellerInfo;
+  defaultValue?: IProduct;
 };
 
 function ShopProductForm({ defaultValue }: ProductFormProps) {
@@ -27,9 +27,8 @@ function ShopProductForm({ defaultValue }: ProductFormProps) {
 
   return (
     <form action={action}>
-      {defaultValue?.id && (
-        <input hidden name="id" defaultValue={defaultValue.id} />
-      )}
+      <input hidden name="code" defaultValue={defaultValue?.id} />
+
       <Stack
         direction="column"
         gap={5}
@@ -40,19 +39,19 @@ function ShopProductForm({ defaultValue }: ProductFormProps) {
         <AIForm
           schema={[
             {
-              name: "lastPrice",
+              name: "price",
               type: "number",
               label: "قیمت",
-              defaultValue: defaultValue?.lastPrice,
-              error: !!state.errors?.lastPrice,
-              helperText: state.errors?.lastPrice?.join(", "),
+              defaultValue: defaultValue?.bestSeller?.price,
+              error: !!state.errors?.price,
+              helperText: state.errors?.price?.join(", "),
             },
             {
               name: "count",
               label: "موجودی",
               size: 6,
               type: "number",
-              defaultValue: defaultValue?.count,
+              defaultValue: defaultValue?.bestSeller?.count,
               error: !!state.errors?.count,
               helperText: state.errors?.count?.join(", "),
             },
@@ -61,7 +60,7 @@ function ShopProductForm({ defaultValue }: ProductFormProps) {
               label: "تخفیف",
               size: 6,
               type: "number",
-              defaultValue: defaultValue?.discount,
+              defaultValue: defaultValue?.bestSeller?.discount,
               error: !!state.errors?.discount,
               helperText: state.errors?.discount?.join(", "),
             },
