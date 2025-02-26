@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { formDataToObject } from "@/lib/utils";
 import {
+  FormState,
   ProductFormState,
   ProductPriceFormState,
   ProductPriceSchemaZod,
@@ -17,6 +18,7 @@ import {
   shopDeleteProduct,
   shopUpdateProduct,
 } from "@/api/server-api/shop/shop-products";
+import { SellerInfo } from "@/type/serverTypes";
 
 export async function ShopCreateOrUpdateProductAction(
   state: ProductFormState,
@@ -71,22 +73,12 @@ export async function shopDeleteProductAction(id: string) {
   revalidatePath("/shop/products");
 }
 
-// interface IFormState {
-//   errors?: {
-//     price?: string[];
-//     count?: string[];
-//     discount?: string[];
-//     code?: string[];
-//   };
-//   message?: string;
-//   success?: boolean;
-// }
-
 export async function shopAddPriceProductAction(
   prevState: ProductPriceFormState,
   formData: FormData
-): Promise<Partial<ProductPriceFormState>> {
+): Promise<FormState<SellerInfo>> {
   await ensureAuthenticated();
+  console.log("formdata", formData);
 
   const code = formData.get("code");
 
@@ -108,7 +100,7 @@ export async function shopAddPriceProductAction(
   }
 
   try {
-    await shopAddProductPrice(code, validatedFields.data);
+    await shopAddProductPrice(code as any, validatedFields.data as SellerInfo);
     return { message: "محصول با موفقیت اضافه شد", success: true };
   } catch (e) {
     console.error(e);

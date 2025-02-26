@@ -189,7 +189,6 @@ export const ProductPriceSchemaZod = z.object({
   price: z.coerce.number().nonnegative(),
   discount: z.coerce.number().min(0).max(100),
   count: z.coerce.number().min(0).optional(),
-  code: z.coerce.number()
 });
 export type ProductPriceType = z.infer<typeof ProductPriceSchemaZod>;
 export type ProductPriceFormState = FormState<ProductPriceType>;

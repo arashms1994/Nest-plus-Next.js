@@ -39,7 +39,7 @@ export const SHOP_SIDEBAR_ITEMS = [
 export const USER_SIDEBAR_ITEMS = [
   { href: "/user-dashboard/orders", Icon: Update, text: "سفارشات" },
   {
-    href: "/user-dashboard/orders/create",
+    href: "/user-dashboard/checkout",
     Icon: ListOrderedIcon,
     text: "ثبت سفارش",
   },

@@ -3,7 +3,7 @@
 import { Alert, Stack } from "@mui/material";
 import React, { useActionState, useEffect } from "react";
 import AIForm from "../AIForm";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { IProduct } from "@/type/serverTypes";
 import { shopAddPriceProductAction } from "@/actions/shop/shop-products";
 import SubmitButton from "@/components/submit-button";
@@ -13,11 +13,13 @@ type ProductFormProps = {
 };
 
 function ShopProductForm({ defaultValue }: ProductFormProps) {
+  const router = useRouter();
+  const {code} = useParams();
   const [state, action] = useActionState(shopAddPriceProductAction, {
+
     message: "",
     success: false,
   });
-  const router = useRouter();
 
   useEffect(() => {
     if (state.success) {
@@ -27,7 +29,7 @@ function ShopProductForm({ defaultValue }: ProductFormProps) {
 
   return (
     <form action={action}>
-      <input hidden name="code" defaultValue={defaultValue?.id} />
+      <input hidden name="code" defaultValue={code} />
 
       <Stack
         direction="column"

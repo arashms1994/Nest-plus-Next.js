@@ -33,17 +33,17 @@ export const shopUpdateProduct = async (
 };
 
 export const shopAddProductPrice = async (
-  code: string,
-  data: Partial<IProduct>
-) => {
-  return await apiFetch(
+  code: number,
+  body: { price: number; count: number; discount: number }
+): Promise<SellerInfo> => {
+  return await apiFetch<SellerInfo>(
     `${SHOP_BASE_URL}/sellers/product/${code}/add-price`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(body),
     }
   );
 };
