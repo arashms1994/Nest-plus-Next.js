@@ -1,40 +1,64 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import * as React from "react";
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
+import Link from "next/link";
 import { IBrand } from "@/type/serverTypes";
 
 interface IBrandsCarouselProps {
   brands: IBrand[];
 }
 
-export function BrandsCarousel(brands: IBrandsCarouselProps) {
+const animation = { duration: 8000, easing: (t: number) => t };
+
+export default function BrandsCarousel({ brands }: IBrandsCarouselProps) {
+  const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({
+    loop: true,
+    renderMode: "performance",
+    drag: false,
+    range: { align: true },
+    slides: { perView: 5, spacing: 5 },
+    created(s) {
+      s.moveToIdx(3, true, animation);
+    },
+    updated(s) {
+      s.moveToIdx(s.track.details.abs + 3, true, animation);
+    },
+    animationEnded(s) {
+      s.moveToIdx(s.track.details.abs + 3, true, animation);
+    },
+  });
+
+  const handleMouseEnter = () => {
+    slider.current?.animator.stop();
+  };
+
+  const handleMouseLeave = () => {
+    slider.current?.moveToIdx(
+      slider.current.track.details.abs + 3,
+      true,
+      animation
+    );
+  };
+
   return (
-    <Carousel className="w-full max-w-sm" opts={{loop:true}}>
-      <CarouselContent className="-ml-1">
-        {brands.brands.map((brand) => (
-          <CarouselItem
-            key={brand.id}
-            className="pl-1 md:basis-1/3 lg:basis-1/3 w-full h-full "
-          >
-            <div className="p-1">
-              <Card>
-                <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <img src={brand.logo} alt={brand.titleEn} />
-                </CardContent>
-              </Card>
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
+    <div
+      ref={sliderRef}
+      className="keen-slider"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      {brands.map((brand) => (
+        <Link key={brand.titleEn} href={`/${brand.titleEn}`}>
+          <Card className="w-36 h-44 keen-slider__slide border-none shadow-none">
+            <CardContent className="flex aspect-square items-center justify-center">
+              <img src={brand.logo} alt={brand.titleEn} />
+            </CardContent>
+          </Card>
+        </Link>
+      ))}
+    </div>
   );
 }
