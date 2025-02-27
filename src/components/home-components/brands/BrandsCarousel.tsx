@@ -51,7 +51,7 @@ export default function BrandsCarousel({ brands }: IBrandsCarouselProps) {
       onMouseLeave={handleMouseLeave}
     >
       {brands.map((brand) => (
-        <Link key={brand.titleEn} href={`/${brand.titleEn}`}>
+        <Link key={brand.titleEn} href={"/brand/" + brand.slug}>
           <Card className="w-36 h-44 keen-slider__slide border-none shadow-none">
             <CardContent className="flex aspect-square items-center justify-center">
               <img src={brand.logo} alt={brand.titleEn} />
