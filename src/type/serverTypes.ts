@@ -87,6 +87,7 @@ export interface ISeller extends Timestamp {
 }
 
 export interface SellerInfo {
+  lastPrice: any;
   price: number;
   createdAt: string;
   discount: number;

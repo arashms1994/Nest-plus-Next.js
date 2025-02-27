@@ -25,18 +25,20 @@ const ProductCard: React.FC<IProductProps> = async ({ product }) => {
           <h3 className="font-semibold text-base truncate max-w-60">
             {product.titleFa}
           </h3>
-          <div className="flex justify-between items-start mt-3">
+          <div className="flex justify-between w-full items-start mt-3">
             {product.bestSeller && (
               <p className="font-semibold text-black text-sm">
                 {product.bestSeller?.lastPrice.toLocaleString("fa")} تومان
               </p>
             )}
-            {product.bestSeller?.discount && (
-              <p className="font-normal text-gray-400 text-sm">
-                {product.bestSeller?.discount.toLocaleString("fa")}%
-              </p>
-            )}
           </div>
+          {product.bestSeller?.discount && (
+              <div className="bg-red-500 rounded-full p-1 absolute top-2 left-2">
+                <p className="font-normal text-white text-sm">
+                  {product.bestSeller?.discount.toLocaleString("fa")}%
+                </p>
+              </div>
+            )}
         </CardContent>
       </Card>
     </Link>
