@@ -1,7 +1,5 @@
-import { userGetProducts } from "@/api/server-api/user/user-products";
 import Footer from "@/components/home-components/footer/footer";
 import Navbar from "@/components/home-components/navbar/navbar";
-import PaginationUI from "@/components/home-components/Pagination";
 import { auth } from "@/lib/session";
 import AuthProvider from "@/providers/AuthProvider";
 import { CartStoreProvider } from "@/providers/CartProvider";
@@ -17,19 +15,16 @@ const layout = async ({
   user: IUser;
 }>) => {
   const { accessToken } = await auth();
-  
 
   return (
     <>
-      <CartStoreProvider>
-        <AuthProvider accessToken={accessToken || ""}>
+      <AuthProvider accessToken={accessToken || ""}>
         <div className="bg-white dark:bg-black">
-        <Navbar user={user} accessToken={accessToken || ""} />
+          <Navbar user={user} accessToken={accessToken || ""} />
           <QueryProvider>{children} </QueryProvider>
           <Footer />
-            </div>
-        </AuthProvider>
-      </CartStoreProvider>
+        </div>
+      </AuthProvider>
     </>
   );
 };

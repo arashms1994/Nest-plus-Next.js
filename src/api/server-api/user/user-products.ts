@@ -21,14 +21,18 @@ export const userGetProductById = async (id: string): Promise<IProduct> => {
   return apiFetch<IProduct>(`${AUTH_BASE_URL}/products/${id}`);
 };
 
-export const userGetSellersByProductId = async (id: string): Promise<ISeller[]> => {
+export const userGetSellersByProductId = async (
+  id: string
+): Promise<ISeller[]> => {
   return apiFetch<ISeller[]>(`${AUTH_BASE_URL}/products/${id}/sellers`);
 };
 
-export const userGetProductsByCategory = async (categoryId: string): Promise<IProduct[]> => {
-  const response = await fetch(`${AUTH_BASE_URL}/categories/${categoryId}/products`);
+export const userGetProductsByCategory = async (
+  slug: string
+): Promise<PaginatedResultApi<IProduct>> => {
+  const response = await fetch(`${AUTH_BASE_URL}/categories/${slug}`);
   if (!response.ok) {
-    throw new Error('Failed to fetch products');
+    throw new Error("Failed to fetch products");
   }
   return response.json();
 };

@@ -13,7 +13,7 @@ interface IHomePageProps {
 }
 
 const HomePage = async ({ searchParams }: IHomePageProps) => {
-  const products = await userGetProducts(searchParams);
+  const products = await userGetProducts();
   const count = products.total;
 
   return (
@@ -34,7 +34,7 @@ const HomePage = async ({ searchParams }: IHomePageProps) => {
 
         <BrandsList />
 
-        <HomeProducts searchParams={searchParams} />
+        <HomeProducts params={searchParams} />
 
         <PaginationUI count={count} />
       </Box>

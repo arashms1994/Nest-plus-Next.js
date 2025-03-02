@@ -1,15 +1,16 @@
-"use client";
-
 import React from "react";
-import { IProduct } from "@/type/serverTypes";
+import { IProduct, SellerInfo } from "@/type/serverTypes";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
+import { AddToCartButton } from "./AddToCart";
 
 interface IProductProps {
   product: IProduct;
+  productSeller: SellerInfo;
 }
 
-const ProductCard: React.FC<IProductProps> = async ({ product }) => {
+const ProductCard = ({ product, productSeller }: IProductProps) => {
+  
   return (
     <Link href={"/product/" + product.code}>
       <Card className="w-[265px] h-[320px] flex flex-col items-center justify-center rounded relative">
@@ -33,12 +34,13 @@ const ProductCard: React.FC<IProductProps> = async ({ product }) => {
             )}
           </div>
           {product.bestSeller?.discount && (
-              <div className="bg-red-500 rounded-full p-1 absolute top-2 left-2">
-                <p className="font-normal text-white text-sm">
-                  {product.bestSeller?.discount.toLocaleString("fa")}%
-                </p>
-              </div>
-            )}
+            <div className="bg-red-500 rounded-full p-1 absolute top-2 left-2">
+              <p className="font-normal text-white text-sm">
+                {product.bestSeller?.discount.toLocaleString("fa")}%
+              </p>
+            </div>
+          )}
+          <AddToCartButton product={product} productSeller={productSeller} />
         </CardContent>
       </Card>
     </Link>

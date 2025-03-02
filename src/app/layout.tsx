@@ -2,6 +2,7 @@ import "./globals.css";
 import ThemeProvider from "@/components/theme/ThemeProvider";
 import { auth } from "@/lib/session";
 import AuthProvider from "@/providers/AuthProvider";
+import { CartStoreProvider } from "@/providers/CartProvider";
 import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
 
@@ -32,7 +33,7 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <AuthProvider accessToken={accessToken || ""}>
-            {children}
+            <CartStoreProvider>{children}</CartStoreProvider>
           </AuthProvider>
         </ThemeProvider>
       </body>
