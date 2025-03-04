@@ -166,7 +166,7 @@ export interface IOrder {
   user: IUser;
   deliveryDate: string;
   orderStatus: OrderStatus;
-  orderItems: [IOrderItem];
+  orderItems: IOrderItem[];
   createdAt: string;
   updatedAt: string;
   id: string;

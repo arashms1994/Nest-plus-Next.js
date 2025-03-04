@@ -24,14 +24,14 @@ export default async function RootLayout({
 }>) {
   const { accessToken } = await auth();
   return (
-    <html lang="fa" dir="rtl">
+    <html
+      lang="fa"
+      dir="rtl"
+      style={{ colorScheme: "light" }}
+      className="light"
+    >
       <body className={`${Vazir.variable}`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" enableSystem disableTransitionOnChange>
           <AuthProvider accessToken={accessToken || ""}>
             <CartStoreProvider>{children}</CartStoreProvider>
           </AuthProvider>

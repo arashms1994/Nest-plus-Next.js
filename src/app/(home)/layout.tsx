@@ -2,7 +2,6 @@ import Footer from "@/components/home-components/footer/footer";
 import Navbar from "@/components/home-components/navbar/navbar";
 import { auth } from "@/lib/session";
 import AuthProvider from "@/providers/AuthProvider";
-import { CartStoreProvider } from "@/providers/CartProvider";
 import QueryProvider from "@/providers/QueryProvider";
 import { IUser } from "@/type/serverTypes";
 import React from "react";

@@ -21,6 +21,7 @@ const Cart = () => {
             <ProductCard
               key={item.product.id}
               product={{ ...item.product, bestSeller: item.productSeller }}
+              productSeller={item.productSeller}
             />
           ))
         )}

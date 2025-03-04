@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 import { IProduct, SellerInfo } from "@/type/serverTypes";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -40,7 +42,7 @@ const ProductCard = ({ product, productSeller }: IProductProps) => {
               </p>
             </div>
           )}
-          <AddToCartButton product={product} productSeller={productSeller} />
+          {/* <AddToCartButton product={product} productSeller={productSeller} /> */}
         </CardContent>
       </Card>
     </Link>

@@ -192,3 +192,26 @@ export const ProductPriceSchemaZod = z.object({
 });
 export type ProductPriceType = z.infer<typeof ProductPriceSchemaZod>;
 export type ProductPriceFormState = FormState<ProductPriceType>;
+
+export const shippingAddressSchema = z.object({
+  street: z.string(),
+  city: z.string(),
+  postalCode: z.string(),
+  location: z.tuple([z.number(), z.number()]),
+});
+
+export const orderItemSchema = z.object({
+  productSeller: z.string(),
+  quantity: z.number().int().positive(),
+});
+
+export const orderFormSchema = z.object({
+  shippingAddress: shippingAddressSchema,
+  deliveryDate: z.string().datetime(),
+  orderItems: z
+    .array(orderItemSchema)
+    .min(1, "At least one order item is required"),
+});
+
+export type OrderFormType = z.infer<typeof orderFormSchema>;
+export type OrderFormState = FormState<OrderFormType>;

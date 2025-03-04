@@ -6,8 +6,7 @@ import {
 import { apiFetch } from "../base";
 
 export const userCreateOrder = async (
-  body: Partial<IOrder>
-): Promise<IOrder> => {
+body: Partial<IOrder>): Promise<IOrder> => {
   try {
     return apiFetch<IOrder>(`${AUTH_BASE_URL}/orders`, {
       method: "POST",

@@ -6,14 +6,13 @@ import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerFooter,
-  DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import Cart from "./Cart";
+import Link from "next/link";
 
 export function CartIcon() {
   return (
@@ -34,7 +33,9 @@ export function CartIcon() {
           </div>
 
           <DrawerFooter>
-            <Button className="bg-black">ثبت سفارش</Button>
+            <Link href="/user-dashboard/checkout">
+              <Button className="bg-black">ثبت سفارش</Button>
+            </Link>
           </DrawerFooter>
         </div>
       </DrawerContent>
