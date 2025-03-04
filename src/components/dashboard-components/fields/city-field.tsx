@@ -18,7 +18,7 @@ export default function CityField({ name, defaultValue }: Props) {
       options={data?.results ?? []}
       getOptionLabel={(o) => o.name}
       isLoading={isLoading}
-      label="شهر"
+      label="شهر خود را وارد کنید."
       name={name}
       setQuery={setQuery}
       defaultValue={defaultValue}

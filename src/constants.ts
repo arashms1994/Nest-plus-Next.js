@@ -37,15 +37,17 @@ export const SHOP_SIDEBAR_ITEMS = [
 ];
 
 export const USER_SIDEBAR_ITEMS = [
-  { href: "/user-dashboard/orders", Icon: Update, text: "سفارشات" },
+  { href: "/user-dashboard/orders", Icon: Update, text: "سفارشات", id: 1 },
   {
     href: "/user-dashboard/checkout",
     Icon: ListOrderedIcon,
     text: "ثبت سفارش",
+    id: 2,
   },
   {
     href: "/user-dashboard/orders/update/",
     Icon: SecurityUpdateGoodOutlined,
     text: "تغییر سفارش",
+    id: 3,
   },
 ];

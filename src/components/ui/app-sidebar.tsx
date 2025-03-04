@@ -23,12 +23,12 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar side="right" collapsible="icon" {...props}>
-      <SidebarHeader>
+      <SidebarHeader className="border-b-2 border-gray-700 mb-3">
         <NavUser user={data.user} />
       </SidebarHeader>
       <SidebarContent>
         {USER_SIDEBAR_ITEMS.map((item) => (
-            <SidebarMenuButton asChild className="my-1">
+            <SidebarMenuButton key={item.id} asChild className="my-1">
               <Link href={item.href} className="font-medium">
                 {item.Icon && <item.Icon />}
                 <span>{item.text}</span>
