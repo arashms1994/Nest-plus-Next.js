@@ -1,37 +1,39 @@
+// src/components/home-components/HomeProducts.tsx
 "use client";
 
-export interface ServerPageProps {
-  searchParams?: {
-    q?: string;
-    [key: string]: string | string[] | undefined;
-  };
+import { useUserProductsQuery } from "@/api/client-api/user/products";
+import ProductCard from "@/components/product-components/product-card/productCard";
+import { useSearch } from "@/providers/SearchProvider";
+import { IProduct } from "@/type/serverTypes";
+
+interface HomeProductsProps {
+  params: { page?: string; pageSize?: string };
 }
 
-import React from "react";
-import ProductCard from "../product-components/product-card/productCard";
-import { IProduct } from "@/type/serverTypes";
-import { useUserProductsQuery } from "@/api/client-api/user/products";
+export default function HomeProducts({ params }: HomeProductsProps) {
+  const { searchQuery } = useSearch();
 
-const HomeProducts = ({ searchParams }: ServerPageProps) => {
-  const q = typeof searchParams?.q === "string" ? searchParams.q : "";
+  const queryParams = {
+    page: params?.page,
+    pageSize: params?.pageSize,
+    q: searchQuery,
+  };
 
-  const { data: products, isLoading, isError } = useUserProductsQuery(q);
+  const {
+    data: products,
+    isLoading,
+    error,
+  } = useUserProductsQuery(queryParams);
 
-  if (isLoading) {
-    return <div>در حال بارگذاری...</div>;
-  }
-
-  if (isError || !products || !products.results) {
-    return <div>No products found.</div>;
-  }
+  if (isLoading) return <div>در حال بارگذاری...</div>;
+  if (error || !products || !products.results)
+    return <div>خطا در دریافت محصولات</div>;
 
   return (
     <div className="flex flex-wrap gap-4 justify-center items-center my-3">
       {products.results.map((product: IProduct) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard key={product.id} product={product}/>
       ))}
     </div>
   );
-};
-
-export default HomeProducts;
+}

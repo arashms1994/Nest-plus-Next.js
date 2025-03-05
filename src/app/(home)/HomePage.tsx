@@ -1,20 +1,31 @@
-import { userGetProducts } from "@/api/server-api/user/user-products";
+"use client";
+
 import { BrandsList } from "@/components/home-components/brands/BrandsList";
 import CategoriesList from "@/components/home-components/categories/CategoriesList";
 import { HeroSection } from "@/components/home-components/hero/heroSection";
 import HomeProducts from "@/components/home-components/HomeProducts";
 import PaginationUI from "@/components/home-components/Pagination";
+import { useUserProductsQuery } from "@/api/client-api/user/products";
 import { ServerPageProps } from "@/type/serverTypes";
 import { Box } from "@mui/material";
-import React from "react";
+import { useSearch } from "@/providers/SearchProvider";
 
 interface IHomePageProps {
   searchParams: ServerPageProps;
 }
 
-const HomePage = async ({ searchParams }: IHomePageProps) => {
-  const products = await userGetProducts();
-  const count = products.total;
+export default function HomePage({ searchParams }: IHomePageProps) {
+  const { searchQuery } = useSearch();
+
+  const queryParams = {
+    page: searchParams?.page,
+    pageSize: searchParams?.pageSize,
+    q: searchQuery,
+  };
+
+  const { data: products } = useUserProductsQuery(queryParams);
+
+  const count = products?.total || 0;
 
   return (
     <>
@@ -31,15 +42,10 @@ const HomePage = async ({ searchParams }: IHomePageProps) => {
         }}
       >
         <CategoriesList />
-
         <BrandsList />
-
         <HomeProducts params={searchParams} />
-
         <PaginationUI count={count} />
       </Box>
     </>
   );
-};
-
-export default HomePage;
+}

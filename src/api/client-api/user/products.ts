@@ -8,6 +8,7 @@ export async function userGetProducts(
     pageSize?: string;
     brandSlug?: string;
     categorySlug?: string;
+    q?: string;
   } = {}
 ) {
   const res = await Axios.get<PaginatedResultApi<IProduct>>("/products", {
@@ -16,6 +17,7 @@ export async function userGetProducts(
       pageSize: params.pageSize || 12,
       ...(params.brandSlug && { brand: params.brandSlug }),
       ...(params.categorySlug && { category: params.categorySlug }),
+      ...(params.q && { q: params.q }),
     },
   });
   return res.data;
@@ -27,6 +29,7 @@ export function useUserProductsQuery(
     pageSize?: string;
     brandSlug?: string;
     categorySlug?: string;
+    q?: string;
   } = {}
 ) {
   return useQuery({

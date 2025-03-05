@@ -1,6 +1,7 @@
-// src/app/(home)/brand/[slug]/BrandPageClient.tsx
+// src/app/(home)/category/[slug]/CategoryPageClient.tsx
 "use client";
 
+import { useUserCategoryQuery } from "@/api/client-api/user/category";
 import { useUserProductsQuery } from "@/api/client-api/user/products";
 import { HeroSection } from "@/components/home-components/hero/heroSection";
 import PaginationUI from "@/components/home-components/Pagination";
@@ -10,25 +11,22 @@ import { Box } from "@mui/material";
 import { notFound } from "next/navigation";
 import { useEffect } from "react";
 import { useSearch } from "@/providers/SearchProvider";
-import { useUserBrandQuery } from "@/api/client-api/user/brands";
 
-interface BrandPageClientProps {
+interface CategoryPageClientProps {
   slug: string;
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams?: { page?: string; pageSize?: string };
 }
 
-export default function BrandPageClient({
+export default function CategoryPageClient({
   slug,
   searchParams,
-}: BrandPageClientProps) {
+}: CategoryPageClientProps) {
   const { searchQuery } = useSearch();
+
   const queryParams = {
-    page: typeof searchParams.page === "string" ? searchParams.page : undefined,
-    pageSize:
-      typeof searchParams.pageSize === "string"
-        ? searchParams.pageSize
-        : undefined,
-    brandSlug: slug,
+    page: searchParams?.page,
+    pageSize: searchParams?.pageSize,
+    categorySlug: slug,
     q: searchQuery,
   };
 
@@ -40,20 +38,23 @@ export default function BrandPageClient({
   } = useUserProductsQuery(queryParams);
 
   const {
-    data: brandData,
-    isLoading: brandLoading,
-    error: brandError,
-  } = useUserBrandQuery(slug);
+    data: category,
+    isLoading: categoryLoading,
+    error: categoryError,
+  } = useUserCategoryQuery(slug);
 
   useEffect(() => {
-    if (productsSuccess && (!products || products.results.length === 0)) {
+    if (
+      categoryError ||
+      (productsSuccess && (!products || products.results.length === 0))
+    ) {
       notFound();
     }
-  }, [productsSuccess, products]);
+  }, [categoryError, productsSuccess, products]);
 
-  if (productsLoading || brandLoading) return <div>در حال بارگذاری...</div>;
-  if (productsError || brandError) return <div>خطا در دریافت اطلاعات</div>;
-  if (!products) return null;
+  if (productsLoading || categoryLoading) return <div>در حال بارگذاری...</div>;
+  if (productsError || categoryError) return <div>خطا در دریافت اطلاعات</div>;
+  if (!products || !category) return null;
 
   return (
     <>
@@ -69,7 +70,7 @@ export default function BrandPageClient({
           marginBottom: "50px",
         }}
       >
-        <h1>{brandData?.titleFa || slug}</h1>
+        <h1>{category.titleFa}</h1>
         <div className="flex flex-wrap gap-4 justify-center items-center">
           {products.results.map((product: IProduct) => (
             <ProductCard key={product.id} product={product} />

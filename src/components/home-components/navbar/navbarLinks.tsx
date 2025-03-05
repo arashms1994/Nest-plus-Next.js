@@ -7,22 +7,20 @@ import { ModeToggle } from "@/components/theme-toggle/ModeToggle";
 import { Button } from "@/components/ui/button";
 
 const NavbarLinks = ({
-  user,
+  role,
   accessToken,
 }: {
-  user: IUser;
+  role: string;
   accessToken: string;
 }) => {
   return (
     <div className="flex justify-center items-center gap-1">
       <Link href="/auth/seller/register">
-      <Button variant="outline">
-      
-          فروشنده شوید
-        </Button></Link>
+        <Button variant="outline">فروشنده شوید</Button>
+      </Link>
       <ModeToggle />
       <CartIcon />
-      <NavbarAvatar user={user} accessToken={accessToken} />
+      <NavbarAvatar role={role} accessToken={accessToken} />
     </div>
   );
 };
