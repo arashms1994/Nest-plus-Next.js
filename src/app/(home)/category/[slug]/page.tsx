@@ -1,40 +1,40 @@
-import { userGetProducts } from "@/api/server-api/user/user-products";
-import { notFound } from "next/navigation";
+"use client";
+
 import ProductCard from "@/components/product-components/product-card/productCard";
-import { ICategory } from "@/type/serverTypes";
-import { userGetCategory } from "@/api/server-api/user/user-category";
 import { HeroSection } from "@/components/home-components/hero/heroSection";
 import { Box } from "@mui/material";
 import PaginationUI from "@/components/home-components/Pagination";
+import { IProduct } from "@/type/serverTypes";
+import { useUserCategoryQuery } from "@/api/client-api/user/category";
+import { useUserProductsQuery } from "@/api/client-api/user/products";
 
-export default async function CategoryPage({
-  params,
-  searchParams,
-}: {
+interface CategoryPageProps {
   params: { slug: string };
   searchParams: { page?: string; pageSize?: string };
-}) {
-  const { slug } = await params;
-  let category: ICategory;
+}
 
-  try {
-    category = await userGetCategory(slug);
-  } catch (error) {
-    notFound();
-  }
+export default function CategoryPage({
+  params,
+  searchParams,
+}: CategoryPageProps) {
+  const { slug } = params;
 
-  const products = await userGetProducts();
-  const count = products.total;
+  const { data: category, isLoading: categoryLoading } =
+    useUserCategoryQuery(slug);
 
-  const filteredProducts = products.results.filter(
-    (p) => p.category.slug !== category.slug
+  const {
+    data: products,
+    isLoading: productsLoading,
+    error: productsError,
+  } = useUserProductsQuery({ ...searchParams, categorySlug: slug });
+
+  const filteredProducts = products?.results.filter(
+    (p) => p.category && p.category.titleEn === slug
   );
-  console.log("category:", category);
 
-  try {
-  } catch (error) {
-    return <div>خطا در دریافت محصولات</div>;
-  }
+  if (categoryLoading || productsLoading) return <div>در حال بارگذاری...</div>;
+  if (productsError) return <div>خطا در دریافت محصولات</div>;
+  if (!category || !products) return null;
 
   return (
     <>
@@ -50,14 +50,12 @@ export default async function CategoryPage({
           marginBottom: "50px",
         }}
       >
-        <h1>{category.titleFa}</h1>
-
-        <div className="flex flex-wrap gap-4 justify-center items-center">
-          {filteredProducts.map((product) => (
+        <div className="flex flex-wrap gap-4 justify-center items-center my-4">
+          {filteredProducts?.map((product: IProduct) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
-        <PaginationUI count={count} />
+        <PaginationUI count={products?.total} />
       </Box>
     </>
   );

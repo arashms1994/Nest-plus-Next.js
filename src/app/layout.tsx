@@ -31,11 +31,15 @@ export default async function RootLayout({
       className="light"
     >
       <body className={`${Vazir.variable}`}>
-        <ThemeProvider attribute="class" enableSystem disableTransitionOnChange>
-          <AuthProvider accessToken={accessToken || ""}>
-            <CartStoreProvider>{children}</CartStoreProvider>
-          </AuthProvider>
-        </ThemeProvider>
+          <ThemeProvider
+            attribute="class"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <AuthProvider accessToken={accessToken || ""}>
+              <CartStoreProvider>{children}</CartStoreProvider>
+            </AuthProvider>
+          </ThemeProvider>
       </body>
     </html>
   );

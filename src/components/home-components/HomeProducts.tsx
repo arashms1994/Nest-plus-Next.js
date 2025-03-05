@@ -1,24 +1,36 @@
-import { userGetProducts } from "@/api/server-api/user/user-products";
-import React, { Suspense } from "react";
+"use client";
+
+export interface ServerPageProps {
+  searchParams?: {
+    q?: string;
+    [key: string]: string | string[] | undefined;
+  };
+}
+
+import React from "react";
 import ProductCard from "../product-components/product-card/productCard";
-import { ServerPageProps } from "@/type/serverTypes";
+import { IProduct } from "@/type/serverTypes";
+import { useUserProductsQuery } from "@/api/client-api/user/products";
 
-const HomeProducts = async ({ searchParams }: ServerPageProps) => {
-  const params = searchParams;
-  const products = await userGetProducts(params);
+const HomeProducts = ({ searchParams }: ServerPageProps) => {
+  const q = typeof searchParams?.q === "string" ? searchParams.q : "";
 
-  if (!products || !products.results) {
+  const { data: products, isLoading, isError } = useUserProductsQuery(q);
+
+  if (isLoading) {
+    return <div>در حال بارگذاری...</div>;
+  }
+
+  if (isError || !products || !products.results) {
     return <div>No products found.</div>;
   }
 
   return (
-    <Suspense fallback={<div>در حال بارگذاری...</div>}>
-      <div className="flex flex-wrap gap-4 justify-center items-center my-3">
-        {products.results.map((product) => (
-          <ProductCard key={product.id} product={product} productSeller={product.bestSeller}/>
-        ))}
-      </div>
-    </Suspense>
+    <div className="flex flex-wrap gap-4 justify-center items-center my-3">
+      {products.results.map((product: IProduct) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
+    </div>
   );
 };
 

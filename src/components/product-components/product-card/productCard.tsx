@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import { IProduct, SellerInfo } from "@/type/serverTypes";
@@ -8,11 +8,10 @@ import { AddToCartButton } from "./AddToCart";
 
 interface IProductProps {
   product: IProduct;
-  productSeller: SellerInfo;
 }
+// productSeller: SellerInfo;
 
-const ProductCard = ({ product, productSeller }: IProductProps) => {
-  
+const ProductCard = ({ product }: IProductProps) => {
   return (
     <Link href={"/product/" + product.code}>
       <Card className="w-[265px] h-[320px] flex flex-col items-center justify-center rounded relative">

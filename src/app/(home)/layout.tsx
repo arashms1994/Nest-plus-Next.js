@@ -18,11 +18,13 @@ const layout = async ({
   return (
     <>
       <AuthProvider accessToken={accessToken || ""}>
-        <div className="bg-white dark:bg-black">
-          <Navbar user={user} accessToken={accessToken || ""} />
-          <QueryProvider>{children} </QueryProvider>
-          <Footer />
-        </div>
+        <QueryProvider>
+          <div className="bg-white dark:bg-black">
+            <Navbar user={user} accessToken={accessToken || ""} />
+            {children}
+            <Footer />
+          </div>
+        </QueryProvider>
       </AuthProvider>
     </>
   );
