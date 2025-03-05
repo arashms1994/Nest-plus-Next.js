@@ -6,13 +6,7 @@ import { IUser } from "@/type/serverTypes";
 import { ModeToggle } from "@/components/theme-toggle/ModeToggle";
 import { Button } from "@/components/ui/button";
 
-const NavbarLinks = ({
-  role,
-  accessToken,
-}: {
-  role: string;
-  accessToken: string;
-}) => {
+const NavbarLinks = () => {
   return (
     <div className="flex justify-center items-center gap-1">
       <Link href="/auth/seller/register">
@@ -20,7 +14,7 @@ const NavbarLinks = ({
       </Link>
       <ModeToggle />
       <CartIcon />
-      <NavbarAvatar role={role} accessToken={accessToken} />
+      <NavbarAvatar />
     </div>
   );
 };

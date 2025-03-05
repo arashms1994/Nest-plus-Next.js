@@ -3,18 +3,11 @@
 import Link from "next/link";
 import NavbarSheet from "./navbarSheet";
 import NavbarLinks from "./navbarLinks";
-import { IUser } from "@/type/serverTypes";
-import SearchBar from "../search/SearchBar";
+import SearchBar from "../serach/SearchBar";
 import { useCallback } from "react";
 import { useSearch } from "@/providers/SearchProvider";
 
-const Navbar = ({
-  role,
-  accessToken,
-}: {
-  role: string;
-  accessToken: string;
-}) => {
+const Navbar = () => {
   const { setSearchQuery } = useSearch();
 
   const handleSearch = useCallback(
@@ -43,7 +36,7 @@ const Navbar = ({
           <SearchBar onSearch={handleSearch} />
         </div>
 
-        <NavbarLinks accessToken={accessToken} role={role} />
+        <NavbarLinks />
       </nav>
     </header>
   );

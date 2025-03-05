@@ -1,14 +1,14 @@
 "use client";
 
+import { useUserProductsQuery } from "@/api/client-api/user/products";
 import { BrandsList } from "@/components/home-components/brands/BrandsList";
 import CategoriesList from "@/components/home-components/categories/CategoriesList";
 import { HeroSection } from "@/components/home-components/hero/heroSection";
 import HomeProducts from "@/components/home-components/HomeProducts";
 import PaginationUI from "@/components/home-components/Pagination";
-import { useUserProductsQuery } from "@/api/client-api/user/products";
+import { useSearch } from "@/providers/SearchProvider";
 import { ServerPageProps } from "@/type/serverTypes";
 import { Box } from "@mui/material";
-import { useSearch } from "@/providers/SearchProvider";
 
 interface IHomePageProps {
   searchParams: ServerPageProps;
@@ -24,7 +24,6 @@ export default function HomePage({ searchParams }: IHomePageProps) {
   };
 
   const { data: products } = useUserProductsQuery(queryParams);
-
   const count = products?.total || 0;
 
   return (
