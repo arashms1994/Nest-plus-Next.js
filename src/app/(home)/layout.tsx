@@ -10,12 +10,14 @@ const layout = async ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+  const { accessToken, role } = await auth();
+
   return (
     <>
       <QueryProvider>
         <SearchProvider>
           <div className="bg-white dark:bg-black">
-            <Navbar />
+            <Navbar accessToken={accessToken || ""} role={role || ""} />
             {children}
             <Footer />
           </div>

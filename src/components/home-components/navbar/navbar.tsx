@@ -7,7 +7,12 @@ import SearchBar from "../serach/SearchBar";
 import { useCallback } from "react";
 import { useSearch } from "@/providers/SearchProvider";
 
-const Navbar = () => {
+interface INavBarProps {
+  accessToken: string;
+  role: string;
+}
+
+const Navbar = ({ accessToken, role }: INavBarProps) => {
   const { setSearchQuery } = useSearch();
 
   const handleSearch = useCallback(
@@ -36,7 +41,7 @@ const Navbar = () => {
           <SearchBar onSearch={handleSearch} />
         </div>
 
-        <NavbarLinks />
+        <NavbarLinks accessToken={accessToken} role={role} />
       </nav>
     </header>
   );

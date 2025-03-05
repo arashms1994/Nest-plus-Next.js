@@ -22,7 +22,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { accessToken, role } = await auth();
+  const { accessToken } = await auth();
   return (
     <html
       lang="fa"
@@ -31,12 +31,8 @@ export default async function RootLayout({
       className="light"
     >
       <body className={`${Vazir.variable}`}>
-      <ThemeProvider
-            attribute="class"
-            enableSystem
-            disableTransitionOnChange
-          >
-          <AuthProvider accessToken={accessToken || ""} role={role || ""}>
+        <ThemeProvider attribute="class" enableSystem disableTransitionOnChange>
+          <AuthProvider accessToken={accessToken || ""}>
             <CartStoreProvider>{children}</CartStoreProvider>
           </AuthProvider>
         </ThemeProvider>

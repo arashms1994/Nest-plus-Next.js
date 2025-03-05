@@ -10,11 +10,13 @@ import {
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { User } from "lucide-react";
-import { useAuth } from "@/providers/AuthProvider";
 
-export function NavbarAvatar() {
-  const { accessToken, role } = useAuth();
+interface IAvatarProps {
+  accessToken: string;
+  role: string;
+}
 
+export function NavbarAvatar({ accessToken, role }: IAvatarProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

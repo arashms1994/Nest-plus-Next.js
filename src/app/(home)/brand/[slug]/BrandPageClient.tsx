@@ -1,4 +1,3 @@
-// src/app/(home)/brand/[slug]/BrandPageClient.tsx
 "use client";
 
 import { useUserProductsQuery } from "@/api/client-api/user/products";

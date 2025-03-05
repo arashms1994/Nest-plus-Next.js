@@ -6,26 +6,24 @@ import { createContext, ReactNode, useContext } from "react";
 type Props = {
   children: ReactNode;
   accessToken: string;
-  role: string;
 };
 
 const AuthContext = createContext({
   accessToken: "",
-  role: "",
 });
 
-export default function AuthProvider({ children, accessToken, role }: Props) {
+export default function AuthProvider({ children, accessToken }: Props) {
   if (accessToken) {
     Axios.defaults.headers.common["Authorization"] = "bearer " + accessToken;
   }
   return (
-    <AuthContext.Provider value={{ accessToken, role }}>
+    <AuthContext.Provider value={{ accessToken }}>
       {children}
     </AuthContext.Provider>
   );
 }
 
 export function useAuth() {
-  const { accessToken, role } = useContext(AuthContext);
-  return { accessToken, role };
+  const { accessToken } = useContext(AuthContext);
+  return { accessToken };
 }
