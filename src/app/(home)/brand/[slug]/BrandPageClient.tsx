@@ -54,6 +54,10 @@ export default function BrandPageClient({
   if (productsError || brandError) return <div>خطا در دریافت اطلاعات</div>;
   if (!products) return null;
 
+  const filteredProducts = products.results.filter(
+    (p) => p.brand.slug === slug
+  );
+
   return (
     <>
       <HeroSection />
@@ -69,8 +73,8 @@ export default function BrandPageClient({
         }}
       >
         <h1>{brandData?.titleFa || slug}</h1>
-        <div className="flex flex-wrap gap-4 justify-center items-center">
-          {products.results.map((product: IProduct) => (
+        <div className="flex flex-wrap gap-4 justify-center items-center my-4">
+          {filteredProducts.map((product: IProduct) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

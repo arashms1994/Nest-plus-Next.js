@@ -55,6 +55,10 @@ export default function CategoryPageClient({
   if (productsError || categoryError) return <div>خطا در دریافت اطلاعات</div>;
   if (!products || !category) return null;
 
+  const filteredProducts = products.results.filter(
+    (p) => p.category.slug === slug
+  );
+
   return (
     <>
       <HeroSection />
@@ -70,8 +74,8 @@ export default function CategoryPageClient({
         }}
       >
         <h1>{category.titleFa}</h1>
-        <div className="flex flex-wrap gap-4 justify-center items-center">
-          {products.results.map((product: IProduct) => (
+        <div className="flex flex-wrap gap-4 justify-center items-center my-4">
+          {filteredProducts.map((product: IProduct) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
