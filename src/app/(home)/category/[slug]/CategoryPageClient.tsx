@@ -1,4 +1,3 @@
-// src/app/(home)/category/[slug]/CategoryPageClient.tsx
 "use client";
 
 import { useUserCategoryQuery } from "@/api/client-api/user/category";
@@ -14,7 +13,7 @@ import { useSearch } from "@/providers/SearchProvider";
 
 interface CategoryPageClientProps {
   slug: string;
-  searchParams?: { page?: string; pageSize?: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 }
 
 export default function CategoryPageClient({
@@ -24,8 +23,8 @@ export default function CategoryPageClient({
   const { searchQuery } = useSearch();
 
   const queryParams = {
-    page: searchParams?.page,
-    pageSize: searchParams?.pageSize,
+    page: searchParams?.page as string | undefined,
+    pageSize: searchParams?.pageSize as string | undefined,
     categorySlug: slug,
     q: searchQuery,
   };
