@@ -7,14 +7,20 @@ import { HeroSection } from "@/components/home-components/hero/heroSection";
 import HomeProducts from "@/components/home-components/HomeProducts";
 import PaginationUI from "@/components/home-components/Pagination";
 import { useSearch } from "@/providers/SearchProvider";
-import { ServerPageProps } from "@/type/serverTypes";
+import { IBrand, ICategory } from "@/type/serverTypes";
 import { Box } from "@mui/material";
 
 interface IHomePageProps {
-  searchParams: ServerPageProps;
+  searchParams: any;
+  brands: IBrand[];
+  categories: ICategory[];
 }
 
-export default function HomePage({ searchParams }: IHomePageProps) {
+export default function HomePage({
+  searchParams,
+  brands,
+  categories,
+}: IHomePageProps) {
   const { searchQuery } = useSearch();
 
   const queryParams = {
@@ -40,8 +46,8 @@ export default function HomePage({ searchParams }: IHomePageProps) {
           marginBottom: "50px",
         }}
       >
-        <CategoriesList />
-        <BrandsList />
+        <CategoriesList categories={categories} />
+        <BrandsList brands={brands} />
         <HomeProducts params={searchParams} />
         <PaginationUI count={count} />
       </Box>
