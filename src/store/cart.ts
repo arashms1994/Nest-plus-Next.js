@@ -51,13 +51,16 @@ export const createCartStore = (initState: CartState = defaultInitState) => {
 
 function increment(state: CartState, orderItem: OrderItem): CartState {
   const isExist = state.items.some(
-    (item) => item.productSeller.id === orderItem.productSeller.id
+    (item) =>
+      item.productSeller.id === orderItem.productSeller.id &&
+      item.product.id === orderItem.product.id
   );
   if (isExist) {
     return {
       ...state,
       items: state.items.map((item) =>
-        item.productSeller.id === orderItem.productSeller.id
+        item.productSeller.id === orderItem.productSeller.id &&
+        item.product.id === orderItem.product.id
           ? { ...item, quantity: item.quantity + 1 }
           : item
       ),
@@ -71,9 +74,7 @@ function increment(state: CartState, orderItem: OrderItem): CartState {
 
 function decrement(state: CartState, sellerId: string): CartState {
   const item = state.items.find((item) => item.productSeller.id === sellerId);
-  if (!item) {
-    throw new Error("item not in basket");
-  }
+  if (!item) return state;
   const shouldRemove = item.quantity <= 1;
   if (shouldRemove) {
     return {

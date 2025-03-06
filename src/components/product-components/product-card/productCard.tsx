@@ -5,13 +5,14 @@ import { IProduct, SellerInfo } from "@/type/serverTypes";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
 import { AddToCartButton } from "./AddToCart";
+import Image from "next/image";
 
 interface IProductProps {
   product: IProduct;
+  productSeller: SellerInfo;
 }
-// productSeller: SellerInfo;
 
-const ProductCard = ({ product }: IProductProps) => {
+const ProductCard = ({ product, productSeller }: IProductProps) => {
   return (
     <Link href={"/product/" + product.code}>
       <Card className="w-[265px] h-[320px] flex flex-col items-center justify-center rounded relative">
@@ -29,9 +30,11 @@ const ProductCard = ({ product }: IProductProps) => {
           </h3>
           <div className="flex justify-between w-full items-start mt-3">
             {product.bestSeller && (
-              <p className="font-semibold text-black text-sm">
-                {product.bestSeller?.lastPrice.toLocaleString("fa")} تومان
-              </p>
+              <div className="flex gap-2">
+                <p className="font-semibold text-black text-sm">
+                  {product.bestSeller.lastPrice.toLocaleString("fa")} تومان
+                </p>
+              </div>
             )}
           </div>
           {product.bestSeller?.discount && (
