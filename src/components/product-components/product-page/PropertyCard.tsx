@@ -1,15 +1,19 @@
-import { IProperty } from "@/type/serverTypes";
+"use client";
+
 import React from "react";
 
-const PropertyCard = (property: Partial<IProperty>) => {
+interface PropertyCardProps {
+  id: string;
+  name: string;
+  label: string;
+}
+
+const PropertyCard = ({ id, name, label }: PropertyCardProps) => {
   return (
-        <div
-        key={property.id}
-        className="bg-slate-400 flex flex-col items-center justify-center rounded py-2 px-3"
-      >
-        <h3 className="font-normal text-sm text-white">{property.label}</h3>
-        <p className="font-normal text-xs text-white">{property.name}</p>
-      </div>
+    <div className="bg-slate-400 flex flex-col items-center justify-center rounded py-2 px-3">
+      <h3 className="font-normal text-sm text-white">{label}</h3>
+      <p className="font-normal text-xs text-white">{name}</p>
+    </div>
   );
 };
 

@@ -9,6 +9,7 @@ export interface IPropertyOption {
   value: string;
   label: string;
 }
+
 export interface IProperty extends Timestamp {
   id: string;
   name: string;
