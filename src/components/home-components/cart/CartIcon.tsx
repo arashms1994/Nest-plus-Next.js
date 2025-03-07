@@ -28,7 +28,7 @@ export function CartIcon() {
             <h1 className="font-semibold text-lg">سبد خرید</h1>
           </DrawerTitle>
 
-          <div className="w-full">
+          <div className="w-full pt-2">
             <Cart />
           </div>
 

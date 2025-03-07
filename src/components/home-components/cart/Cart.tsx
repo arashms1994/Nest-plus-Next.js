@@ -7,7 +7,7 @@ const Cart = () => {
   const { items } = useCartStore((state) => state);
 
   return (
-    <Card>
+    <Card className="pt-3 flex justify-center items-center">
       <CardContent>
         {!items?.length ? (
           <div className="flex flex-col justify-center items-center">

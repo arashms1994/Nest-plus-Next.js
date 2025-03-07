@@ -15,7 +15,7 @@ interface IProductProps {
 const ProductCard = ({ product, productSeller }: IProductProps) => {
   return (
     <Link href={"/product/" + product.code}>
-      <Card className="w-[265px] h-[320px] flex flex-col items-center justify-center rounded relative">
+      <Card className="w-[265px] h-[350px] flex flex-col items-center justify-center rounded relative py-2">
         <CardHeader className="w-[265px] h-[250px] rounded-t">
           <img
             src={product.images.main}
@@ -44,7 +44,7 @@ const ProductCard = ({ product, productSeller }: IProductProps) => {
               </p>
             </div>
           )}
-          {/* <AddToCartButton product={product} productSeller={productSeller} /> */}
+          <AddToCartButton product={product} productSeller={productSeller} />
         </CardContent>
       </Card>
     </Link>

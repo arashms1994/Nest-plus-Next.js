@@ -5,7 +5,7 @@ import { useUserProductsQuery } from "@/api/client-api/user/products";
 import { HeroSection } from "@/components/home-components/hero/heroSection";
 import PaginationUI from "@/components/home-components/Pagination";
 import ProductCard from "@/components/product-components/product-card/productCard";
-import { IProduct } from "@/type/serverTypes";
+import { IProduct, SellerInfo } from "@/type/serverTypes";
 import { Box } from "@mui/material";
 import { notFound } from "next/navigation";
 import { useEffect } from "react";
@@ -73,10 +73,13 @@ export default function CategoryPageClient({
           marginBottom: "50px",
         }}
       >
-        <h1>{category.titleFa}</h1>
         <div className="flex flex-wrap gap-4 justify-center items-center my-4">
           {filteredProducts.map((product: IProduct) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              productSeller={product.bestSeller as SellerInfo}
+            />
           ))}
         </div>
         <PaginationUI count={products.total} />

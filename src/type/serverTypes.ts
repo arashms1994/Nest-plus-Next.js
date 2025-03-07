@@ -44,6 +44,7 @@ export interface Column<T extends { id?: string; _id?: string }> {
   title: string;
   render: (row: T) => ReactNode;
 }
+
 export interface ICategory extends Timestamp {
   titleEn: string;
   titleFa: string;
@@ -54,6 +55,7 @@ export interface ICategory extends Timestamp {
   id: string;
   icon?: string;
 }
+
 export interface IBrand extends Timestamp {
   titleFa: string;
   titleEn: string;

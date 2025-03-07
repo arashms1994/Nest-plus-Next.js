@@ -10,7 +10,7 @@ export type CartState = {
 };
 
 export type CartActions = {
-  decrementItemCount: (sellerId: string) => void;
+  decrementItemCount: (sellerId: string, productId: string) => void;
   incrementItemCount: (orderItem: OrderItem) => void;
 };
 
@@ -25,8 +25,8 @@ export const createCartStore = (initState: CartState = defaultInitState) => {
     persist(
       (set) => ({
         ...initState,
-        decrementItemCount: (sellerId) =>
-          set((state) => decrement(state, sellerId)),
+        decrementItemCount: (sellerId, productId) =>
+          set((state) => decrement(state, sellerId, productId)),
         incrementItemCount: (orderItem) =>
           set((state) => increment(state, orderItem)),
       }),
@@ -72,22 +72,24 @@ function increment(state: CartState, orderItem: OrderItem): CartState {
   };
 }
 
-function decrement(state: CartState, sellerId: string): CartState {
-  const item = state.items.find((item) => item.productSeller.id === sellerId);
-  if (!item) return state;
-  const shouldRemove = item.quantity <= 1;
-  if (shouldRemove) {
+function decrement(state: CartState, sellerId: string, productId: string): CartState {
+  const itemIndex = state.items.findIndex(
+    (item) => item.productSeller.id === sellerId && item.product.id === productId
+  );
+  if (itemIndex === -1) return state;
+
+  const item = state.items[itemIndex];
+  if (item.quantity <= 1) {
     return {
       ...state,
-      items: state.items.filter((item) => item.productSeller.id !== sellerId),
+      items: state.items.filter((_, index) => index !== itemIndex),
     };
   }
+
   return {
     ...state,
-    items: state.items.map((item) =>
-      item.productSeller.id === sellerId
-        ? { ...item, quantity: item.quantity - 1 }
-        : item
+    items: state.items.map((item, index) =>
+      index === itemIndex ? { ...item, quantity: item.quantity - 1 } : item
     ),
   };
 }
