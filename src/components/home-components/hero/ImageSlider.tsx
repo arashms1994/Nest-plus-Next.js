@@ -6,9 +6,9 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 
 const images = [
-  "/hero-img/Beige and Brown Minimalist New Style Collection Banner.jpg",
-  "/hero-img/Green and Yellow Simple Clean Shoes Sale Banner.jpg",
-  "/hero-img/White Classy and Refined Real Estate Banner.jpg",
+  "/hero-img/slide1.jpg",
+  "/hero-img/slide2.jpg",
+  "/hero-img/slide3.jpg",
 ];
 
 const ImageSlider = () => {

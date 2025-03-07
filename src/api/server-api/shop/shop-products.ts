@@ -5,7 +5,7 @@ import { SHOP_BASE_URL } from "@/config.server";
 import { revalidateTag } from "next/cache";
 import { apiFetch } from "../base";
 import { ProductType } from "@/lib/validations/serverActionsSchema";
-import { IProduct, PaginatedResultApi } from "@/type/serverTypes";
+import { IProduct, PaginatedResultApi, SellerInfo } from "@/type/serverTypes";
 
 export const shopCreateProduct = async (
   body: Partial<ProductType>
@@ -33,15 +33,20 @@ export const shopUpdateProduct = async (
 };
 
 export const shopAddProductPrice = async (
-  code: string,
+  code: number,
   body: { price: number; count: number; discount: number }
-): Promise<IProduct> => {
-  return apiFetch<IProduct>(`${SHOP_BASE_URL}/sellers/product/${code}/add-price`, {
-    method: "POST",
-    body: JSON.stringify(body),
-  });
+): Promise<SellerInfo> => {
+  return await apiFetch<SellerInfo>(
+    `${SHOP_BASE_URL}/sellers/product/${code}/add-price`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    }
+  );
 };
-
 
 export const shopGetProducts = async (
   params?: any

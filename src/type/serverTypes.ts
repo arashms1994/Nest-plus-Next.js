@@ -9,6 +9,7 @@ export interface IPropertyOption {
   value: string;
   label: string;
 }
+
 export interface IProperty extends Timestamp {
   id: string;
   name: string;
@@ -34,14 +35,17 @@ export interface PaginatedResultApi<T> {
   pageSize: number;
 }
 export type ServerPageProps = {
+  page: any;
+  pageSize: any;
   params: Promise<{ [key: string]: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export interface Column<T extends { id?: string; _id?: string }> {
   title: string;
   render: (row: T) => ReactNode;
 }
+
 export interface ICategory extends Timestamp {
   titleEn: string;
   titleFa: string;
@@ -52,6 +56,7 @@ export interface ICategory extends Timestamp {
   id: string;
   icon?: string;
 }
+
 export interface IBrand extends Timestamp {
   titleFa: string;
   titleEn: string;
@@ -77,14 +82,25 @@ interface IPropertyValue {
   value: string;
   id: string;
 }
-interface SellerInfo {
-  lastPrice: number;
+
+export interface ISeller extends Timestamp {
+  user: IUser;
+  name: string;
+  slug: string;
+  id: string;
+  _id: string;
+}
+
+export interface SellerInfo {
+  lastPrice: any;
+  price: number;
   createdAt: string;
   discount: number;
   count: number;
   id: string;
   seller: ISeller;
 }
+
 export interface IProduct extends Timestamp {
   images: {
     main: string;
@@ -104,6 +120,7 @@ export interface IProduct extends Timestamp {
   id: string;
   bestSeller?: SellerInfo;
 }
+
 export interface IUser {
   firstName: string;
   lastName: string;
@@ -125,13 +142,6 @@ export interface IProfile {
   updatedAt: string;
   id: string;
 }
-export interface ISeller extends Timestamp {
-  user: IUser;
-  name: string;
-  slug: string;
-  id: string;
-  _id: string;
-}
 
 export type RegisterResponse = {
   tokens: {
@@ -150,6 +160,7 @@ export enum OrderStatus {
   Delivered = "delivered",
   Cancelled = "cancelled",
 }
+
 export interface IOrder {
   shippingAddress: {
     street: string;
@@ -160,11 +171,12 @@ export interface IOrder {
   user: IUser;
   deliveryDate: string;
   orderStatus: OrderStatus;
-  orderItems: [IOrderItem];
+  orderItems: IOrderItem[];
   createdAt: string;
   updatedAt: string;
   id: string;
 }
+
 export interface IOrderItem {
   id: string;
   productSeller: {
@@ -178,4 +190,10 @@ export interface IOrderItem {
   quantity: number;
   order: string;
   seller: ISeller;
+}
+
+export interface IComment {
+  text: string;
+  rating: number;
+  product: number;
 }

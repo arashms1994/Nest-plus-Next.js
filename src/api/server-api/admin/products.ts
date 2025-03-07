@@ -54,7 +54,6 @@ export const deleteProduct = async (
 
 export const getProductById = async (id: string): Promise<IProduct> => {
   return apiFetch<IProduct>(`${ADMIN_BASE_URL}/products/${id}`, {
-    cache: "force-cache",
     next: {
       tags: ["allSingleProduct", `products-${id}`],
     },

@@ -1,18 +1,27 @@
 "use client";
 
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
 import Link from "next/link";
 import NavbarSheet from "./navbarSheet";
 import NavbarLinks from "./navbarLinks";
-import { NavbarAvatar } from "./navbarAvatar";
-import { IUser } from "@/type/serverTypes";
+import SearchBar from "../serach/SearchBar";
+import { useCallback } from "react";
+import { useSearch } from "@/providers/SearchProvider";
 
-const Navbar = ({
-  user,
-}: {
-  user: IUser
-}) => {
+interface INavBarProps {
+  accessToken: string;
+  role: string;
+}
+
+const Navbar = ({ accessToken, role }: INavBarProps) => {
+  const { setSearchQuery } = useSearch();
+
+  const handleSearch = useCallback(
+    (query: string) => {
+      setSearchQuery(query);
+    },
+    [setSearchQuery]
+  );
+
   return (
     <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-8">
       <NavbarSheet />
@@ -22,24 +31,17 @@ const Navbar = ({
           <div>
             <Link
               href="/"
-              className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-lg font-medium transition-colors  hover:text-gray-900 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
+              className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-lg font-medium transition-colors hover:text-gray-900 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
               prefetch={false}
             >
-              <NavbarAvatar user={user}/>
+              <h1 className="text-lg font-semibold">+Nest</h1>
             </Link>
           </div>
 
-          <div className="flex justify-start items-center bg-gray-100 rounded-sm h-9">
-            <Search className="text-gray-400" />
-            <Input
-              type="search"
-              placeholder="جستجو"
-              className="w-96 bg-gray-100 rounded-r-none border-none"
-            />
-          </div>
+          <SearchBar onSearch={handleSearch} />
         </div>
 
-        <NavbarLinks />
+        <NavbarLinks accessToken={accessToken} role={role} />
       </nav>
     </header>
   );

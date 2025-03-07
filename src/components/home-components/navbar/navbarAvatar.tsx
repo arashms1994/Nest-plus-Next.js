@@ -1,6 +1,5 @@
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,62 +9,96 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { IUser } from "@/type/serverTypes";
-import { auth } from "@/lib/session";
+import { User } from "lucide-react";
 
-interface INavbarAvatarProps {
-  user: IUser;
+interface IAvatarProps {
+  accessToken: string;
+  role: string;
 }
 
-export async function NavbarAvatar({ user }: INavbarAvatarProps) {
-
+export function NavbarAvatar({ accessToken, role }: IAvatarProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Avatar className="h-9 w-9">
-          <AvatarImage
-            alt={`${user?.firstName.charAt(0)}${user?.lastName.charAt(0)}`}
-          />
-          <AvatarFallback>{`${user?.firstName.charAt(0)}${user?.lastName.charAt(
-            0
-          )}`}</AvatarFallback>
+        <Button variant="outline">
+          <User />
           <span className="sr-only">Toggle user menu</span>
-        </Avatar>
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 mr-10">
-        {/* {isLogin && (
+        {accessToken && (
           <>
             <DropdownMenuItem className="font-bold text-lg">
               John Doe
             </DropdownMenuItem>
             <DropdownMenuSeparator />
+            {role === "1" && (
+              <>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/user-dashboard"
+                    className="block w-full text-left"
+                    prefetch={false}
+                  >
+                    حساب کاربری
+                  </Link>
+                </DropdownMenuItem>
+              </>
+            )}
+            {role === "2" && (
+              <>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/shop"
+                    className="block w-full text-left"
+                    prefetch={false}
+                  >
+                    حساب کاربری
+                  </Link>
+                </DropdownMenuItem>
+              </>
+            )}
+            {role === "3" && (
+              <>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/dashboard"
+                    className="block w-full text-left"
+                    prefetch={false}
+                  >
+                    حساب کاربری
+                  </Link>
+                </DropdownMenuItem>
+              </>
+            )}
             <DropdownMenuItem asChild>
               <Link
-                href="/profile"
+                href="/orders"
                 className="block w-full text-left"
                 prefetch={false}
               >
-                Profile
+                سفارشات
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
               <Button variant="outline" className="block w-full text-left">
-                Logout
+                خروج
               </Button>
             </DropdownMenuItem>{" "}
-            :
-            <DropdownMenuItem asChild>
-              <Link
-                href="/auth/login"
-                className="block w-full text-left"
-                prefetch={false}
-              >
-                Login
-              </Link>
-            </DropdownMenuItem>
           </>
-        )} */}
+        )}
+        {!accessToken && (
+          <DropdownMenuItem asChild>
+            <Link
+              href="/auth/login"
+              className="block w-full text-left"
+              prefetch={false}
+            >
+              ورود
+            </Link>
+          </DropdownMenuItem>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );

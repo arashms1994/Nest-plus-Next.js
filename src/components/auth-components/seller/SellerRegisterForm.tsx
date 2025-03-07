@@ -77,7 +77,7 @@ const SellerRegisterForm = () => {
         />
         <FormControl variant="standard">
           <InputLabel htmlFor="standard-adornment-password">
-            Password
+            رمز عبور
           </InputLabel>
           <Input
             id="standard-adornment-password"
@@ -105,8 +105,8 @@ const SellerRegisterForm = () => {
             name="shopName"
             label="نام فروشگاه"
             variant="standard"
+            sx={{ marginY: "10px" }}
           />
-          ّ
           <TextField
             error={!!state?.errors?.lastName}
             helperText={state?.errors?.lastName}

@@ -25,5 +25,5 @@ export default function AuthProvider({ children, accessToken }: Props) {
 
 export function useAuth() {
   const { accessToken } = useContext(AuthContext);
-  return accessToken;
+  return { accessToken };
 }

@@ -2,6 +2,7 @@ import "./globals.css";
 import ThemeProvider from "@/components/theme/ThemeProvider";
 import { auth } from "@/lib/session";
 import AuthProvider from "@/providers/AuthProvider";
+import { CartStoreProvider } from "@/providers/CartProvider";
 import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
 
@@ -23,14 +24,16 @@ export default async function RootLayout({
 }>) {
   const { accessToken } = await auth();
   return (
-    <html lang="fa" dir="rtl">
+    <html
+      lang="fa"
+      dir="rtl"
+      style={{ colorScheme: "light" }}
+      className="light"
+    >
       <body className={`${Vazir.variable}`}>
-        <ThemeProvider attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange>
+        <ThemeProvider attribute="class" enableSystem disableTransitionOnChange>
           <AuthProvider accessToken={accessToken || ""}>
-            {children}
+            <CartStoreProvider>{children}</CartStoreProvider>
           </AuthProvider>
         </ThemeProvider>
       </body>
