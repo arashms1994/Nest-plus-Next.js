@@ -9,23 +9,20 @@ import PaginationUI from "@/components/home-components/Pagination";
 import { useSearch } from "@/providers/SearchProvider";
 import { IBrand, ICategory } from "@/type/serverTypes";
 import { Box } from "@mui/material";
+import { useSearchParams } from "next/navigation";
 
 interface IHomePageProps {
-  searchParams: any;
   brands: IBrand[];
   categories: ICategory[];
 }
 
-export default function HomePage({
-  searchParams,
-  brands,
-  categories,
-}: IHomePageProps) {
+export default function HomePage({ brands, categories }: IHomePageProps) {
   const { searchQuery } = useSearch();
+  const searchParams = useSearchParams();
 
   const queryParams = {
-    page: searchParams?.page,
-    pageSize: searchParams?.pageSize,
+    page: searchParams.get("page") || "1",
+    pageSize: searchParams.get("pageSize") || "10",
     q: searchQuery,
   };
 
@@ -48,7 +45,7 @@ export default function HomePage({
       >
         <CategoriesList categories={categories} />
         <BrandsList brands={brands} />
-        <HomeProducts params={searchParams} />
+        <HomeProducts params={Object.fromEntries(searchParams)} />
         <PaginationUI count={count} />
       </Box>
     </>

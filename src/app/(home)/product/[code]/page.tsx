@@ -1,18 +1,21 @@
 import { userGetProductById } from "@/api/server-api/user/user-products";
 import ProductPage from "@/components/product-components/product-page/productPage";
-import { SellerInfo, ServerPageProps } from "@/type/serverTypes";
-import React from "react";
+import { IProduct, SellerInfo } from "@/type/serverTypes";
 
-const page = async ({ params }: ServerPageProps) => {
+interface ProductPageProps {
+  params: Promise<{ code: string }>;
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
+
+export default async function ProductPageRoute({ params }: ProductPageProps) {
   const { code } = await params;
-  const product = await userGetProductById(code);
+  const product: IProduct = await userGetProductById(code);
 
-  return (
-    <ProductPage
-      productSeller={product.bestSeller as SellerInfo}
-      product={product}
-    />
-  );
-};
+  const productSeller: SellerInfo =
+    product.bestSeller ||
+    ({
+      id: "default-seller",
+    } as SellerInfo);
 
-export default page;
+  return <ProductPage product={product} productSeller={productSeller} />;
+}
