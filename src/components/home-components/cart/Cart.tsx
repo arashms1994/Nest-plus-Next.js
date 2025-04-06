@@ -19,6 +19,7 @@ const Cart = () => {
         ) : (
           items.map((item) => (
             <ProductCard
+            isCartPage={true}
               key={item.product.id}
               product={{ ...item.product, bestSeller: item.productSeller }}
               productSeller={item.productSeller}

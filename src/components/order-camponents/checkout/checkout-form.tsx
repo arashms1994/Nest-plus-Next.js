@@ -45,11 +45,12 @@ const CheckoutForm = ({ defaultValue }: ICheckoutProps) => {
               placeholder="کد پستی خود را وارد نمایید."
               name="postalCode"
             />
-          <DatePicker/>
+            <DatePicker />
           </div>
           <div className="flex flex-wrap gap-3 justify-center items-center">
             {items.map((item) => (
               <ProductCard
+                isCartPage={true}
                 key={item.product.id}
                 product={{ ...item.product, bestSeller: item.productSeller }}
                 productSeller={item.productSeller}
