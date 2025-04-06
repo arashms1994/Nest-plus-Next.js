@@ -9,9 +9,14 @@ import { AddToCartButton } from "./AddToCart";
 interface IProductProps {
   product: IProduct;
   productSeller: SellerInfo;
+  isCartPage?: boolean;
 }
 
-const ProductCard = ({ product, productSeller }: IProductProps) => {
+const ProductCard = ({
+  product,
+  productSeller,
+  isCartPage = false,
+}: IProductProps) => {
   return (
     <Link href={"/product/" + product.code}>
       <Card className="w-[265px] h-[350px] flex flex-col items-center justify-center rounded relative py-2">
@@ -43,7 +48,9 @@ const ProductCard = ({ product, productSeller }: IProductProps) => {
               </p>
             </div>
           )}
-          <AddToCartButton product={product} productSeller={productSeller} />
+          {isCartPage && (
+            <AddToCartButton product={product} productSeller={productSeller} />
+          )}
         </CardContent>
       </Card>
     </Link>
