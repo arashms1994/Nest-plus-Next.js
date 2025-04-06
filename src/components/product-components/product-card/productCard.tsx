@@ -5,7 +5,6 @@ import { IProduct, SellerInfo } from "@/type/serverTypes";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
 import { AddToCartButton } from "./AddToCart";
-import Image from "next/image";
 
 interface IProductProps {
   product: IProduct;
@@ -31,7 +30,7 @@ const ProductCard = ({ product, productSeller }: IProductProps) => {
           <div className="flex justify-between w-full items-start mt-3">
             {product.bestSeller && (
               <div className="flex gap-2">
-                <p className="font-semibold text-black text-sm">
+                <p className="font-semibold text-black text-base">
                   {product.bestSeller.lastPrice.toLocaleString("fa")} تومان
                 </p>
               </div>
