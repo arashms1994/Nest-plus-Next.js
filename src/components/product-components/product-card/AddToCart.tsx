@@ -20,7 +20,8 @@ export const AddToCartButton = ({ product, productSeller }: AddToCartButtonProps
   );
   const quantity = existingItem?.quantity || 0;
 
-  const buttonStyles = "bg-black text-white flex items-center justify-center w-full";
+  const buttonStyles = "bg-black text-white flex items-center justify-center w-10";
+  const buttonStyles1 = "bg-black text-white flex items-center justify-center w-full";
 
   return (
     <div className="flex gap-3 items-center justify-center">
@@ -42,7 +43,7 @@ export const AddToCartButton = ({ product, productSeller }: AddToCartButtonProps
         </>
       ) : (
         <Button
-          className={buttonStyles}
+          className={buttonStyles1}
           onClick={() => incrementItemCount({ product, productSeller })}
         >
           Add to Cart

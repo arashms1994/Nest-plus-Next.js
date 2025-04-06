@@ -25,7 +25,7 @@ export function CartIcon() {
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm flex flex-col items-center justify-center">
           <DrawerTitle className="text-center">
-            <h1 className="font-semibold text-lg">سبد خرید</h1>
+            <div className="font-semibold text-lg">سبد خرید</div>
           </DrawerTitle>
 
           <div className="w-full pt-2">

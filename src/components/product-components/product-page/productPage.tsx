@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Grid, Paper, Box } from "@mui/material";
+import { Grid, Paper, Box, Typography, Stack } from "@mui/material";
 import { IProduct, SellerInfo } from "@/type/serverTypes";
 import ProductImages from "./ProductImages";
 import ProductColors from "./ProductColors";
@@ -47,11 +47,16 @@ const ProductPage = ({ product, productSeller }: IProductProps) => {
           <Grid item xs={12} md={6}>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
               <ProductDetails product={product} />
+              <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
               <ProductColors
                 product={product}
                 selectedColor={selectedColor}
                 onColorSelect={handleColorSelect}
               />
+                <Typography component={'h1'} sx={{fontSize:"24px", fontWeight:"500"}}>
+                  {product.bestSeller?.lastPrice} تومان
+                </Typography>
+              </Stack>
               <AddToCartButton
                 product={product}
                 productSeller={productSeller}
